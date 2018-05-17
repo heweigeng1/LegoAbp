@@ -5,12 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Users\ModelConfigs\**" />
+    <EmbeddedResource Remove="Users\ModelConfigs\**" />
+    <None Remove="Users\ModelConfigs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Abp" Version="3.6.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Roles\" />
-    <Folder Include="Users\ModelConfigs\" />
     <Folder Include="Tenant\" />
   </ItemGroup>
 
