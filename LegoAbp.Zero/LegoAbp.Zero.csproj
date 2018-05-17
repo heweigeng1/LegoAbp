@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp" Version="3.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Roles\" />
+    <Folder Include="Users\ModelConfigs\" />
+    <Folder Include="Tenant\" />
+  </ItemGroup>
+
+</Project>
