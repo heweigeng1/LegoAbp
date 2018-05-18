@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegoAbp.Zero.Application.Paged
+namespace LegoAbp.Zero.Common.Paged
 {
     public class BaseRequestInput : IPagedAndSortedResultRequest
     {

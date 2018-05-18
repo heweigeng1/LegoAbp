@@ -11,7 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Main", "Main", "{59D34702-3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CD9FF3F5-971B-4941-BB8D-A251E9E0268D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoAbp.Zero", "LegoAbp.Zero\LegoAbp.Zero.csproj", "{C0A3091D-0404-49FD-B525-EFF959D9C0BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegoAbp.Zero", "LegoAbp.Zero\LegoAbp.Zero.csproj", "{C0A3091D-0404-49FD-B525-EFF959D9C0BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoAbp.Host", "LegoAbp.Host\LegoAbp.Host.csproj", "{BE1AE466-C969-4494-BB11-B0A5DC01F15E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoAbp.EntityFrameworkCore", "LegoAbp.EntityFrameworkCore\LegoAbp.EntityFrameworkCore.csproj", "{5A124235-FA99-4937-B5C6-953A139986F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +27,22 @@ Global
 		{C0A3091D-0404-49FD-B525-EFF959D9C0BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0A3091D-0404-49FD-B525-EFF959D9C0BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0A3091D-0404-49FD-B525-EFF959D9C0BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE1AE466-C969-4494-BB11-B0A5DC01F15E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE1AE466-C969-4494-BB11-B0A5DC01F15E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE1AE466-C969-4494-BB11-B0A5DC01F15E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE1AE466-C969-4494-BB11-B0A5DC01F15E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A124235-FA99-4937-B5C6-953A139986F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A124235-FA99-4937-B5C6-953A139986F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A124235-FA99-4937-B5C6-953A139986F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A124235-FA99-4937-B5C6-953A139986F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C0A3091D-0404-49FD-B525-EFF959D9C0BD} = {B7C71117-1E42-4E82-BAFA-0564BBCFFC9F}
+		{BE1AE466-C969-4494-BB11-B0A5DC01F15E} = {59D34702-34CF-43C3-898E-0CF9FC2917A9}
+		{5A124235-FA99-4937-B5C6-953A139986F3} = {B7C71117-1E42-4E82-BAFA-0564BBCFFC9F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B8A1855-EB05-448C-9A83-DB2A01264B68}
