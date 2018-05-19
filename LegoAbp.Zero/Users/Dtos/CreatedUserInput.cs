@@ -11,11 +11,5 @@ namespace LegoAbp.Zero.Users.Dtos
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public Guid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public bool IsTransient()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Abp.EntityFrameworkCore;
+using LegoAbp.Zero.Users.Domain;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace LegoAbp.EntityFrameworkCore
     public class LegoAbpDbContext : AbpDbContext
     {
         //在此映射到数据库
-        //public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public LegoAbpDbContext(DbContextOptions<LegoAbpDbContext> options) : base(options)
         {
