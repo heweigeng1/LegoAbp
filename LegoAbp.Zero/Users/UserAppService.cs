@@ -1,7 +1,6 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
-using LegoAbp.Zero.Common.Paged;
 using LegoAbp.Zero.Users.Domain;
 using LegoAbp.Zero.Users.Dtos;
 using System;
