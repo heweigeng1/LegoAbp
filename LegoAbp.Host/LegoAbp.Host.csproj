@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LegoAbp.EntityFrameworkCore\LegoAbp.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\LegoAbp.Web.Core\LegoAbp.Web.Core.csproj" />
   </ItemGroup>
 
 </Project>

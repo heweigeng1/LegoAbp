@@ -8,7 +8,7 @@ using System.Text;
 namespace LegoAbp.Core.Web
 {
     /// <summary>
-    /// This class is used to find root path of the web project in;
+    /// This class is used to find root path of the web project in;获取项目根目录
     /// unit tests (to find views) and entity framework core command line commands (to find conn string).
     /// </summary>
     public static class WebContentDirectoryFinder
