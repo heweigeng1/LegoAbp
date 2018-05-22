@@ -38,7 +38,8 @@ namespace LegoAbp.Core.Configuration
 
             if (addUserSecrets)
             {
-                builder.AddUserSecrets(typeof(AppConfigurations).GetAssembly());
+                var assembly = typeof(AppConfigurations).GetAssembly();
+                builder.AddUserSecrets(assembly);
             }
 
             return builder.Build();

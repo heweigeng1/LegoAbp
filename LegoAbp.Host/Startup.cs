@@ -42,8 +42,8 @@ namespace LegoAbp.Host
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             //注册ABP
-            app.UseAbp();
-
+            app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
+            app.UseAbpRequestLocalization();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
