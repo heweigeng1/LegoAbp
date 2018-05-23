@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegoAbp.Core", "LegoAbp.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegoAbp.Web.Core", "LegoAbp.Web.Core\LegoAbp.Web.Core.csproj", "{C31F0C2B-8B8E-4AEC-9CF3-E652A506E12C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoAbp.Migrator", "LegoAbp.Migrator\LegoAbp.Migrator.csproj", "{29CBFFEE-286C-4E5F-9966-D691EF5B8110}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegoAbp.Migrator", "LegoAbp.Migrator\LegoAbp.Migrator.csproj", "{29CBFFEE-286C-4E5F-9966-D691EF5B8110}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoAbp.Core.Web", "LegoAbp.Core.Web\LegoAbp.Core.Web.csproj", "{1B2ABF88-E370-4273-A2FB-DF31CB730774}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{29CBFFEE-286C-4E5F-9966-D691EF5B8110}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29CBFFEE-286C-4E5F-9966-D691EF5B8110}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29CBFFEE-286C-4E5F-9966-D691EF5B8110}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B2ABF88-E370-4273-A2FB-DF31CB730774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B2ABF88-E370-4273-A2FB-DF31CB730774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B2ABF88-E370-4273-A2FB-DF31CB730774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B2ABF88-E370-4273-A2FB-DF31CB730774}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{7C3A8AAA-F127-4A94-A95F-32775303A86D} = {B7C71117-1E42-4E82-BAFA-0564BBCFFC9F}
 		{C31F0C2B-8B8E-4AEC-9CF3-E652A506E12C} = {B7C71117-1E42-4E82-BAFA-0564BBCFFC9F}
 		{29CBFFEE-286C-4E5F-9966-D691EF5B8110} = {B7C71117-1E42-4E82-BAFA-0564BBCFFC9F}
+		{1B2ABF88-E370-4273-A2FB-DF31CB730774} = {B7C71117-1E42-4E82-BAFA-0564BBCFFC9F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B8A1855-EB05-448C-9A83-DB2A01264B68}

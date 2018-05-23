@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Abp.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -15,6 +16,7 @@ namespace LegoAbp.Host
 {
     public class Startup
     {
+        private const string _defaultCorsPolicyName = "localhost";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,17 +27,16 @@ namespace LegoAbp.Host
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(
+                 options => options.Filters.Add(new CorsAuthorizationFilterFactory(_defaultCorsPolicyName))
+                );
 
             //使用swagger中间件
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Info { Title = "LegoAbp Api", Version = "v1" });
             });
-            services.AddAbp<LegoAbpHostModule>(options =>
-            {
-
-            });
+            services.AddAbp<LegoAbpHostModule>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +44,7 @@ namespace LegoAbp.Host
         {
             //注册ABP
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
-            app.UseAbpRequestLocalization();
+            //app.UseAbpRequestLocalization();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

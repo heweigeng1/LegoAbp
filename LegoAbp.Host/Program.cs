@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Abp;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,10 @@ namespace LegoAbp.Host
     {
         public static void Main(string[] args)
         {
+            using (var bootstrapper = AbpBootstrapper.Create<LegoAbpHostModule>())
+            {
+                bootstrapper.Initialize();
+            }
             BuildWebHost(args).Run();
         }
 

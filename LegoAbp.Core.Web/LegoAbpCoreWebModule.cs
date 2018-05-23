@@ -7,30 +7,32 @@ using System.Text;
 using LegoAbp.Zero;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using LegoAbp.Web.Core.Configuration;
+using LegoAbp.Core.Web.Configuration;
 using LegoAbp.Core;
-using Abp.AspNetCore;
+using LegoAbp.Core.Configuration;
+using LegoAbp.Core.AbpExp;
 
-namespace LegoAbp.Web.Core
+namespace LegoAbp.Core.Web
 {
     [DependsOn(typeof(LegoAbpZeroModule),
-        typeof(LegoAbpCoreModule),
-        typeof(AbpAspNetCoreModule)
+        typeof(LegoAbpCoreModule)
         )]
-    public class LegoAbpWebCoreModule : AbpModule
+    public class LegoAbpCoreWebModule : AbpModule
     {
         private readonly IHostingEnvironment _env;
         private readonly IConfigurationRoot _appConfiguration;
 
-        public LegoAbpWebCoreModule(IHostingEnvironment env)
+        public LegoAbpCoreWebModule(IHostingEnvironment env)
         {
             _env = env;
             _appConfiguration = env.GetAppConfiguration();
         }
         public override void PreInitialize()
         {
-
-            Configuration.Modules.AbpAspNetCore()
+            Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
+               LegoAbpConsts.ConnectionStringName
+           );
+            Configuration.Modules.AbpAspNetCore2()
                  .CreateControllersForAppServices(
                      typeof(LegoAbpZeroModule).GetAssembly()
                  );
@@ -41,7 +43,7 @@ namespace LegoAbp.Web.Core
 
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention(typeof(LegoAbpWebCoreModule).GetAssembly());
+            IocManager.RegisterAssemblyByConvention(typeof(LegoAbpCoreWebModule).GetAssembly());
         }
     }
 }
