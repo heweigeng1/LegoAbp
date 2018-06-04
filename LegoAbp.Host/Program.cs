@@ -15,10 +15,6 @@ namespace LegoAbp.Host
     {
         public static void Main(string[] args)
         {
-            using (var bootstrapper = AbpBootstrapper.Create<LegoAbpHostModule>())
-            {
-                bootstrapper.Initialize();
-            }
             BuildWebHost(args).Run();
         }
 

@@ -25,7 +25,7 @@ namespace LegoAbp.Host
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(
                  options => options.Filters.Add(new CorsAuthorizationFilterFactory(_defaultCorsPolicyName))
@@ -36,7 +36,7 @@ namespace LegoAbp.Host
             {
                 options.SwaggerDoc("v1", new Info { Title = "LegoAbp Api", Version = "v1" });
             });
-            services.AddAbp<LegoAbpHostModule>();
+           return services.AddAbp<LegoAbpHostModule>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
