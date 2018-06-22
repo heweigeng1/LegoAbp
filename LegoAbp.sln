@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbpTree", "Abp.Tree\AbpTree
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WxOpenApi", "WxOpenApi\WxOpenApi.csproj", "{15A06963-23F4-46EE-BEAC-B9E576CB062A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoAbp.Zero", "LegoAbp.Zero\LegoAbp.Zero.csproj", "{2352C324-C4F3-431B-936D-F7AFFB8843AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{15A06963-23F4-46EE-BEAC-B9E576CB062A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15A06963-23F4-46EE-BEAC-B9E576CB062A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15A06963-23F4-46EE-BEAC-B9E576CB062A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2352C324-C4F3-431B-936D-F7AFFB8843AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2352C324-C4F3-431B-936D-F7AFFB8843AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2352C324-C4F3-431B-936D-F7AFFB8843AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2352C324-C4F3-431B-936D-F7AFFB8843AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{5D441612-29CA-4DAD-9945-B9DE11CE026C} = {F10AA149-2626-486E-85BB-9CD5365F3016}
 		{40C71ED0-CB3E-44BA-A1CB-406E9B2A0804} = {E1B85FF9-72A0-410C-9540-8B4F867194B7}
 		{15A06963-23F4-46EE-BEAC-B9E576CB062A} = {E1B85FF9-72A0-410C-9540-8B4F867194B7}
+		{2352C324-C4F3-431B-936D-F7AFFB8843AD} = {3E6586FD-8C4B-44B8-A33E-3B46E8757746}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F2B6720-2F5D-43C5-857B-689E6ECFCE6B}

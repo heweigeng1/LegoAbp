@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\" />
+    <Folder Include="Dtos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Abp.Tree\AbpTree.csproj" />
+    <ProjectReference Include="..\src\LegoAbp.Core\LegoAbp.Core.csproj" />
+    <ProjectReference Include="..\src\LegoAbp.EntityFrameworkCore\LegoAbp.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+</Project>
