@@ -20,7 +20,7 @@ namespace LegoAbp.Zero
         {
             //Configuration.Settings.Providers.Add<BodeAbpProductSettingProvider>();
             //Configuration.Authorization.Providers.Add<BodeAbpProductAuthorizationProvider>();
-            //DefaultDbContextInitializer.Instance.MapperAssemblies.Add(Assembly.GetExecutingAssembly());
+            DefaultDbContextInitializer.Instance.MapperAssemblies.Add(Assembly.GetExecutingAssembly());
         }
 
         /// <summary>

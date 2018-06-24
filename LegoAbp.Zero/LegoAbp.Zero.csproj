@@ -5,8 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\" />
-    <Folder Include="Dtos\" />
+    <Compile Remove="Domain\**" />
+    <Compile Remove="Dtos\**" />
+    <EmbeddedResource Remove="Domain\**" />
+    <EmbeddedResource Remove="Dtos\**" />
+    <None Remove="Domain\**" />
+    <None Remove="Dtos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\" />
+    <Folder Include="Roles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="3.7.2" />
   </ItemGroup>
 
   <ItemGroup>

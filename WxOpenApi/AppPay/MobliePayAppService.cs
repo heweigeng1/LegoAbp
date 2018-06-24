@@ -1,5 +1,4 @@
-﻿using Abp.Application.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -7,7 +6,6 @@ using WxOpenApi.AppPay.Dtos;
 using WxOpenApi.Config;
 using WxOpenApi.Utils;
 using Microsoft.AspNetCore.Http;
-using Abp.Web.Models;
 using Abp.Domain.Services;
 
 namespace WxOpenApi.AppPay
