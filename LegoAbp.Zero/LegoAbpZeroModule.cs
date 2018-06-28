@@ -1,10 +1,7 @@
 ﻿using Abp.Modules;
 using AbpTree;
 using LegoAbp.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace LegoAbp.Zero
 {
@@ -15,12 +12,15 @@ namespace LegoAbp.Zero
         )]
     public class LegoAbpZeroModule : AbpModule
     {
-
         public override void PreInitialize()
         {
             //Configuration.Settings.Providers.Add<BodeAbpProductSettingProvider>();
             //Configuration.Authorization.Providers.Add<BodeAbpProductAuthorizationProvider>();
-            DefaultDbContextInitializer.Instance.MapperAssemblies.Add(Assembly.GetExecutingAssembly());
+            //DefaultDbContextInitializer.Instance.MapperAssemblies.Add(Assembly.GetExecutingAssembly());
+            var ass = Assembly.GetExecutingAssembly();
+            EntityTypeMapBuilder.ModuleAssemblys.Add(ass);
+            System.Console.WriteLine("aaaa");
+            var a1 = 0;
         }
 
         /// <summary>

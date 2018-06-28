@@ -4,15 +4,18 @@ using Abp.Modules;
 using Abp.Reflection.Extensions;
 using LegoAbp.Configuration;
 using LegoAbp.EntityFrameworkCore;
+using LegoAbp.Zero;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
 namespace LegoAbp.Web.Startup
 {
     [DependsOn(
-        typeof(LegoAbpApplicationModule), 
-        typeof(LegoAbpEntityFrameworkCoreModule), 
-        typeof(AbpAspNetCoreModule))]
+        typeof(LegoAbpApplicationModule),
+        typeof(LegoAbpEntityFrameworkCoreModule),
+        typeof(AbpAspNetCoreModule),
+        typeof(LegoAbpZeroModule)
+        )]
     public class LegoAbpWebModule : AbpModule
     {
         private readonly IConfigurationRoot _appConfiguration;
