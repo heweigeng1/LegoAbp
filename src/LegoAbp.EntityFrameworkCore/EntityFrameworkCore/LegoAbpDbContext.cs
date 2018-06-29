@@ -1,11 +1,14 @@
 ﻿using Abp.Dependency;
 using Abp.EntityFrameworkCore;
 using Abp.Reflection;
+using LegoAbp.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.Extensions.DependencyModel;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection;
 
 namespace LegoAbp.EntityFrameworkCore
 {
@@ -23,9 +26,12 @@ namespace LegoAbp.EntityFrameworkCore
         {
             Console.WriteLine(EntityTypeMapBuilder.ModuleAssemblys.Count);
             modelBuilder.Entity(typeof(UserA));
-            var list = IocManager.Instance.Resolve<AbpAssemblyFinder>().GetAllAssemblies();
-            Console.WriteLine(list.Count);
+            //var list = IocManager.Instance.Resolve<AbpAssemblyFinder>().GetAllAssemblies();
+            DependencyContext context = DependencyContext.Default;
+            Console.WriteLine(context.CompileLibraries.Count);
             //modelBuilder.ApplyConfiguration(new UserAMap());
+          
+            //Console.WriteLine(b.Length);
         }
     }
 

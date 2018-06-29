@@ -1,6 +1,8 @@
 ﻿using Abp.Modules;
 using AbpTree;
 using LegoAbp.EntityFrameworkCore;
+using LegoAbp.Reflection;
+using Microsoft.Extensions.DependencyModel;
 using System.Reflection;
 
 namespace LegoAbp.Zero
@@ -20,6 +22,9 @@ namespace LegoAbp.Zero
             var ass = Assembly.GetExecutingAssembly();
             EntityTypeMapBuilder.ModuleAssemblys.Add(ass);
             System.Console.WriteLine("aaaa");
+            DependencyContext context = DependencyContext.Default;
+            var ass1 = new EntityConfigurationAssemblyFinder(new AppDomainAllAssemblyFinder());
+            var b = ass1.FindAll();
             var a1 = 0;
         }
 
