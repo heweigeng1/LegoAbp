@@ -3,6 +3,7 @@ using AbpTree;
 using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Reflection;
 using Microsoft.Extensions.DependencyModel;
+using System;
 using System.Reflection;
 
 namespace LegoAbp.Zero
@@ -21,11 +22,13 @@ namespace LegoAbp.Zero
             //DefaultDbContextInitializer.Instance.MapperAssemblies.Add(Assembly.GetExecutingAssembly());
             var ass = Assembly.GetExecutingAssembly();
             EntityTypeMapBuilder.ModuleAssemblys.Add(ass);
-            System.Console.WriteLine("aaaa");
+            Console.WriteLine("aaaa");
             DependencyContext context = DependencyContext.Default;
-            var ass1 = new EntityConfigurationAssemblyFinder(new AppDomainAllAssemblyFinder());
-            var b = ass1.FindAll();
-            var a1 = 0;
+            var ass2 = new EntityConfigurationTypeFinder(new EntityConfigurationAssemblyFinder(new AppDomainAllAssemblyFinder()));
+            var b = ass2.FindAll();
+            var y = Activator.CreateInstance(b[0]);
+            //var z = 10;
+            Console.WriteLine(y);
         }
 
         /// <summary>

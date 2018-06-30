@@ -7,9 +7,9 @@ using System.Text;
 
 namespace LegoAbp.Zero.Users.ModelCongier
 {
-    class UserMap : IEntityTypeConfiguration<User>, IEntityRegister
+    public class UserMap : EntityConfigurationBase<User,Guid>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public override void Configure(EntityTypeBuilder<User> builder)
         {
 
         }

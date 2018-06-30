@@ -8,7 +8,7 @@ namespace LegoAbp.Reflection
     /// 要查找的项
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public interface IFinder<out TItem>
+    public interface ILegoAbpFinder<out TItem>
     {
         /// <summary>
         /// 查找指定条件的项

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LegoAbp.Reflection
 {
-    public abstract class FinderBase<TItem> : IFinder<TItem>
+    public abstract class FinderBase<TItem> : ILegoAbpFinder<TItem>
     {
         private readonly object _lockObj = new object();
 

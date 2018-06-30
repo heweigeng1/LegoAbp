@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace LegoAbp.Reflection
 {
-    public class AppDomainAllAssemblyFinder : FinderBase<Assembly>, IAssemblyFinder, ISingletonDependency
+    public class AppDomainAllAssemblyFinder : FinderBase<Assembly>, ILegoAbpAssemblyFinder, ISingletonDependency
     {
         protected override Assembly[] FindAllItems()
         {

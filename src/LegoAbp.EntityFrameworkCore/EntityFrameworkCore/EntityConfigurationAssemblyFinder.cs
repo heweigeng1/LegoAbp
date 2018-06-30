@@ -1,24 +1,22 @@
-﻿using LegoAbp.Reflection;
-using Microsoft.EntityFrameworkCore;
+﻿using Abp.Dependency;
+using LegoAbp.Reflection;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace LegoAbp.EntityFrameworkCore
 {
-    public class EntityConfigurationAssemblyFinder : FinderBase<Assembly>, IAssemblyFinder
+    public class EntityConfigurationAssemblyFinder : FinderBase<Assembly>, IEntityConfigurationAssemblyFinder, ISingletonDependency
     {
-        public  IAssemblyFinder _allAssemblyFinder;
-        public EntityConfigurationAssemblyFinder(IAssemblyFinder allAssemblyFinder)
+        public ILegoAbpAssemblyFinder  _assemblyFinder;
+        public EntityConfigurationAssemblyFinder(ILegoAbpAssemblyFinder assemblyFinder)
         {
-            _allAssemblyFinder = allAssemblyFinder;
+            _assemblyFinder = assemblyFinder;
         }
         protected override Assembly[] FindAllItems()
         {
             Type baseType = typeof(IEntityRegister);
-            Assembly[] assemblies = _allAssemblyFinder.FindAll();
+            Assembly[] assemblies = _assemblyFinder.FindAll();
             List<Type> entitys = new List<Type>();
             foreach (var item in assemblies)
             {
@@ -32,7 +30,7 @@ namespace LegoAbp.EntityFrameworkCore
                 }
             }
                 //.Any(type => baseType.IsAssignableFrom(type) && !type.IsAbstract));
-            return assemblies;
+             return assemblies;
         }
     }
 }

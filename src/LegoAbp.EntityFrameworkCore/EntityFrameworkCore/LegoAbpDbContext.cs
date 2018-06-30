@@ -22,6 +22,16 @@ namespace LegoAbp.EntityFrameworkCore
         {
             Console.WriteLine(1);
         }
+        /// <summary>
+        /// EF迁移的时候用的
+        /// </summary>
+        /// <param name="options"></param>
+        /// <param name="a"></param>
+        public LegoAbpDbContext(DbContextOptions<LegoAbpDbContext> options,string a)
+            : base(options)
+        {
+            Console.WriteLine(1);
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             Console.WriteLine(EntityTypeMapBuilder.ModuleAssemblys.Count);
@@ -30,8 +40,12 @@ namespace LegoAbp.EntityFrameworkCore
             DependencyContext context = DependencyContext.Default;
             Console.WriteLine(context.CompileLibraries.Count);
             //modelBuilder.ApplyConfiguration(new UserAMap());
-          
-            //Console.WriteLine(b.Length);
+            var ass2 = new EntityConfigurationTypeFinder(new EntityConfigurationAssemblyFinder(new AppDomainAllAssemblyFinder()) );
+            var b = ass2.FindAll();
+            var y = Activator.CreateInstance(b[0]);
+            //var z = 10;
+
+            Console.WriteLine(y);
         }
     }
 
