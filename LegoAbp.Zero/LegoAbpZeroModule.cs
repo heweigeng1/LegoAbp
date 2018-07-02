@@ -27,6 +27,7 @@ namespace LegoAbp.Zero
             var ass2 = new EntityConfigurationTypeFinder(new EntityConfigurationAssemblyFinder(new AppDomainAllAssemblyFinder()));
             var b = ass2.FindAll();
             var y = Activator.CreateInstance(b[0]);
+            var d = ass2.GetEntityRegisters(typeof(LegoAbpDbContext));
             //var z = 10;
             Console.WriteLine(y);
         }

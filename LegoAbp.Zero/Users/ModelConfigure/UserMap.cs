@@ -11,7 +11,7 @@ namespace LegoAbp.Zero.Users.ModelCongier
     {
         public override void Configure(EntityTypeBuilder<User> builder)
         {
-
+            builder.HasData(new User {Id=Guid.NewGuid(),UserName="admin" ,IsDeleted=false,IsActive=true,CreationTime=DateTime.Now});
         }
     }
 }
