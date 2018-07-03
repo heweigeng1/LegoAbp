@@ -14,8 +14,22 @@
     <RootNamespace>LegoAbp.Web</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp2.1|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.1\LegoAbp.Web.xml</DocumentationFile>
+    <NoWarn>1701;1702,1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\ui\**" />
+    <Content Remove="wwwroot\ui\**" />
+    <EmbeddedResource Remove="wwwroot\ui\**" />
+    <None Remove="wwwroot\ui\**" />
+  </ItemGroup>
+
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="wwwroot\swagger\ui\abp.js" />
+    <None Include="wwwroot\swagger\ui\on-complete.js" />
     <None Update="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -32,6 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
     <PackageReference Include="System.Net.Primitives" Version="4.3.0" />
     <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
     <PackageReference Include="Castle.LoggingFacility.MsLogging" Version="3.1.0" />
@@ -62,6 +77,10 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="App_Data\Logs\" />
   </ItemGroup>
 
 </Project>

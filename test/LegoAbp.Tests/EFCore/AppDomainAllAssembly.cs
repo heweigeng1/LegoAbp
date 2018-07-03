@@ -12,7 +12,6 @@ namespace LegoAbp.Tests.EFCore
         public void Find()
         {
           var ass=  new AppDomainAllAssemblyFinder().FindAll();
-            var t =1;
         }
     }
 }

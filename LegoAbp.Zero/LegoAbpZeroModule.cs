@@ -20,16 +20,6 @@ namespace LegoAbp.Zero
             //Configuration.Settings.Providers.Add<BodeAbpProductSettingProvider>();
             //Configuration.Authorization.Providers.Add<BodeAbpProductAuthorizationProvider>();
             //DefaultDbContextInitializer.Instance.MapperAssemblies.Add(Assembly.GetExecutingAssembly());
-            var ass = Assembly.GetExecutingAssembly();
-            EntityTypeMapBuilder.ModuleAssemblys.Add(ass);
-            Console.WriteLine("aaaa");
-            DependencyContext context = DependencyContext.Default;
-            var ass2 = new EntityConfigurationTypeFinder(new EntityConfigurationAssemblyFinder(new AppDomainAllAssemblyFinder()));
-            var b = ass2.FindAll();
-            var y = Activator.CreateInstance(b[0]);
-            var d = ass2.GetEntityRegisters(typeof(LegoAbpDbContext));
-            //var z = 10;
-            Console.WriteLine(y);
         }
 
         /// <summary>
