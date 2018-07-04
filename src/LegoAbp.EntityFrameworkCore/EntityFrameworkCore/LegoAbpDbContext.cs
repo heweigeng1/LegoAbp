@@ -1,4 +1,5 @@
 ﻿using Abp.Dependency;
+using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
 using Abp.Reflection;
 using LegoAbp.Reflection;
@@ -16,7 +17,7 @@ namespace LegoAbp.EntityFrameworkCore
     {
         
         //Add DbSet properties for your entities...
-        //public DbSet<UserA> UserAs { get; set; }
+        public DbSet<UserA> UserAs { get; set; }
         public LegoAbpDbContext(DbContextOptions<LegoAbpDbContext> options)
             : base(options)
         {
@@ -34,9 +35,8 @@ namespace LegoAbp.EntityFrameworkCore
         }
     }
 
-    public class UserA
+    public class UserA: Entity<Guid>
     {
-        public Guid Id { get; set; }
         [MaxLength(10)]
         public string NameB { get; set; }
         public string Namec { get; set; }
