@@ -21,6 +21,7 @@ namespace LegoAbp.EntityFrameworkCore
     public class LegoAbpEntityFrameworkCoreModule : AbpModule
     {
         private readonly ITypeFinder _typeFinder;
+        //private readonly ILegoAbpEntityTypeFinder _legoAbpEntityType;
 
         public LegoAbpEntityFrameworkCoreModule(ITypeFinder typeFinder)
         {
@@ -29,9 +30,9 @@ namespace LegoAbp.EntityFrameworkCore
 
         public override void PreInitialize()
         {
-            //IocManager.IocContainer.Register(Component.For(typeof(IDbContextProvider<>)).ImplementedBy(typeof(UnitOfWorkDbContextProvider<>)).LifestyleTransient());
-
-          
+            IocManager.Register<ILegoAbpEntityTypeFinder, LegoAbpEntityTypeFinder>(DependencyLifeStyle.Singleton);
+            //var ddd = _legoAbpEntityType.FindAll();
+            //var d = 0;
         }
 
         /// <summary>
@@ -42,6 +43,8 @@ namespace LegoAbp.EntityFrameworkCore
             var ass = Assembly.GetExecutingAssembly();
             IocManager.RegisterAssemblyByConvention(typeof(LegoAbpEntityFrameworkCoreModule).GetAssembly());
             RegisterGenericRepositoriesAndMatchDbContexes();
+          var ddd=  IocManager.Resolve<ILegoAbpEntityTypeFinder>().FindAll();
+            var d = 0;
         }
 
         /// <summary>

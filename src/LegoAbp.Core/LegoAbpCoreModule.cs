@@ -24,9 +24,9 @@ namespace LegoAbp
             var ass3 = Assembly.GetCallingAssembly();
             var ass4 = GetAdditionalAssemblies();
             IocManager.RegisterAssemblyByConvention(typeof(LegoAbpCoreModule).GetAssembly());
-            var list = Abp.Dependency.IocManager.Instance.Resolve<AbpAssemblyFinder>().GetAllAssemblies();
+            var list = Abp.Dependency.IocManager.Instance.Resolve<IAssemblyFinder>().GetAllAssemblies();
             var list2 = new AppDomainAllAssemblyFinder().FindAll();
-           
+           var bbb= IocManager.Resolve<IAssemblyFinder>();
             Console.WriteLine(list.Count);
         }
     }
