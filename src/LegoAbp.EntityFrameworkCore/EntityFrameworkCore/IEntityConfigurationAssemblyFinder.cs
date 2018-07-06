@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LegoAbp.EntityFrameworkCore
 {
-    public interface IEntityConfigurationAssemblyFinder: ILegoAbpAssemblyFinder
+    public interface IEntityConfigurationAssemblyFinder: IAppDomainAllAssemblyFinder
     {
     }
 }

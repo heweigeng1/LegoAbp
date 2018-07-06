@@ -1,6 +1,8 @@
-﻿using Abp.Modules;
+﻿using Abp.Dependency;
+using Abp.Modules;
 using Abp.Reflection;
 using Abp.Reflection.Extensions;
+using Castle.MicroKernel.Registration;
 using LegoAbp.Localization;
 using LegoAbp.Reflection;
 using System;
@@ -10,24 +12,22 @@ namespace LegoAbp
 {
     public class LegoAbpCoreModule : AbpModule
     {
+        private IIocManager _iocManager;
+        public LegoAbpCoreModule(IIocManager iocManager)
+        {
+            _iocManager = iocManager;
+        }
         public override void PreInitialize()
         {
             Configuration.Auditing.IsEnabledForAnonymousUsers = true;
-
             LegoAbpLocalizationConfigurer.Configure(Configuration.Localization);
         }
 
         public override void Initialize()
         {
-            var ass = Assembly.GetEntryAssembly();
-            var ass2 = Assembly.GetExecutingAssembly();
-            var ass3 = Assembly.GetCallingAssembly();
-            var ass4 = GetAdditionalAssemblies();
             IocManager.RegisterAssemblyByConvention(typeof(LegoAbpCoreModule).GetAssembly());
-            var list = Abp.Dependency.IocManager.Instance.Resolve<IAssemblyFinder>().GetAllAssemblies();
-            var list2 = new AppDomainAllAssemblyFinder().FindAll();
-           var bbb= IocManager.Resolve<IAssemblyFinder>();
-            Console.WriteLine(list.Count);
+            //_iocManager.IocContainer.Register(Component.For<IAppDomainAllAssemblyFinder, AppDomainAllAssemblyFinder>().ImplementedBy<AppDomainAllAssemblyFinder>().LifestyleSingleton());
+
         }
     }
 }

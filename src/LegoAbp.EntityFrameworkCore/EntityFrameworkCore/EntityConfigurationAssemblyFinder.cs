@@ -9,8 +9,8 @@ namespace LegoAbp.EntityFrameworkCore
 {
     public class EntityConfigurationAssemblyFinder : FinderBase<Assembly>, IEntityConfigurationAssemblyFinder, ISingletonDependency
     {
-        public ILegoAbpAssemblyFinder _assemblyFinder;
-        public EntityConfigurationAssemblyFinder(ILegoAbpAssemblyFinder assemblyFinder)
+        public IAppDomainAllAssemblyFinder _assemblyFinder;
+        public EntityConfigurationAssemblyFinder(IAppDomainAllAssemblyFinder assemblyFinder)
         {
             _assemblyFinder = assemblyFinder;
         }

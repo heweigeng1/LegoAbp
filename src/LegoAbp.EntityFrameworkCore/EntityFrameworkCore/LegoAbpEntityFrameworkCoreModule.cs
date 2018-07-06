@@ -10,6 +10,7 @@ using Abp.Orm;
 using Abp.Reflection;
 using Abp.Reflection.Extensions;
 using Castle.MicroKernel.Registration;
+using LegoAbp.Reflection;
 using System;
 using System.Reflection;
 
@@ -22,7 +23,6 @@ namespace LegoAbp.EntityFrameworkCore
     {
         private readonly ITypeFinder _typeFinder;
         //private readonly ILegoAbpEntityTypeFinder _legoAbpEntityType;
-
         public LegoAbpEntityFrameworkCoreModule(ITypeFinder typeFinder)
         {
             _typeFinder = typeFinder;
@@ -30,7 +30,8 @@ namespace LegoAbp.EntityFrameworkCore
 
         public override void PreInitialize()
         {
-            IocManager.Register<ILegoAbpEntityTypeFinder, LegoAbpEntityTypeFinder>(DependencyLifeStyle.Singleton);
+            //IocManager.Register<ILegoAbpEntityTypeFinder, LegoAbpEntityTypeFinder>(DependencyLifeStyle.Singleton);
+            //var r = IocManager.Resolve<ILegoAbpEntityTypeFinder>().FindAll();
             //var ddd = _legoAbpEntityType.FindAll();
             //var d = 0;
         }
@@ -40,10 +41,13 @@ namespace LegoAbp.EntityFrameworkCore
         /// </summary>
         public override void Initialize()
         {
-            var ass = Assembly.GetExecutingAssembly();
-            IocManager.RegisterAssemblyByConvention(typeof(LegoAbpEntityFrameworkCoreModule).GetAssembly());
+            var ass = typeof(LegoAbpEntityFrameworkCoreModule).GetAssembly();
+            IocManager.RegisterAssemblyByConvention(ass);
+
+            var abc = IocManager.Resolve<IAppDomainAllAssemblyFinder>().FindAll();
             RegisterGenericRepositoriesAndMatchDbContexes();
-          var ddd=  IocManager.Resolve<ILegoAbpEntityTypeFinder>().FindAll();
+            var ddd = IocManager.Resolve<IEntityConfigurationTypeFinder>().FindAll();
+            var ddd2 = IocManager.Resolve<ILegoAbpEntityTypeFinder>().FindAll();
             var d = 0;
         }
 

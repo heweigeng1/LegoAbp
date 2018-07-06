@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace LegoAbp.EntityFrameworkCore
 {
-    public class EntityConfigurationTypeFinder : FinderBase<Type>, IEntityConfigurationTypeFinder, ISingletonDependency
+    public class EntityConfigurationTypeFinder : FinderBase<Type>, IEntityConfigurationTypeFinder, ITransientDependency
     {
         private IEntityConfigurationAssemblyFinder _assemblyFinder;
         private Dictionary<Type, IEntityRegister[]> _entityRegistersDict;

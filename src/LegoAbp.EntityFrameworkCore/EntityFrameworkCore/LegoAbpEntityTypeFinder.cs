@@ -8,17 +8,29 @@ using System.Text;
 
 namespace LegoAbp.EntityFrameworkCore
 {
-    public class LegoAbpEntityTypeFinder : FinderBase<Type>, ILegoAbpEntityTypeFinder
+    public class LegoAbpEntityTypeFinder : FinderBase<Type>, ILegoAbpEntityTypeFinder, ITransientDependency
     {
-        private readonly ILegoAbpAssemblyFinder _assemblyFinder;
-        public LegoAbpEntityTypeFinder(ILegoAbpAssemblyFinder assemblyFinder)
+        private readonly IAppDomainAllAssemblyFinder _assemblyFinder;
+        public LegoAbpEntityTypeFinder(IAppDomainAllAssemblyFinder assemblyFinder)
         {
             _assemblyFinder = assemblyFinder;
         }
         protected override Type[] FindAllItems()
         {
             Type[] baseType = new Type[] { typeof(IEntity<>), typeof(IEntity) };
-            var types = _assemblyFinder.FindAll().Select(a => a.GetType()).ToArray();
+            var types = _assemblyFinder.FindAll();
+            foreach (var item in types)
+            {
+                var ts = item.GetTypes();
+                foreach (var t in ts)
+                {
+                    if (baseType[0].IsAssignableFrom(t))
+                    {
+                        var a = t;
+                    }
+                }
+            }
+            //var types2 = types.Where(c => baseType.Any(bt => c.IsAssignableFrom(bt))).ToArray();
             return baseType;
         }
     }
