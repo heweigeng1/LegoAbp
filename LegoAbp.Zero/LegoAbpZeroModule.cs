@@ -32,6 +32,10 @@ namespace LegoAbp.Zero
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
             var bbb = IocManager.Resolve<IEntityConfigurationTypeFinder>().GetEntityRegisters(typeof(LegoAbpDbContext));
+            foreach (var item in bbb)
+            {
+                var tt = item.EntityType;
+            }
             var b = 0;
         }
 
