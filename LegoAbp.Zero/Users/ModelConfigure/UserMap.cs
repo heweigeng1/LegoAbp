@@ -8,11 +8,11 @@ using System.Text;
 
 namespace LegoAbp.Zero.Users.ModelCongier
 {
-    public class UserMap : EntityConfigurationBase<User,Guid>
+    public  class UserMap : EntityConfigurationBase<User, Guid>
     {
         public override void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasData(new User {Id=Guid.NewGuid(),UserName="admin" ,IsDeleted=false,IsActive=true,CreationTime=DateTime.Now,Password="123456"});
+            builder.HasData(new User { Id = Guid.NewGuid(), UserName = "admin", IsDeleted = false, IsActive = true, CreationTime = DateTime.Now, Password = "123456" });
         }
     }
 }

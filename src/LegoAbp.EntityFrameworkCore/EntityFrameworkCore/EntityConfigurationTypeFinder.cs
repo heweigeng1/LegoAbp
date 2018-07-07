@@ -68,7 +68,7 @@ namespace LegoAbp.EntityFrameworkCore
         {
             Type baseType = typeof(IEntityRegister);
             Type[] types = _assemblyFinder.FindAll()
-                .SelectMany(assembly => assembly.GetTypes().Where(type => baseType.IsAssignableFrom(type) && !type.IsAbstract && type.IsPublic))
+                .SelectMany(assembly => assembly.GetTypes().Where(type => baseType.IsAssignableFrom(type) && !type.IsAbstract))
                 .ToArray();
             return types;
         }

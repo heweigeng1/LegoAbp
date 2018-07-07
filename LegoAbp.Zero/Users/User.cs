@@ -24,6 +24,7 @@ namespace LegoAbp.Zero.Users
         [Required]
         [StringLength(MaxUserNameLength)]
         public virtual string UserName { get; set; }
+        public string Test { get; set; }
         /// <summary>
         /// 密码
         /// </summary>

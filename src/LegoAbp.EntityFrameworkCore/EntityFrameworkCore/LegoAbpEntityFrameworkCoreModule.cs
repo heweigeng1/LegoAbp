@@ -22,7 +22,6 @@ namespace LegoAbp.EntityFrameworkCore
     public class LegoAbpEntityFrameworkCoreModule : AbpModule
     {
         private readonly ITypeFinder _typeFinder;
-        //private readonly ILegoAbpEntityTypeFinder _legoAbpEntityType;
         public LegoAbpEntityFrameworkCoreModule(ITypeFinder typeFinder)
         {
             _typeFinder = typeFinder;
@@ -30,10 +29,6 @@ namespace LegoAbp.EntityFrameworkCore
 
         public override void PreInitialize()
         {
-            //IocManager.Register<ILegoAbpEntityTypeFinder, LegoAbpEntityTypeFinder>(DependencyLifeStyle.Singleton);
-            //var r = IocManager.Resolve<ILegoAbpEntityTypeFinder>().FindAll();
-            //var ddd = _legoAbpEntityType.FindAll();
-            //var d = 0;
         }
 
         /// <summary>
@@ -43,12 +38,7 @@ namespace LegoAbp.EntityFrameworkCore
         {
             var ass = typeof(LegoAbpEntityFrameworkCoreModule).GetAssembly();
             IocManager.RegisterAssemblyByConvention(ass);
-
-            var abc = IocManager.Resolve<IAppDomainAllAssemblyFinder>().FindAll();
             RegisterGenericRepositoriesAndMatchDbContexes();
-            var ddd = IocManager.Resolve<IEntityConfigurationTypeFinder>().FindAll();
-            var ddd2 = IocManager.Resolve<ILegoAbpEntityTypeFinder>().FindAll();
-            var d = 0;
         }
 
         /// <summary>

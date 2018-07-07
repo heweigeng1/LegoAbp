@@ -17,21 +17,25 @@ namespace LegoAbp.EntityFrameworkCore
         }
         protected override Type[] FindAllItems()
         {
-            Type[] baseType = new Type[] { typeof(IEntity<>), typeof(IEntity) };
+            Type[] baseType = new Type[] { typeof(Entity<>), typeof(Entity) };
+            //Type type = typeof(UserA);
+            Type type2 = typeof(Entity<>);
             var types = _assemblyFinder.FindAll();
+            List<Type> ts2 = new List<Type>();
+
             foreach (var item in types)
             {
                 var ts = item.GetTypes();
                 foreach (var t in ts)
                 {
-                    if (baseType[0].IsAssignableFrom(t))
+                    if (t.IsSubclassOf(type2))
                     {
-                        var a = t;
+                        ts2.Add(t);
                     }
                 }
             }
             //var types2 = types.Where(c => baseType.Any(bt => c.IsAssignableFrom(bt))).ToArray();
-            return baseType;
+            return ts2.ToArray();
         }
     }
 }

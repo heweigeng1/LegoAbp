@@ -2,6 +2,8 @@
 using AbpTree;
 using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Reflection;
+using LegoAbp.Zero.Users;
+using LegoAbp.Zero.Users.ModelCongier;
 using Microsoft.Extensions.DependencyModel;
 using System;
 using System.Reflection;
@@ -29,6 +31,8 @@ namespace LegoAbp.Zero
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
+            var bbb = IocManager.Resolve<IEntityConfigurationTypeFinder>().GetEntityRegisters(typeof(LegoAbpDbContext));
+            var b = 0;
         }
 
         /// <summary>

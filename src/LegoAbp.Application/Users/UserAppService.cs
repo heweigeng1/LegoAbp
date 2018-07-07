@@ -10,11 +10,11 @@ using System.Text;
 
 namespace LegoAbp.Users
 {
-    public class UserAppService : AsyncCrudAppService<UserA,UserDto,Guid>, IUserAppService
+    public class UserAppService : AsyncCrudAppService<User,UserDto,Guid>, IUserAppService
     {
         //public IRepository<User, Guid> _repository;
-        public IRepository<UserA, Guid> _userAsrepository;
-        public UserAppService(IRepository<UserA, Guid> repository):base(repository)
+        public IRepository<User, Guid> _userAsrepository;
+        public UserAppService(IRepository<User, Guid> repository):base(repository)
         {
             _userAsrepository = repository;
         }
