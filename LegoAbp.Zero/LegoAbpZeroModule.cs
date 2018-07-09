@@ -1,12 +1,7 @@
 ﻿using Abp.Modules;
 using AbpTree;
 using LegoAbp.EntityFrameworkCore;
-using LegoAbp.Reflection;
 using LegoAbp.Repository;
-using LegoAbp.Zero.Users;
-using LegoAbp.Zero.Users.ModelCongier;
-using Microsoft.Extensions.DependencyModel;
-using System;
 using System.Reflection;
 
 namespace LegoAbp.Zero
@@ -20,9 +15,6 @@ namespace LegoAbp.Zero
     {
         public override void PreInitialize()
         {
-            //Configuration.Settings.Providers.Add<BodeAbpProductSettingProvider>();
-            //Configuration.Authorization.Providers.Add<BodeAbpProductAuthorizationProvider>();
-            //DefaultDbContextInitializer.Instance.MapperAssemblies.Add(Assembly.GetExecutingAssembly());
             var assembly = Assembly.GetExecutingAssembly();
         }
 
