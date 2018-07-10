@@ -1,12 +1,8 @@
 ﻿using LegoAbp.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
 
-namespace LegoAbp.Zero.Users.ModelCongier
+namespace LegoAbp.Zero.Users.ModelConfig
 {
     public  class UserMap : EntityConfigurationBase<User, Guid>
     {

@@ -13,6 +13,9 @@ using System.Text;
 
 namespace LegoAbp.EntityFrameworkCore
 {
+    /// <summary>
+    /// 搭完后删除
+    /// </summary>
     public interface ITestEfGenericRepositoryRegistrar : IEfGenericRepositoryRegistrar, ITransientDependency
     {
     }

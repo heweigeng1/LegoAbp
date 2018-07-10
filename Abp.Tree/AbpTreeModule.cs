@@ -15,8 +15,6 @@ namespace AbpTree
         /// </summary>
         public override void PreInitialize()
         {
-            //Configuration.Authorization.Providers.Add<ShundaoAuthorizationProvider>();
-            //Configuration.Modules.AbpAspNetCore().CreateControllersForAppServices(typeof(AbpTreeModlue).Assembly, moduleName: "app", useConventionalHttpVerbs: true);
             base.PreInitialize();
         }
 

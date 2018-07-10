@@ -8,7 +8,6 @@ namespace LegoAbp
 {
     [DependsOn(
         typeof(LegoAbpCoreModule),
-        typeof(LegoAbpZeroModule),
         typeof(AbpAutoMapperModule))]
     public class LegoAbpApplicationModule : AbpModule
     {

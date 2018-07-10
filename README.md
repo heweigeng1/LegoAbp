@@ -1,6 +1,6 @@
 # LegoAbp
 
-LegoAbpÊÇ»ùÓÚABPµÄÄ£¿é»¯¿ª·¢¿ò¼Ü,ÎÒÉè¼ÆÕâ¸ö¿ò¼ÜµÄ³õÖÔÊÇ,ÌáÉý´úÂëµÄ¸´ÓÃÂÊ.¸÷¸öÄ£¿éÖ®¼ä¿ÉÒÔÏà»¥×éºÏÀ´´´½¨ÐÂµÄÒµÎñ.¶ø²»ÊÇÏñÒÔÇ°ÄÇÑùµ½´¦¸´ÖÆ´úÂë¶Î.À´Õ³Ìùµ½ÐÂÏîÄ¿ÖÐ,Èç¹û²»ÊÇ×Ô¼º¿ª·¢µÄÄ£¿é¾Í¸üÂé·³.ÎÞÎÄµµµÄ»°,»¹ÒªÍ¨¹ýÔÄ¶Á´óÁ¿µÄ´úÂëÀ´ÁË½âÒµÎñÁ÷³Ì.
+LegoAbpÊÇ»ùÓÚABPµÄÄ£¿é»¯¿ª·¢¿ò¼Ü,ÎÒÉè¼ÆÕâ¸ö¿ò¼ÜµÄ³õÖÔÊÇ,ÌáÉý´úÂëµÄ¸´ÓÃÂÊ.¸÷¸öÄ£¿éÖ®¼ä¿ÉÒÔÏà»¥×éºÏÀ´´´½¨ÐÂµÄÒµÎñ.¶ø²»ÊÇÏñÒÔÇ°ÄÇÑùµ½´¦¸´ÖÆ´úÂë¶Î.À´Õ³Ìùµ½ÐÂÏîÄ¿ÖÐ
 
 ## Ä¿Â¼
 
@@ -18,6 +18,9 @@ LegoAbpÊÇ»ùÓÚABPµÄÄ£¿é»¯¿ª·¢¿ò¼Ü,ÎÒÉè¼ÆÕâ¸ö¿ò¼ÜµÄ³õÖÔÊÇ,ÌáÉý´úÂëµÄ¸´ÓÃÂÊ.¸÷¸öÄ£¿
 	- ºóÆÚ¿ÉÄÜ»áÌí¼Ó¸ù¾Ýµ¥Ôª²âÊÔÀ´Éú³É¸÷¸öÄ£¿éµÄÎÄµµ.¿ÉÒÔÍ¨¹ýÕâ¸ö¹¦ÄÜ´´½¨ÍøÕ¾À´²é¿´¸÷¸öÄ£¿éµÄÎÄµµ.ÒÔºóÄ£¿é»á·¢²¼µ½nuget,¾ÍºÜ·½±ã×÷Îª×ÊÁÏ.
 
 ## ¸üÐÂÃ÷Ï¸
+
+7-10 moduleµÄIRepository×Ô¶¯×¢²áµ½ÈÝÆ÷ </br>
+moduleµÄInitializeÖÐÌí¼Ó:IocManager.Resolve<ILegoAbpModuleRepositoryRegistrar>().ModuleRepositoryRegistrar(assembly);
 
 7-3 Ìí¼ÓSwagger APIÎÄµµÉú³É×é¼þ
 

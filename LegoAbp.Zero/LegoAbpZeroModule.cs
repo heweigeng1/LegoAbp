@@ -1,4 +1,5 @@
-﻿using Abp.Modules;
+﻿using Abp.AutoMapper;
+using Abp.Modules;
 using AbpTree;
 using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Repository;
@@ -9,7 +10,8 @@ namespace LegoAbp.Zero
     [DependsOn(
         typeof(LegoAbpEntityFrameworkCoreModule),
         typeof(LegoAbpCoreModule),
-        typeof(AbpTreeModule)
+        typeof(AbpTreeModule),
+        typeof(AbpAutoMapperModule)
         )]
     public class LegoAbpZeroModule : AbpModule
     {
