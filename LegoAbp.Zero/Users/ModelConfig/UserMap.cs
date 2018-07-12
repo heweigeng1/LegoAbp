@@ -1,4 +1,5 @@
 ﻿using LegoAbp.EntityFrameworkCore;
+using LegoAbp.Zero.Users.Domain;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 

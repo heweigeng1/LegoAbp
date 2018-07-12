@@ -11,7 +11,7 @@ namespace LegoAbp.Paged
         public PageRequest()
         {
             Current = 1;
-            Sorter = "CreationTime";
+            Sorter = "creationTime";
             PageSize = 10;
             SortDirection = "descend";
         }

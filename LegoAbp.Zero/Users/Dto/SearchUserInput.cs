@@ -1,8 +1,6 @@
 ﻿using LegoAbp.Paged;
-using System;
-using System.Collections.Generic;
+using LegoAbp.Zero.Users.Domain;
 using System.Linq;
-using System.Text;
 
 namespace LegoAbp.Zero.Users.Dto
 {

@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
+using LegoAbp.Zero.Users.Domain;
 using System;
 
 namespace LegoAbp.Zero.Users.Dto

@@ -1,4 +1,5 @@
-﻿using Abp.AutoMapper;
+﻿using Abp.AspNetCore.Configuration;
+using Abp.AutoMapper;
 using Abp.Modules;
 using AbpTree;
 using LegoAbp.EntityFrameworkCore;
@@ -17,7 +18,7 @@ namespace LegoAbp.Zero
     {
         public override void PreInitialize()
         {
-            var assembly = Assembly.GetExecutingAssembly();
+            Configuration.Modules.AbpAspNetCore().CreateControllersForAppServices(typeof(LegoAbpZeroModule).Assembly, moduleName: "app", useConventionalHttpVerbs: true);
         }
 
         /// <summary>

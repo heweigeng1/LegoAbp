@@ -1,17 +1,17 @@
 ﻿using Abp.Domain.Entities;
-using Abp.Domain.Entities.Auditing;
+using LegoAbp.Entites;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace LegoAbp.Zero.Users.Domain
 {
-    public class User : FullAuditedEntity<Guid>, IMayHaveTenant, IPassivable
+    public class User : LegoAbpEntityBase<Guid>, IMayHaveTenant, IPassivable
     {
         #region 常量
         /// <summary>
         /// 用户名长度<see cref="UserName"/>最大长度
         /// </summary>
-        public const int MaxUserNameLength = 256;
+        public const int MaxUserNameLength = 128;
         /// <summary>
         /// 密码<see cref="Password"/>最大长度
         /// </summary>

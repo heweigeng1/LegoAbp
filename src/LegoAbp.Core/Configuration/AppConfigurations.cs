@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using Abp.Extensions;
+using Abp.Reflection.Extensions;
 using Microsoft.Extensions.Configuration;
 
 namespace LegoAbp.Configuration
@@ -21,7 +22,14 @@ namespace LegoAbp.Configuration
                 _ => BuildConfiguration(path, environmentName)
             );
         }
-
+        public static IConfigurationRoot Get(string path, string environmentName = null, bool addUserSecrets = false)
+        {
+            var cacheKey = path + "#" + environmentName + "#" + addUserSecrets;
+            return ConfigurationCache.GetOrAdd(
+                cacheKey,
+                _ => BuildConfiguration(path, environmentName, addUserSecrets)
+            );
+        }
         private static IConfigurationRoot BuildConfiguration(string path, string environmentName = null)
         {
             var builder = new ConfigurationBuilder()
@@ -34,6 +42,27 @@ namespace LegoAbp.Configuration
             }
             
             builder = builder.AddEnvironmentVariables();
+
+            return builder.Build();
+        }
+        private static IConfigurationRoot BuildConfiguration(string path, string environmentName = null, bool addUserSecrets = false)
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(path)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            if (!environmentName.IsNullOrWhiteSpace())
+            {
+                builder = builder.AddJsonFile($"appsettings.{environmentName}.json", optional: true);
+            }
+
+            builder = builder.AddEnvironmentVariables();
+
+            if (addUserSecrets)
+            {
+                var assembly = typeof(AppConfigurations).GetAssembly();
+                builder.AddUserSecrets(assembly);
+            }
 
             return builder.Build();
         }

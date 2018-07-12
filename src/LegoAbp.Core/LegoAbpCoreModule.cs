@@ -27,7 +27,6 @@ namespace LegoAbp
         {
             IocManager.RegisterAssemblyByConvention(typeof(LegoAbpCoreModule).GetAssembly());
             //_iocManager.IocContainer.Register(Component.For<IAppDomainAllAssemblyFinder, AppDomainAllAssemblyFinder>().ImplementedBy<AppDomainAllAssemblyFinder>().LifestyleSingleton());
-
         }
     }
 }

@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 namespace LegoAbp.Web.Startup
 {
     [DependsOn(
-        typeof(LegoAbpApplicationModule),
         typeof(LegoAbpEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreModule),
         typeof(LegoAbpZeroModule)
@@ -31,10 +30,10 @@ namespace LegoAbp.Web.Startup
 
             Configuration.Navigation.Providers.Add<LegoAbpNavigationProvider>();
 
-            Configuration.Modules.AbpAspNetCore()
-                .CreateControllersForAppServices(
-                    typeof(LegoAbpApplicationModule).GetAssembly()
-                );
+            //Configuration.Modules.AbpAspNetCore()
+            //    .CreateControllersForAppServices(
+            //        typeof(LegoAbpApplicationModule).GetAssembly()
+            //    );
         }
 
         public override void Initialize()

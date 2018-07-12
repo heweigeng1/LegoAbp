@@ -1,8 +1,6 @@
-﻿using Abp.AspNetCore.Configuration;
-using Abp.AutoMapper;
+﻿using Abp.AutoMapper;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
-using LegoAbp.Zero;
 
 namespace LegoAbp
 {

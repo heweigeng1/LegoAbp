@@ -13,7 +13,7 @@ namespace LegoAbp.EntityFrameworkCore
         public LegoAbpDbContext CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder<LegoAbpDbContext>();
-            var configuration = AppConfigurations.Get(WebContentDirectoryFinder.CalculateContentRootFolder());
+            var configuration = AppConfigurations.Get(WebContentDirectoryFinder.CalculateContentRootFolder(),null);
             DbContextOptionsConfigurer.Configure(
                 builder,
                 configuration.GetConnectionString(LegoAbpConsts.ConnectionStringName)

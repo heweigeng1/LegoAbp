@@ -23,6 +23,8 @@
 
   <ItemGroup>
     <Folder Include="Roles\" />
+    <Folder Include="Tenant\Dto\" />
+    <Folder Include="Tenant\ModelConfig\" />
   </ItemGroup>
 
   <ItemGroup>

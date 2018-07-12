@@ -40,8 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\LegoAbp.Zero\LegoAbp.Zero.csproj" />
-    <ProjectReference Include="..\LegoAbp.Application\LegoAbp.Application.csproj" />
+    <ProjectReference Include="..\..\LegoAbp.Core.Web\LegoAbp.Core.Web.csproj" />
     <ProjectReference Include="..\LegoAbp.EntityFrameworkCore\LegoAbp.EntityFrameworkCore.csproj" />
   </ItemGroup>
 

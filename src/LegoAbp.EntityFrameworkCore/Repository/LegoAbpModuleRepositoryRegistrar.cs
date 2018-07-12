@@ -17,7 +17,7 @@ namespace LegoAbp.Repository
         {
             _iocManager = iocManager;
         }
-        
+
         public void ModuleRepositoryRegistrar(Assembly assembly)
         {
             Type baseType = typeof(IEntityRegister);
