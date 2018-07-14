@@ -24,7 +24,6 @@ namespace LegoAbp.Zero.Users.Domain
         /// 手机号<see cref="PhoneNum"/>最大长度
         /// </summary>
         public const int MaxPhoneNumLength = 16;
-
         #endregion
 
         #region 属性

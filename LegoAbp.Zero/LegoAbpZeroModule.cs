@@ -1,9 +1,13 @@
 ﻿using Abp.AspNetCore.Configuration;
 using Abp.AutoMapper;
+using Abp.Localization.Dictionaries.Xml;
+using Abp.Localization.Sources;
 using Abp.Modules;
+using Abp.Reflection.Extensions;
 using AbpTree;
 using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Repository;
+using LegoAbp.Zero.Localization;
 using System.Reflection;
 
 namespace LegoAbp.Zero
@@ -18,6 +22,15 @@ namespace LegoAbp.Zero
     {
         public override void PreInitialize()
         {
+            //配置本地化文件
+            Configuration.Localization.Sources.Extensions.Add(
+                new LocalizationSourceExtensionInfo(
+                    LegoAbpZeroConsts.LocalizationSourceName,
+                    new XmlEmbeddedFileLocalizationDictionaryProvider(
+                        typeof(LegoAbpZeroModule).GetAssembly(), "LegoAbp.Localization.SourceExt"
+                    )
+                )
+            );
             Configuration.Modules.AbpAspNetCore().CreateControllersForAppServices(typeof(LegoAbpZeroModule).Assembly, moduleName: "app", useConventionalHttpVerbs: true);
         }
 

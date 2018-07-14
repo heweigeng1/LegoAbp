@@ -23,13 +23,14 @@
 
   <ItemGroup>
     <Folder Include="Roles\" />
-    <Folder Include="Tenant\Dto\" />
-    <Folder Include="Tenant\ModelConfig\" />
+    <Folder Include="Tenants\Dto\" />
+    <Folder Include="Tenants\ModelConfig\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Abp.AutoMapper" Version="3.7.2" />
     <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="3.7.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
