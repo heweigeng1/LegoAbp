@@ -11,13 +11,13 @@ namespace LegoAbp.Zero.Tenants.Domain
         /// </summary>
         public const int MaxTenantNameLength = 32;
         /// <summary>
-        /// 商户号<see cref="TenantCode"/>长度
-        /// </summary>
-        public const int MaxTenantCodeLength = 12;
-        /// <summary>
         /// 商户名规则
         /// </summary>
         public const string TenancyNameRegex = "^[a-zA-Z][a-zA-Z0-9_-]{1,}$";
+        /// <summary>
+        /// 商户号<see cref="TenantCode"/>长度
+        /// </summary>
+        public const int MaxTenantCodeLength = 12;
         /// <summary>
         /// 商户名
         /// </summary>

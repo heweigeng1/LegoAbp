@@ -22,15 +22,24 @@ namespace LegoAbp.Zero
     {
         public override void PreInitialize()
         {
-            //配置本地化文件
+            //配置Identity本地化文件
             Configuration.Localization.Sources.Extensions.Add(
                 new LocalizationSourceExtensionInfo(
-                    LegoAbpZeroConsts.LocalizationSourceName,
+                    LegoAbpZeroConsts.LocalizationIdentitySourceName,
                     new XmlEmbeddedFileLocalizationDictionaryProvider(
-                        typeof(LegoAbpZeroModule).GetAssembly(), "LegoAbp.Localization.SourceExt"
+                        typeof(LegoAbpZeroModule).GetAssembly(), "LegoAbp.Zero.Identity.Localization.SourceExt"
                     )
                 )
             );
+            //添加租户的本地化文本
+            Configuration.Localization.Sources.Extensions.Add(
+               new LocalizationSourceExtensionInfo(
+                   LegoAbpZeroConsts.LocalizationSourceName,
+                   new XmlEmbeddedFileLocalizationDictionaryProvider(
+                       typeof(LegoAbpZeroModule).GetAssembly(), "LegoAbp.Zero.Localization.Source"
+                   )
+               )
+           );
             Configuration.Modules.AbpAspNetCore().CreateControllersForAppServices(typeof(LegoAbpZeroModule).Assembly, moduleName: "app", useConventionalHttpVerbs: true);
         }
 

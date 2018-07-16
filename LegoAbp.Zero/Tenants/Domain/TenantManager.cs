@@ -2,6 +2,7 @@
 using Abp.Domain.Services;
 using Abp.Localization;
 using Abp.UI;
+using LegoAbp.Zero.Localization;
 using LegoAbp.Zero.Users.Domain;
 using System;
 using System.Text.RegularExpressions;
@@ -23,22 +24,26 @@ namespace LegoAbp.Zero.Tenants.Domain
         }
         public virtual async Task CreateAsync(Tenant tenant)
         {
-            await ValidateTenantNameAsync(tenant);
+            await ValidateTenantNameAsync(tenant.TenantName);
 
             if (_tenantRepository.FirstOrDefault(c => c.TenantName == tenant.TenantName) != null)
             {
-                throw new UserFriendlyException();
+                throw new UserFriendlyException("TenancyNameIsAlreadyTaken");
             }
             await _tenantRepository.InsertAsync(tenant);
         }
 
-        protected virtual Task ValidateTenantNameAsync(Tenant tenant)
+        protected virtual Task ValidateTenantNameAsync(string tenantName)
         {
-            if (!Regex.IsMatch(tenant.TenantName, Tenant.TenancyNameRegex))
+            if (!Regex.IsMatch(tenantName, Tenant.TenancyNameRegex))
             {
-                throw new UserFriendlyException();
+                throw new UserFriendlyException(L("InvalidTenancyName"));
             }
             return Task.FromResult(0);
+        }
+        protected virtual string L(string name)
+        {
+            return LocalizationManager.GetString(LegoAbpZeroConsts.LocalizationSourceName, name);
         }
     }
 }
