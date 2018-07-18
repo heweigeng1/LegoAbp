@@ -7,5 +7,7 @@ namespace LegoAbp.Zero.Tenants
 {
     public interface ITenantAppService : IDomainService
     {
+        string TestTenant();
+
     }
 }

@@ -7,7 +7,7 @@ using Abp.Reflection.Extensions;
 using AbpTree;
 using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Repository;
-using LegoAbp.Zero.Localization;
+using LegoAbp.Zero;
 using System.Reflection;
 
 namespace LegoAbp.Zero
@@ -27,10 +27,16 @@ namespace LegoAbp.Zero
                 new LocalizationSourceExtensionInfo(
                     LegoAbpZeroConsts.LocalizationIdentitySourceName,
                     new XmlEmbeddedFileLocalizationDictionaryProvider(
-                        typeof(LegoAbpZeroModule).GetAssembly(), "LegoAbp.Zero.Identity.Localization.SourceExt"
+                        typeof(LegoAbpZeroModule).GetAssembly(), "LegoAbp.Zero.Authorization.Identity.Localization.SourceExt"
                     )
                 )
             );
+            var b = new XmlEmbeddedFileLocalizationDictionaryProvider(
+                       typeof(LegoAbpZeroModule).GetAssembly(), "LegoAbp.Zero.Authorization.Identity.Localization.SourceExt"
+                   );
+            var r = new XmlEmbeddedFileLocalizationDictionaryProvider(
+                         typeof(LegoAbpZeroModule).GetAssembly(), "LegoAbp.Zero.Localization.Source"
+                     );
             //添加租户的本地化文本
             Configuration.Localization.Sources.Extensions.Add(
                new LocalizationSourceExtensionInfo(

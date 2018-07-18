@@ -15,14 +15,31 @@
   <ItemGroup>
     <Compile Remove="Domain\**" />
     <Compile Remove="Dtos\**" />
+    <Compile Remove="Roles\**" />
     <EmbeddedResource Remove="Domain\**" />
     <EmbeddedResource Remove="Dtos\**" />
+    <EmbeddedResource Remove="Roles\**" />
     <None Remove="Domain\**" />
     <None Remove="Dtos\**" />
+    <None Remove="Roles\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Roles\" />
+    <None Remove="Authorization\Identity\Localization\SourceExt\LegoAbp-zh-Hans.xml" />
+    <None Remove="Authorization\Identity\Localization\SourceExt\LegoAbp.xml" />
+    <None Remove="Localization\Source\LegoAbp-zh-Hans.xml" />
+    <None Remove="Localization\Source\LegoAbp.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Authorization\Identity\Localization\SourceExt\LegoAbp-zh-Hans.xml" />
+    <EmbeddedResource Include="Authorization\Identity\Localization\SourceExt\LegoAbp.xml" />
+    <EmbeddedResource Include="Localization\Source\LegoAbp-zh-Hans.xml" />
+    <EmbeddedResource Include="Localization\Source\LegoAbp.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Authorization\Roles\" />
     <Folder Include="Tenants\Dto\" />
     <Folder Include="Tenants\ModelConfig\" />
   </ItemGroup>

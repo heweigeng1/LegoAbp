@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegoAbp.Zero.Localization
+namespace LegoAbp.Zero
 {
     public class LegoAbpZeroConsts
     {

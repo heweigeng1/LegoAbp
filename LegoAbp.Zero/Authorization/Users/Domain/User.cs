@@ -3,7 +3,7 @@ using LegoAbp.Entites;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace LegoAbp.Zero.Users.Domain
+namespace LegoAbp.Zero.Authorization.Users.Domain
 {
     public class User : LegoAbpEntityBase<Guid>, IMayHaveTenant, IPassivable
     {

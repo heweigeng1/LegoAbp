@@ -2,8 +2,8 @@
 using Abp.Domain.Services;
 using Abp.Localization;
 using Abp.UI;
-using LegoAbp.Zero.Localization;
-using LegoAbp.Zero.Users.Domain;
+using LegoAbp.Zero;
+using LegoAbp.Zero.Authorization.Users.Domain;
 using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;

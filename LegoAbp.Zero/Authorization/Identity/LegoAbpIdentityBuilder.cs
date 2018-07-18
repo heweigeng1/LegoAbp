@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace LegoAbp.Zero.Identity
+namespace LegoAbp.Zero.Authorization.Identity
 {
     public class LegoAbpIdentityBuilder : IdentityBuilder
     {

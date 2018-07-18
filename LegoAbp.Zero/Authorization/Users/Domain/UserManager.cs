@@ -1,7 +1,7 @@
 ﻿using Abp.Domain.Repositories;
 using System;
 
-namespace LegoAbp.Zero.Users.Domain
+namespace LegoAbp.Zero.Authorization.Users.Domain
 {
     public class UserManager
     {

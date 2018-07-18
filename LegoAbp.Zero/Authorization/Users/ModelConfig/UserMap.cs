@@ -1,9 +1,9 @@
 ﻿using LegoAbp.EntityFrameworkCore;
-using LegoAbp.Zero.Users.Domain;
+using LegoAbp.Zero.Authorization.Users.Domain;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 
-namespace LegoAbp.Zero.Users.ModelConfig
+namespace LegoAbp.Zero.Authorization.Users.ModelConfig
 {
     public  class UserMap : EntityConfigurationBase<User, Guid>
     {

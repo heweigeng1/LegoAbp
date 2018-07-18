@@ -1,11 +1,7 @@
-﻿using LegoAbp.Zero.Tenants;
-using LegoAbp.Zero.Tenants.Domain;
+﻿using LegoAbp.Zero.Tenants.Domain;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace LegoAbp.Zero.Identity
+namespace LegoAbp.Zero.Authorization.Identity
 {
     public static class IdentityTenantBuilderExtensions
     {

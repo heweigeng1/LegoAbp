@@ -1,11 +1,11 @@
 ﻿using Abp.Domain.Repositories;
 using LegoAbp.Paged;
-using LegoAbp.Zero.Users.Domain;
-using LegoAbp.Zero.Users.Dto;
+using LegoAbp.Zero.Authorization.Users.Domain;
+using LegoAbp.Zero.Authorization.Users.Dto;
 using Microsoft.AspNetCore.Authorization;
 using System;
 
-namespace LegoAbp.Zero.Users
+namespace LegoAbp.Zero.Authorization.Users
 {
 
     public class UserAppService: AsyncLegoAbpCrudAppService<User,UserDto,Guid,SearchUserInput,CreateUser,UserDto>,IUserAppService

@@ -1,8 +1,8 @@
 ﻿using LegoAbp.Paged;
-using LegoAbp.Zero.Users.Domain;
+using LegoAbp.Zero.Authorization.Users.Domain;
 using System.Linq;
 
-namespace LegoAbp.Zero.Users.Dto
+namespace LegoAbp.Zero.Authorization.Users.Dto
 {
     public class SearchUserInput : IPageAndFilteredInput<User>
     {

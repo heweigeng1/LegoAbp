@@ -1,11 +1,11 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using LegoAbp.Utils;
-using LegoAbp.Zero.Users.Domain;
+using LegoAbp.Zero.Authorization.Users.Domain;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace LegoAbp.Zero.Users.Dto
+namespace LegoAbp.Zero.Authorization.Users.Dto
 {
     [AutoMap(typeof(User))]
     public class CreateUser : FullAuditedEntityDto<Guid>
