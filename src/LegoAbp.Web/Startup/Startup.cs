@@ -82,7 +82,10 @@ namespace LegoAbp.Web.Startup
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseAbp(); //Initializes ABP framework.
+            app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); //Initializes ABP framework.
+            app.UseStaticFiles();
+            app.UseAuthentication();
+            app.UseAbpRequestLocalization();
 
             if (env.IsDevelopment())
             {

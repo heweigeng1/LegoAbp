@@ -1,19 +1,24 @@
 ﻿using Abp.Application.Services;
+using LegoAbp.Zero.Tenants.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Tenants
 {
     public class TenantAppService : ApplicationService, ITenantAppService
     {
-        public TenantAppService()
+        protected TenantManager _tenantManager { get; set; }
+        public TenantAppService(TenantManager tenantManager)
         {
-            LocalizationSourceName = "LegoAbpZero";
+            _tenantManager = tenantManager;
         }
-        public string TestTenant()
+        public async Task<string> TestTenant()
         {
-            return L("InvalidTenancyName");
+            var b = _tenantManager._localizationManager.GetAllSources();
+            var r = await _tenantManager.Testbb();
+            return r;
         }
     }
 }

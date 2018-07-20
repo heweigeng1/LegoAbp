@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+    <text name="MyLocalization" value="wow!" />
     <text name="InvalidTenancyName" value="Tenancy name is not valid!" />
     <text name="TenancyNameIsAlreadyTaken" value="Tenancy name {0} is already taken." />
     <text name="RoleNameIsAlreadyTaken" value="Role name {0} is already taken." />

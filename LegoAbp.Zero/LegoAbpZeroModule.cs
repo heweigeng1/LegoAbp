@@ -1,13 +1,18 @@
 ﻿using Abp.AspNetCore.Configuration;
 using Abp.AutoMapper;
+using Abp.Dependency;
+using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Xml;
 using Abp.Localization.Sources;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
+using Abp.Zero;
 using AbpTree;
 using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Repository;
 using LegoAbp.Zero;
+using LegoAbp.Zero.Authorization.Identity.Localization;
+using LegoAbp.Zero.Localization;
 using System.Reflection;
 
 namespace LegoAbp.Zero
@@ -23,29 +28,9 @@ namespace LegoAbp.Zero
         public override void PreInitialize()
         {
             //配置Identity本地化文件
-            Configuration.Localization.Sources.Extensions.Add(
-                new LocalizationSourceExtensionInfo(
-                    LegoAbpZeroConsts.LocalizationIdentitySourceName,
-                    new XmlEmbeddedFileLocalizationDictionaryProvider(
-                        typeof(LegoAbpZeroModule).GetAssembly(), "LegoAbp.Zero.Authorization.Identity.Localization.SourceExt"
-                    )
-                )
-            );
-            var b = new XmlEmbeddedFileLocalizationDictionaryProvider(
-                       typeof(LegoAbpZeroModule).GetAssembly(), "LegoAbp.Zero.Authorization.Identity.Localization.SourceExt"
-                   );
-            var r = new XmlEmbeddedFileLocalizationDictionaryProvider(
-                         typeof(LegoAbpZeroModule).GetAssembly(), "LegoAbp.Zero.Localization.Source"
-                     );
+            LegoAbpZeroIdentityLocalization.Configure(Configuration.Localization);
             //添加租户的本地化文本
-            Configuration.Localization.Sources.Extensions.Add(
-               new LocalizationSourceExtensionInfo(
-                   LegoAbpZeroConsts.LocalizationSourceName,
-                   new XmlEmbeddedFileLocalizationDictionaryProvider(
-                       typeof(LegoAbpZeroModule).GetAssembly(), "LegoAbp.Zero.Localization.Source"
-                   )
-               )
-           );
+            LegoAbpZeroLocalization.Configure(Configuration.Localization);
             Configuration.Modules.AbpAspNetCore().CreateControllersForAppServices(typeof(LegoAbpZeroModule).Assembly, moduleName: "app", useConventionalHttpVerbs: true);
         }
 

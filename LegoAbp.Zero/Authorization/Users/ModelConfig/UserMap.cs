@@ -5,7 +5,7 @@ using System;
 
 namespace LegoAbp.Zero.Authorization.Users.ModelConfig
 {
-    public  class UserMap : EntityConfigurationBase<User, Guid>
+    public  class UsertMap : EntityConfigurationBase<User, Guid>
     {
         public override void Configure(EntityTypeBuilder<User> builder)
         {

@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Tenants
 {
     public interface ITenantAppService : IDomainService
     {
-        string TestTenant();
+        Task<string> TestTenant();
 
     }
 }
