@@ -67,4 +67,10 @@
     <ProjectReference Include="..\src\LegoAbp.EntityFrameworkCore\LegoAbp.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Authorization\Identity\Localization\SourceExt\LegoAbp-zh-CN.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

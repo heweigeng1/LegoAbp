@@ -13,16 +13,15 @@ namespace LegoAbp.Zero.Tenants.Domain
 {
     public class TenantManager : IDomainService
     {
-        //public ILocalizationManager LocalizationManager { get; set; }
         public ILocalizationManager _localizationManager;
         protected string LocalizationSourceName { get; set; }
+
         protected IRepository<Tenant, int> _tenantRepository;
         protected IRepository<User, Guid> _userRepository;
         public TenantManager(IRepository<Tenant, int> tenantRepository, IRepository<User, Guid> userRepository, ILocalizationManager localizationManager)
         {
             _tenantRepository = tenantRepository;
             _userRepository = userRepository;
-            //LocalizationManager = NullLocalizationManager.Instance;
             _localizationManager = localizationManager;
             LocalizationSourceName = LegoAbpZeroConsts.LocalizationSourceName;
     }
@@ -36,11 +35,6 @@ namespace LegoAbp.Zero.Tenants.Domain
             }
             await _tenantRepository.InsertAsync(tenant);
         }
-        public virtual  Task<string> Testbb()
-        {
-            var l = L("MyLocalization");
-            return Task.FromResult(L("MyLocalization"));
-        }
 
         protected virtual Task ValidateTenantNameAsync(string tenantName)
         {
@@ -52,18 +46,6 @@ namespace LegoAbp.Zero.Tenants.Domain
         }
         protected virtual string L(string name)
         {
-            var sources = _localizationManager.GetAllSources();
-            foreach (var item in sources)
-            {
-                if (item.Name== LocalizationSourceName)
-                {
-                    var i = 0;
-                    var b = _localizationManager.GetSource(LocalizationSourceName);
-                    var cc = CultureInfo.CurrentUICulture;
-                    var c = b.GetString(name);
-                }
-            }
-            
             return _localizationManager.GetString(LocalizationSourceName, name);
         }
     }

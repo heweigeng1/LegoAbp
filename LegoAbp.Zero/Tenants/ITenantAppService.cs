@@ -8,7 +8,6 @@ namespace LegoAbp.Zero.Tenants
 {
     public interface ITenantAppService : IDomainService
     {
-        Task<string> TestTenant();
-
+        
     }
 }

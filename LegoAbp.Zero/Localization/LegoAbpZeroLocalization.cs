@@ -1,6 +1,7 @@
 ﻿using Abp.Configuration.Startup;
 using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Xml;
+using System.IO;
 using System.Reflection;
 
 namespace LegoAbp.Zero.Localization
@@ -16,7 +17,7 @@ namespace LegoAbp.Zero.Localization
             localizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(
                     LegoAbpZeroConsts.LocalizationSourceName,
                     new XmlFileLocalizationDictionaryProvider(
-                        @"F:\github\LegoAbp\LegoAbp.Zero\Localization\Source\"
+                        Path.GetDirectoryName(typeof(LegoAbpZeroModule).Assembly.Location)+@"\Localization\Source\"
                         )));
         }
     }
