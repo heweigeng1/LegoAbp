@@ -24,7 +24,7 @@ namespace LegoAbp.Zero.Tenants.Domain
             _userRepository = userRepository;
             _localizationManager = localizationManager;
             LocalizationSourceName = LegoAbpZeroConsts.LocalizationSourceName;
-    }
+        }
         public virtual async Task CreateAsync(Tenant tenant)
         {
             await ValidateTenantNameAsync(tenant.TenantName);
