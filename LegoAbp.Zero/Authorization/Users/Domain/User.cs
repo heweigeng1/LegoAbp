@@ -1,7 +1,10 @@
 ﻿using Abp.Domain.Entities;
 using LegoAbp.Entites;
+using LegoAbp.Zero.Authorization.Roles.Domain;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LegoAbp.Zero.Authorization.Users.Domain
 {
@@ -47,6 +50,12 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         public int Sex { get; set; }
         public int? TenantId { get; set; }
         public bool IsActive { get; set; }
+        [ForeignKey("UserId")]
+        public virtual ICollection<UserClaim> Claims { get; set; }
+        [ForeignKey("UserId")]
+        public virtual ICollection<UserLogin> Logins { get; set; }
+        [ForeignKey("UserId")]
+        public virtual ICollection<UserRole> Roles { get; set; }
         #endregion
 
         public enum EnumSex

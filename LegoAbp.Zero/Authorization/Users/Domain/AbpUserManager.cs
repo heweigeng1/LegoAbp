@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Authorization.Users.Domain
 {
-    public class AbpUserManager : UserManager<User>
+    //public class AbpUserManager : UserManager<User>
+    public class AbpUserManager
     {
         private readonly IRepository<User, Guid> _repository;
         public AbpUserManager(IRepository<User, Guid> repository)
@@ -14,10 +15,7 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         }
         public virtual async Task ValidatePhoneNum()
         {
-            if (_repository.FirstOrDefault())
-            {
 
-            }
         }
         public void ValidateEmail()
         {
