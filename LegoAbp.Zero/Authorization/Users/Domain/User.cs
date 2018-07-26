@@ -27,6 +27,10 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         /// 手机号<see cref="PhoneNum"/>最大长度
         /// </summary>
         public const int MaxPhoneNumLength = 16;
+        /// <summary>
+        /// Maximum length of the <see cref="EmailAddress"/> property.
+        /// </summary>
+        public const int MaxEmailAddressLength = 256;
         #endregion
 
         #region 属性
@@ -44,6 +48,11 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         [Required]
         [StringLength(MaxPasswordLength)]
         public virtual string Password { get; set; }
+        /// <summary>
+        /// 邮箱
+        /// </summary>
+        [StringLength(MaxEmailAddressLength)]
+        public virtual string NormalizedEmailAddress { get; set; }
         /// <summary>
         /// 性别<see cref="EnumSex"/>
         /// </summary>

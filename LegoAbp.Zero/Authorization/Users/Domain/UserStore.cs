@@ -2,6 +2,8 @@
 using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
+using Abp.Extensions;
+using Castle.Core.Logging;
 using JetBrains.Annotations;
 using LegoAbp.Zero.Authorization.Roles.Domain;
 using Microsoft.AspNetCore.Identity;
@@ -33,6 +35,8 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         /// 增删改自动保存
         /// </summary>
         public bool AutoSaveChanges { get; set; } = true;
+        public ILogger Logger { get; set; }
+        public IdentityErrorDescriber ErrorDescriber { get; set; }
 
         private readonly IRepository<User, Guid> _userRepository;
         private readonly IRepository<Role,Guid> _roleRepository;
@@ -43,6 +47,8 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
             _userRepository = userRepository;
             _roleRepository = roleRepository;
             _unitOfWorkManager = unitOfWorkManager;
+            Logger= NullLogger.Instance;
+            ErrorDescriber = new IdentityErrorDescriber();
         }
 
         public IQueryable<User> Users => _userRepository.GetAll();
@@ -55,6 +61,10 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
             }
 
             return _unitOfWorkManager.Current.SaveChangesAsync();
+        }
+        public void Dispose()
+        {
+
         }
         /// <summary>
         /// 将<paramref name="claims"/> 添加到指定 <paramref name="user"/>.
@@ -135,26 +145,55 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
             return IdentityResult.Success;
         }
 
-        public Task<IdentityResult> DeleteAsync(User user, CancellationToken cancellationToken)
+        /// <summary>
+        /// Deletes the specified <paramref name="user"/> from the user store.
+        /// </summary>
+        /// <param name="user">The user to delete.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> used to propagate notifications that the operation should be canceled.</param>
+        /// <returns>The <see cref="Task"/> that represents the asynchronous operation, containing the <see cref="IdentityResult"/> of the update operation.</returns>
+        public virtual async Task<IdentityResult> DeleteAsync([NotNull] User user, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
-        }
+            cancellationToken.ThrowIfCancellationRequested();
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+            Check.NotNull(user, nameof(user));
 
+            await _userRepository.DeleteAsync(user);
+
+            try
+            {
+                await SaveChanges(cancellationToken);
+            }
+            catch (AbpDbConcurrencyException ex)
+            {
+                Logger.Warn(ex.ToString(), ex);
+                return IdentityResult.Failed(ErrorDescriber.ConcurrencyFailure());
+            }
+
+            await SaveChanges(cancellationToken);
+
+            return IdentityResult.Success;
+        }
+        
         public Task<User> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            return _userRepository.FirstOrDefaultAsync(u => u.NormalizedEmailAddress == normalizedEmail);
         }
 
         public Task<User> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
+            cancellationToken.ThrowIfCancellationRequested();
 
+            return _userRepository.FirstOrDefaultAsync(userId.To<Guid>());
+        }
+        /// <summary>
+        /// 检索与指定登录提供程序和登录提供程序密钥关联的用户。
+        /// </summary>
+        /// <param name="loginProvider"></param>
+        /// <param name="providerKey"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task<User> FindByLoginAsync(string loginProvider, string providerKey, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
