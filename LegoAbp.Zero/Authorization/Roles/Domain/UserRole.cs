@@ -4,7 +4,7 @@ using System;
 
 namespace LegoAbp.Zero.Authorization.Roles.Domain
 {
-    public class UserRole : CreationAuditedEntity<long>, IMayHaveTenant
+    public class UserRole : CreationAuditedEntity<Guid>, IMayHaveTenant
     {
         public virtual int? TenantId { get; set; }
 

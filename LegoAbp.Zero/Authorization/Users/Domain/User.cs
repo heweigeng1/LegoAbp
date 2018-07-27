@@ -24,13 +24,17 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         /// </summary>
         public const int MinPasswordLength = 6;
         /// <summary>
-        /// 手机号<see cref="PhoneNum"/>最大长度
+        /// 手机号<see cref="PhoneNumber"/>最大长度
         /// </summary>
         public const int MaxPhoneNumLength = 16;
         /// <summary>
         /// Maximum length of the <see cref="EmailAddress"/> property.
         /// </summary>
         public const int MaxEmailAddressLength = 256;
+        /// <summary>
+        /// Maximum length of the <see cref="SecurityStamp"/> property.
+        /// </summary>
+        public const int MaxSecurityStampLength = 128;
         #endregion
 
         #region 属性
@@ -41,7 +45,11 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         [StringLength(MaxUserNameLength)]
         public virtual string UserName { get; set; }
         [StringLength(MaxPhoneNumLength)]
-        public string PhoneNum { get; set; }
+        public string PhoneNumber { get; set; }
+        /// <summary>
+        /// 是否验证过手机
+        /// </summary>
+        public virtual bool IsPhoneNumberConfirmed { get; set; }
         /// <summary>
         /// 密码
         /// </summary>
@@ -49,14 +57,44 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         [StringLength(MaxPasswordLength)]
         public virtual string Password { get; set; }
         /// <summary>
-        /// 邮箱
+        /// 统一规则用户名
+        /// </summary>
+        [StringLength(MaxUserNameLength)]
+        public virtual string NormalizedUserName { get; set; }
+        /// <summary>
+        /// 统一规则邮箱
         /// </summary>
         [StringLength(MaxEmailAddressLength)]
         public virtual string NormalizedEmailAddress { get; set; }
         /// <summary>
+        /// 邮箱
+        /// </summary>
+        public virtual string EmailAddress { get; set; }
+        /// <summary>
+        ///邮箱是否验证 <see cref="EmailAddress"/> .
+        /// </summary>
+        public virtual bool IsEmailConfirmed { get; set; }
+        /// <summary>
+        /// 安全标记.
+        /// </summary>
+        [StringLength(MaxSecurityStampLength)]
+        public virtual string SecurityStamp { get; set; }
+        /// <summary>
+        /// 是否锁定
+        /// </summary>
+        public virtual bool IsLockoutEnabled { get; set; }
+        /// <summary>
+        /// 锁定结束时间
+        /// </summary>
+        public virtual DateTime? LockoutEndDateUtc { get; set; }
+        /// <summary>
         /// 性别<see cref="EnumSex"/>
         /// </summary>
         public int Sex { get; set; }
+        /// <summary>
+        /// 访问失败计数
+        /// </summary>
+        public virtual int AccessFailedCount { get; set; }
         public int? TenantId { get; set; }
         public bool IsActive { get; set; }
         [ForeignKey("UserId")]
@@ -66,7 +104,14 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         [ForeignKey("UserId")]
         public virtual ICollection<UserRole> Roles { get; set; }
         #endregion
-
+        /// <summary>
+        /// 统一规则
+        /// </summary>
+        public void SetNormalizedNames()
+        {
+            NormalizedUserName = UserName.ToUpperInvariant();
+            NormalizedEmailAddress = EmailAddress.ToUpperInvariant();
+        }
         public enum EnumSex
         {
             女,

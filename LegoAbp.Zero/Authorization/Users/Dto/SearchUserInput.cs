@@ -18,7 +18,7 @@ namespace LegoAbp.Zero.Authorization.Users.Dto
             }
             if (!string.IsNullOrEmpty(PhoneNum))
             {
-                query = query.Where(c => c.PhoneNum.Contains(PhoneNum));
+                query = query.Where(c => c.PhoneNumber.Contains(PhoneNum));
             }
             return query;
         }
