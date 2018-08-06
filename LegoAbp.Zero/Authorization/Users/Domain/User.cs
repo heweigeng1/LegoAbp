@@ -1,4 +1,5 @@
 ﻿using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 using LegoAbp.Entites;
 using LegoAbp.Zero.Authorization.Roles.Domain;
 using System;
@@ -8,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LegoAbp.Zero.Authorization.Users.Domain
 {
-    public class User : LegoAbpEntityBase<Guid>, IMayHaveTenant, IPassivable
+    public class User : LegoAbpEntityBase<Guid>, IMayHaveTenant, IPassivable, IHasCreationTime, IHasModificationTime, ISoftDelete
     {
         #region 常量
         /// <summary>

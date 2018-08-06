@@ -13,17 +13,5 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         {
             _repository = repository;
         }
-        public virtual async Task ValidatePhoneNum()
-        {
-
-        }
-        public void ValidateEmail()
-        {
-
-        }
-        public void ValidateUserName()
-        {
-
-        }
     }
 }
