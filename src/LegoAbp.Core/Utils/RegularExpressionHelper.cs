@@ -21,6 +21,6 @@ namespace LegoAbp.Utils
         /// <summary>
         /// 手机号
         /// </summary>
-        public const string IsPhoneNum = @"^[1]\d{10}$";
+        public const string IsPhoneNumer = @"^[1]\d{10}$";
     }
 }

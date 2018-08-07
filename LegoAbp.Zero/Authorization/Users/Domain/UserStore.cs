@@ -62,15 +62,15 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
             AbpSession = NullAbpSession.Instance;
         }
 
-        //protected Task SaveChanges(CancellationToken cancellationToken)
-        //{
-        //    if (!AutoSaveChanges || _unitOfWorkManager.Current == null)
-        //    {
-        //        return Task.CompletedTask;
-        //    }
+        protected Task SaveChanges(CancellationToken cancellationToken)
+        {
+            if (!AutoSaveChanges || _unitOfWorkManager.Current == null)
+            {
+                return Task.CompletedTask;
+            }
 
-        //    return _unitOfWorkManager.Current.SaveChangesAsync();
-        //}
+            return _unitOfWorkManager.Current.SaveChangesAsync();
+        }
 
         #region IQueryableUserStore
         public IQueryable<User> Users => _userRepository.GetAll();
@@ -78,54 +78,156 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         {
 
         }
+        /// <summary>
+        /// 获取用户的id
+        /// </summary>
+        /// <param name="user">用户</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task<string> GetUserIdAsync(User user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
+            cancellationToken.ThrowIfCancellationRequested();
 
+            Check.NotNull(user, nameof(user));
+
+            return Task.FromResult(user.Id.ToString());
+        }
+        /// <summary>
+        /// 获取用户名-登录账户
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task<string> GetUserNameAsync(User user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
+            cancellationToken.ThrowIfCancellationRequested();
 
+            Check.NotNull(user, nameof(user));
+
+            return Task.FromResult(user.UserName);
+        }
+        /// <summary>
+        /// 设置用户名
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="userName"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task SetUserNameAsync(User user, string userName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
+            cancellationToken.ThrowIfCancellationRequested();
 
+            Check.NotNull(user, nameof(user));
+
+            user.UserName = userName;
+
+            return Task.CompletedTask;
+        }
+        /// <summary>
+        /// 获取标准用户名
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task<string> GetNormalizedUserNameAsync(User user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
+            cancellationToken.ThrowIfCancellationRequested();
 
+            Check.NotNull(user, nameof(user));
+
+            return Task.FromResult(user.NormalizedUserName);
+        }
+        /// <summary>
+        /// 设置标准用户名
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="normalizedName"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task SetNormalizedUserNameAsync(User user, string normalizedName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            Check.NotNull(user, nameof(user));
+
+            user.NormalizedUserName = normalizedName;
+
+            return Task.CompletedTask;
         }
 
-        public Task<IdentityResult> CreateAsync(User user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> CreateAsync(User user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            Check.NotNull(user, nameof(user));
+
+            await _userRepository.InsertAsync(user);
+            await SaveChanges(cancellationToken);
+
+            return IdentityResult.Success;
         }
 
-        public Task<IdentityResult> UpdateAsync(User user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> UpdateAsync(User user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            Check.NotNull(user, nameof(user));
+
+            user.ConcurrencyStamp = Guid.NewGuid().ToString();
+            await _userRepository.UpdateAsync(user);
+
+            try
+            {
+                await SaveChanges(cancellationToken);
+            }
+            catch (AbpDbConcurrencyException ex)
+            {
+                Logger.Warn(ex.ToString(), ex);
+                return IdentityResult.Failed(ErrorDescriber.ConcurrencyFailure());
+            }
+
+            await SaveChanges(cancellationToken);
+
+            return IdentityResult.Success;
         }
 
-        public Task<IdentityResult> DeleteAsync(User user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> DeleteAsync(User user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            Check.NotNull(user, nameof(user));
+
+            await _userRepository.DeleteAsync(user);
+
+            try
+            {
+                await SaveChanges(cancellationToken);
+            }
+            catch (AbpDbConcurrencyException ex)
+            {
+                Logger.Warn(ex.ToString(), ex);
+                return IdentityResult.Failed(ErrorDescriber.ConcurrencyFailure());
+            }
+
+            await SaveChanges(cancellationToken);
+
+            return IdentityResult.Success;
         }
 
         public Task<User> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            return _userRepository.FirstOrDefaultAsync(userId.To<Guid>());
         }
 
         public Task<User> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            Check.NotNull(normalizedUserName, nameof(normalizedUserName));
+
+            return _userRepository.FirstOrDefaultAsync(u => u.NormalizedUserName == normalizedUserName);
         }
 
         #endregion

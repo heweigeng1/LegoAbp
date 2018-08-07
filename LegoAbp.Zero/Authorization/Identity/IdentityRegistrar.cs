@@ -12,9 +12,12 @@ namespace LegoAbp.Zero.Authorization.Identity
     {
         public static IdentityBuilder Register(IServiceCollection services)
         {
+           
             services.AddLogging();
-
-            return services.AddIdentity<User, Role>();
+            return services.AddIdentity<User, Role>()
+                .AddUserManager<LegoAbpUserManager>()
+                .AddUserStore<UserStore>()
+                .AddDefaultTokenProviders();
         }
     }
 }

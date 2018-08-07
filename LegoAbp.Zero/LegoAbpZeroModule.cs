@@ -11,6 +11,7 @@ using AbpTree;
 using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Repository;
 using LegoAbp.Zero;
+using LegoAbp.Zero.Authorization.Identity;
 using LegoAbp.Zero.Authorization.Identity.Localization;
 using LegoAbp.Zero.Localization;
 using System.Reflection;

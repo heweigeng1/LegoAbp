@@ -16,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using System.Linq;
 using Abp.Extensions;
 using LegoAbp.Core.Web.Configuration;
+using LegoAbp.Zero.Authorization.Identity;
 
 namespace LegoAbp.Web.Startup
 {
@@ -34,7 +35,7 @@ namespace LegoAbp.Web.Startup
             {
                 DbContextOptionsConfigurer.Configure(options.DbContextOptions, options.ConnectionString);
             });
-
+           
             services.AddMvc(options =>
             {
                 options.Filters.Add(new CorsAuthorizationFilterFactory(_defaultCorsPolicyName));

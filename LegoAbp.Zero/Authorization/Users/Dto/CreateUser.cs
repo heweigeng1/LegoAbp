@@ -15,7 +15,7 @@ namespace LegoAbp.Zero.Authorization.Users.Dto
         public string UserName { get; set; }
         [StringLength(User.MaxPasswordLength, MinimumLength = User.MinPasswordLength, ErrorMessage = "密码长度不正确!")]
         public string Password { get; set; }
-        [RegularExpression(RegularExpressionHelper.IsPhoneNum, ErrorMessage = "手机号格式不正确!")]
+        [RegularExpression(RegularExpressionHelper.IsPhoneNumer, ErrorMessage = "手机号格式不正确!")]
         public string PhoneNum { get; set; }
         public int? TenantId { get; set; }
         public bool IsActive { get; set; }

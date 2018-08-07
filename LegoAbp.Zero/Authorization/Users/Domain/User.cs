@@ -81,6 +81,10 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         [StringLength(MaxSecurityStampLength)]
         public virtual string SecurityStamp { get; set; }
         /// <summary>
+        /// 并发锁
+        /// </summary>
+        public virtual string ConcurrencyStamp { get; set; }
+        /// <summary>
         /// 是否锁定
         /// </summary>
         public virtual bool IsLockoutEnabled { get; set; }
