@@ -35,7 +35,7 @@ namespace LegoAbp.Web.Startup
             {
                 DbContextOptionsConfigurer.Configure(options.DbContextOptions, options.ConnectionString);
             });
-           
+            IdentityRegistrar.Register(services);
             services.AddMvc(options =>
             {
                 options.Filters.Add(new CorsAuthorizationFilterFactory(_defaultCorsPolicyName));

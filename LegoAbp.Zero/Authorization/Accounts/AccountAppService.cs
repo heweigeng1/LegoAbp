@@ -3,9 +3,11 @@ using Abp.Application.Services;
 using Abp.Domain.Repositories;
 using LegoAbp.Zero.Authorization.Accounts.Dto;
 using LegoAbp.Zero.Authorization.Users.Domain;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Authorization.Accounts
 {
@@ -18,7 +20,7 @@ namespace LegoAbp.Zero.Authorization.Accounts
             _userRepository = userRepository;
             _userManager = userManager;
         }
-        public void RegisterByPhone(PhoneNumberRegisterInput input)
+        public async Task<IdentityResult> RegisterByPhone(PhoneNumberRegisterInput input)
         {
             var user = new User
             {
@@ -26,7 +28,7 @@ namespace LegoAbp.Zero.Authorization.Accounts
                 UserName = input.PhoneNumber,
                 PhoneNumber = input.PhoneNumber,
             };
-            _userManager.CreateAsync(user,input.Password);
+          return await  _userManager.CreateAsync(user,input.Password);
         }
         public void Login()
         {

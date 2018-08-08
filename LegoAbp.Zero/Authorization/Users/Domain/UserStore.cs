@@ -313,7 +313,13 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
 
         public Task SetPasswordHashAsync(User user, string passwordHash, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            Check.NotNull(user, nameof(user));
+
+            user.Password = passwordHash;
+
+            return Task.CompletedTask;
         }
 
         public Task<string> GetPasswordHashAsync(User user, CancellationToken cancellationToken)
@@ -332,12 +338,22 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
 
         public Task SetSecurityStampAsync(User user, string stamp, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            Check.NotNull(user, nameof(user));
+
+            user.SecurityStamp = stamp;
+
+            return Task.CompletedTask;
         }
 
         public Task<string> GetSecurityStampAsync(User user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            Check.NotNull(user, nameof(user));
+
+            return Task.FromResult(user.SecurityStamp);
         }
 
         #endregion
@@ -351,7 +367,11 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
 
         public Task<string> GetEmailAsync(User user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            Check.NotNull(user, nameof(user));
+
+            return Task.FromResult(user.EmailAddress);
         }
 
         public Task<bool> GetEmailConfirmedAsync(User user, CancellationToken cancellationToken)
@@ -375,7 +395,13 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         }
         public Task SetNormalizedEmailAsync(User user, string normalizedEmail, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            Check.NotNull(user, nameof(user));
+
+            user.NormalizedEmailAddress = normalizedEmail;
+
+            return Task.CompletedTask;
         }
         #endregion
 
@@ -412,7 +438,13 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         }
         public Task SetLockoutEnabledAsync(User user, bool enabled, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+
+            Check.NotNull(user, nameof(user));
+
+            user.IsLockoutEnabled = enabled;
+
+            return Task.CompletedTask;
         }
 
         #endregion

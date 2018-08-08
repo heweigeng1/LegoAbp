@@ -48,7 +48,9 @@ namespace LegoAbp.EntityFrameworkCore
         {
             base.PostInitialize();
         }
-
+        /// <summary>
+        /// 注册通用仓储IRepository<>
+        /// </summary>
         private void RegisterGenericRepositoriesAndMatchDbContexes()
         {
             var dbContextTypes =
@@ -73,7 +75,7 @@ namespace LegoAbp.EntityFrameworkCore
                 {
                     Logger.Debug("Registering DbContext: " + dbContextType.AssemblyQualifiedName);
 
-                    var re = scope.Resolve<ITestEfGenericRepositoryRegistrar>();
+                    var re = scope.Resolve<ITestEfGenericRepositoryRegistrar>();//搭完后移除
                     re.RegisterForDbContext(dbContextType, IocManager, EfCoreAutoRepositoryTypes.Default);
                     IocManager.IocContainer.Register(
                         Component.For<ISecondaryOrmRegistrar>()

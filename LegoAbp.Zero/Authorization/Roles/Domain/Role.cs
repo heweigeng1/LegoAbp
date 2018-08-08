@@ -8,7 +8,7 @@ using System.Text;
 
 namespace LegoAbp.Zero.Authorization.Roles.Domain
 {
-    public abstract class Role : FullAuditedEntity<Guid>, IMayHaveTenant
+    public  class Role : FullAuditedEntity<Guid>, IMayHaveTenant
     {
         /// <summary>
         /// Maximum length of the <see cref="DisplayName"/> property.
@@ -61,28 +61,7 @@ namespace LegoAbp.Zero.Authorization.Roles.Domain
         /// </summary>
         //[ForeignKey("RoleId")]
         //public virtual ICollection<RolePermissionSetting> Permissions { get; set; }
-
-        protected Role()
-        {
-            Name = Guid.NewGuid().ToString("N");
-        }
-
-        protected Role(int? tenantId, string displayName)
-            : this()
-        {
-            TenantId = tenantId;
-            DisplayName = displayName;
-        }
-
-        protected Role(int? tenantId, string name, string displayName)
-            : this(tenantId, displayName)
-        {
-            Name = name;
-        }
-
-        public override string ToString()
-        {
-            return $"[Role {Id}, Name={Name}]";
-        }
+        
+            
     }
 }
