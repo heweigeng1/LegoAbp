@@ -1,6 +1,9 @@
 ﻿
 using Abp.Application.Services;
 using Abp.Domain.Repositories;
+using Abp.IdentityFramework;
+using Abp.Localization;
+using Abp.UI;
 using LegoAbp.Zero.Authorization.Accounts.Dto;
 using LegoAbp.Zero.Authorization.Users.Domain;
 using Microsoft.AspNetCore.Identity;
@@ -15,12 +18,15 @@ namespace LegoAbp.Zero.Authorization.Accounts
     {
         protected IRepository<User, Guid> _userRepository;
         protected LegoAbpUserManager _userManager;
+
         public AccountAppService(IRepository<User, Guid> userRepository, LegoAbpUserManager userManager)
         {
             _userRepository = userRepository;
             _userManager = userManager;
+            LocalizationSourceName = LegoAbpZeroConsts.LocalizationIdentitySourceName;
+            LocalizationManager = 
         }
-        public async Task<IdentityResult> RegisterByPhone(PhoneNumberRegisterInput input)
+        public async void RegisterByPhone(PhoneNumberRegisterInput input)
         {
             var user = new User
             {
@@ -28,11 +34,13 @@ namespace LegoAbp.Zero.Authorization.Accounts
                 UserName = input.PhoneNumber,
                 PhoneNumber = input.PhoneNumber,
             };
-          return await  _userManager.CreateAsync(user,input.Password);
+            var result = await _userManager.CreateAsync(user, input.Password);
+            result.LocalizeErrors(LocalizationManager);
         }
         public void Login()
         {
-            throw new NotImplementedException();
+
+            throw new UserFriendlyException("aaaaabbbbcccc");
         }
 
         public void Logout()

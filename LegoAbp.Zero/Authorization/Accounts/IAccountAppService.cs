@@ -13,7 +13,7 @@ namespace LegoAbp.Zero.Authorization.Accounts
         /// <summary>
         /// 手机注册
         /// </summary>
-        Task<IdentityResult> RegisterByPhone(PhoneNumberRegisterInput input);
+        void RegisterByPhone(PhoneNumberRegisterInput input);
         /// <summary>
         /// 登录
         /// </summary>
