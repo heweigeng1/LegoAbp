@@ -18,13 +18,11 @@ namespace LegoAbp.Zero.Authorization.Accounts
     {
         protected IRepository<User, Guid> _userRepository;
         protected LegoAbpUserManager _userManager;
-
-        public AccountAppService(IRepository<User, Guid> userRepository, LegoAbpUserManager userManager)
+        private ILocalizationManager _localizationManager;
+        public AccountAppService(IRepository<User, Guid> userRepository, LegoAbpUserManager userManager, ILocalizationManager localizationManager)
         {
             _userRepository = userRepository;
             _userManager = userManager;
-            LocalizationSourceName = LegoAbpZeroConsts.LocalizationIdentitySourceName;
-            LocalizationManager = 
         }
         public async void RegisterByPhone(PhoneNumberRegisterInput input)
         {
