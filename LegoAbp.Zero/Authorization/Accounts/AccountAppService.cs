@@ -6,21 +6,19 @@ using Abp.Localization;
 using Abp.UI;
 using LegoAbp.Zero.Authorization.Accounts.Dto;
 using LegoAbp.Zero.Authorization.Users.Domain;
-using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Authorization.Accounts
 {
     public class AccountAppService : ApplicationService, IAccountAppService
     {
-        protected IRepository<User, Guid> _userRepository;
-        protected LegoAbpUserManager _userManager;
-        private ILocalizationManager _localizationManager;
-        public AccountAppService(IRepository<User, Guid> userRepository, LegoAbpUserManager userManager, ILocalizationManager localizationManager)
+        private readonly IRepository<User, Guid> _userRepository;
+        private readonly LegoAbpUserManager _userManager;
+        public AccountAppService(IRepository<User, Guid> userRepository, LegoAbpUserManager userManager)
         {
+
+            LocalizationSourceName = LegoAbpZeroConsts.LocalizationIdentitySourceName;
+            LocalizationManager = NullLocalizationManager.Instance;
             _userRepository = userRepository;
             _userManager = userManager;
         }
@@ -33,11 +31,10 @@ namespace LegoAbp.Zero.Authorization.Accounts
                 PhoneNumber = input.PhoneNumber,
             };
             var result = await _userManager.CreateAsync(user, input.Password);
-            result.LocalizeErrors(LocalizationManager);
+            result.CheckErrors();
         }
         public void Login()
         {
-
             throw new UserFriendlyException("aaaaabbbbcccc");
         }
 

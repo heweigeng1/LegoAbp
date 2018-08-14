@@ -15,7 +15,7 @@ namespace LegoAbp.Zero.Authorization.Identity.Localization
         /// <param name="localizationConfiguration"></param>
         public static void Configure(ILocalizationConfiguration localizationConfiguration)
         {
-            localizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(
+             localizationConfiguration.Sources.Add(new DictionaryBasedLocalizationSource(
                     LegoAbpZeroConsts.LocalizationIdentitySourceName,
                     new XmlFileLocalizationDictionaryProvider(
                         Path.GetDirectoryName(typeof(LegoAbpZeroModule).Assembly.Location) + @"\Authorization\Identity\Localization\SourceExt\"

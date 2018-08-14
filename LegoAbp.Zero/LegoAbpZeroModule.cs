@@ -1,6 +1,7 @@
 ﻿using Abp.AspNetCore.Configuration;
 using Abp.AutoMapper;
 using Abp.Dependency;
+using Abp.Localization;
 using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Xml;
 using Abp.Localization.Sources;
@@ -28,6 +29,7 @@ namespace LegoAbp.Zero
     {
         public override void PreInitialize()
         {
+          
             //配置Identity本地化文件
             LegoAbpZeroIdentityLocalization.Configure(Configuration.Localization);
             //添加租户的本地化文本

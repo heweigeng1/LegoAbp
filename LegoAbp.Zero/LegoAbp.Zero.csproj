@@ -6,6 +6,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>bin\Debug\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -55,9 +56,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Abp" Version="3.8.2" />
     <PackageReference Include="Abp.AutoMapper" Version="3.8.2" />
     <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="3.8.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
