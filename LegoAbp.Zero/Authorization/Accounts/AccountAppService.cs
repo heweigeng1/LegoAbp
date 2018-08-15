@@ -6,7 +6,9 @@ using Abp.Localization;
 using Abp.UI;
 using LegoAbp.Zero.Authorization.Accounts.Dto;
 using LegoAbp.Zero.Authorization.Users.Domain;
+using Microsoft.AspNetCore.Identity;
 using System;
+using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Authorization.Accounts
 {
@@ -22,7 +24,7 @@ namespace LegoAbp.Zero.Authorization.Accounts
             _userRepository = userRepository;
             _userManager = userManager;
         }
-        public async void RegisterByPhone(PhoneNumberRegisterInput input)
+        public async Task<IdentityResult> RegisterByPhone(PhoneNumberRegisterInput input)
         {
             var user = new User
             {
@@ -31,11 +33,18 @@ namespace LegoAbp.Zero.Authorization.Accounts
                 PhoneNumber = input.PhoneNumber,
             };
             var result = await _userManager.CreateAsync(user, input.Password);
-            result.CheckErrors();
+            return result;
         }
-        public void Login()
+        public async void Login()
         {
-            throw new UserFriendlyException("aaaaabbbbcccc");
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                UserName = "12345678901",
+                PhoneNumber = "12345678901",
+            };
+            var result = await _userManager.CreateAsync(user, "123Aa_123");
+            throw new UserFriendlyException("123");
         }
 
         public void Logout()

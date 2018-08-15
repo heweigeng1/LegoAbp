@@ -1,9 +1,6 @@
 ﻿using Abp.Domain.Services;
 using LegoAbp.Zero.Authorization.Accounts.Dto;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Authorization.Accounts
@@ -13,7 +10,7 @@ namespace LegoAbp.Zero.Authorization.Accounts
         /// <summary>
         /// 手机注册
         /// </summary>
-        void RegisterByPhone(PhoneNumberRegisterInput input);
+        Task<IdentityResult> RegisterByPhone(PhoneNumberRegisterInput input);
         /// <summary>
         /// 登录
         /// </summary>

@@ -30,3 +30,19 @@ LegoAbpZeroLocalization里面包含了一个Configure方法,用来配置本地�
 ```c#
 LegoAbpZeroLocalization.Configure(Configuration.Localization);
 ```
+
+## 关于异步Service抛异常会中断调试
+
+```c#
+        public async void Login()
+        {
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                UserName = "12345678901",
+                PhoneNumber = "12345678901",
+            };
+            var result = await _userManager.CreateAsync(user, "123Aa_123");
+            throw new UserFriendlyException("123");
+        }
+```
