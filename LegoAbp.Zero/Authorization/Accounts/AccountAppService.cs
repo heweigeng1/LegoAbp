@@ -1,7 +1,6 @@
 ﻿
 using Abp.Application.Services;
 using Abp.Domain.Repositories;
-using Abp.IdentityFramework;
 using Abp.Localization;
 using Abp.UI;
 using LegoAbp.Zero.Authorization.Accounts.Dto;
@@ -47,9 +46,9 @@ namespace LegoAbp.Zero.Authorization.Accounts
             throw new UserFriendlyException("123");
         }
 
-        public void Logout()
+        public string Logout()
         {
-            throw new NotImplementedException();
+            return LocalizationManager.GetSource(LegoAbpZeroConsts.LocalizationSourceName).GetString(PermissionNames.User_Create);
         }
 
         public void Register()

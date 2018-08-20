@@ -9,5 +9,17 @@
     <text name="CanNotDeleteStaticRole" value="不能删除系统预定义角色: {0}" />
     <text name="CanNotRenameAdminUser" value="不能重命名默认管理员的用户名 {0}" />
     <text name="CanNotDeleteAdminUser" value="不能删除默认管理员{0}!" />
+    <!--用户权限/2018/8/20 添加-->
+    <text name="User.Create" value="添加用户" />
+    <text name="User.Delete" value="删除用户" />
+    <text name="User.Update" value="编辑用户" />
+    <text name="User.Page" value="用户列表" />
+    <text name="UserRole.Update" value="编辑用户权限" />
+    <!--租户权限/2018/8/20 添加-->
+    <text name="Tenant.Create" value="添加租户" />
+    <text name="Tenant.Delete" value="删除租户" />
+    <text name="Tenant.Update" value="编辑租户" />
+    <text name="Tenant.Page" value="租户列表" />
+    <text name="Tenant.Reviewing" value="租户审批" />
   </texts>
 </localizationDictionary>
