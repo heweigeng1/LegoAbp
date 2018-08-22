@@ -15,13 +15,15 @@ namespace LegoAbp.Zero.Authorization.Accounts
     {
         private readonly IRepository<User, Guid> _userRepository;
         private readonly LegoAbpUserManager _userManager;
-        public AccountAppService(IRepository<User, Guid> userRepository, LegoAbpUserManager userManager)
+        private readonly SignInManager<User> _signInManager;
+        public AccountAppService(IRepository<User, Guid> userRepository, LegoAbpUserManager userManager, SignInManager<User> signInManager)
         {
 
             LocalizationSourceName = LegoAbpZeroConsts.LocalizationIdentitySourceName;
             LocalizationManager = NullLocalizationManager.Instance;
             _userRepository = userRepository;
             _userManager = userManager;
+            _signInManager = signInManager;
         }
         public async Task<IdentityResult> RegisterByPhone(PhoneNumberRegisterInput input)
         {
@@ -34,15 +36,11 @@ namespace LegoAbp.Zero.Authorization.Accounts
             var result = await _userManager.CreateAsync(user, input.Password);
             return result;
         }
-        public async void Login()
+        //[AbpAuthorize(PermissionNames.User_Create)]
+        public async void Login(PhoneNumberLoginInput input)
         {
-            var user = new User
-            {
-                Id = Guid.NewGuid(),
-                UserName = "12345678901",
-                PhoneNumber = "12345678901",
-            };
-            var result = await _userManager.CreateAsync(user, "123Aa_123");
+            var user = _userRepository.FirstOrDefault(c => c.PhoneNumber == input.PhoneNumber);
+            var result = await _signInManager.PasswordSignInAsync(user, input.Password, true, true);
             throw new UserFriendlyException("123");
         }
 

@@ -12,6 +12,7 @@ using AbpTree;
 using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Repository;
 using LegoAbp.Zero;
+using LegoAbp.Zero.Authorization;
 using LegoAbp.Zero.Authorization.Identity;
 using LegoAbp.Zero.Authorization.Identity.Localization;
 using LegoAbp.Zero.Localization;
@@ -35,6 +36,7 @@ namespace LegoAbp.Zero
             //添加租户的本地化文本
             LegoAbpZeroLocalization.Configure(Configuration.Localization);
             Configuration.Modules.AbpAspNetCore().CreateControllersForAppServices(typeof(LegoAbpZeroModule).Assembly, moduleName: "app", useConventionalHttpVerbs: true);
+            Configuration.Authorization.Providers.Add<LegoAbpZeroAuthorizationProvider>();
         }
 
         /// <summary>
