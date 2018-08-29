@@ -17,6 +17,7 @@ namespace LegoAbp.Zero.Authorization.Identity
             return services.AddIdentity<User, Role>()
                 .AddUserManager<LegoAbpUserManager>()
                 .AddUserStore<UserStore>()
+                .AddRoleStore<RoleStore>()
                 .AddDefaultTokenProviders();
         }
     }

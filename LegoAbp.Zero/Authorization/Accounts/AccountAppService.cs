@@ -37,11 +37,10 @@ namespace LegoAbp.Zero.Authorization.Accounts
             return result;
         }
         //[AbpAuthorize(PermissionNames.User_Create)]
-        public async void Login(PhoneNumberLoginInput input)
+        public async Task<SignInResult> Login(PhoneNumberLoginInput input)
         {
             var user = _userRepository.FirstOrDefault(c => c.PhoneNumber == input.PhoneNumber);
-            var result = await _signInManager.PasswordSignInAsync(user, input.Password, true, true);
-            throw new UserFriendlyException("123");
+            return await _signInManager.PasswordSignInAsync(user, input.Password, true, true);
         }
 
         public string Logout()

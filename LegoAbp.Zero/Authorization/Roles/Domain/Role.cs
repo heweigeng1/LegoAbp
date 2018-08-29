@@ -19,7 +19,10 @@ namespace LegoAbp.Zero.Authorization.Roles.Domain
         /// Maximum length of the <see cref="Name"/> property.
         /// </summary>
         public const int MaxNameLength = 32;
-
+        /// <summary>
+        /// Maximum length of the <see cref="ConcurrencyStamp"/> property.
+        /// </summary>
+        public const int MaxConcurrencyStampLength = 128;
         /// <summary>
         /// Tenant's Id, if this role is a tenant-level role. Null, if not.
         /// </summary>
@@ -43,7 +46,8 @@ namespace LegoAbp.Zero.Authorization.Roles.Domain
         [Required]
         [StringLength(MaxDisplayNameLength)]
         public virtual string DisplayName { get; set; }
-
+        [StringLength(MaxConcurrencyStampLength)]
+        public virtual string ConcurrencyStamp { get; set; } = Guid.NewGuid().ToString();
         /// <summary>
         /// Is this a static role?
         /// Static roles can not be deleted, can not change their name.

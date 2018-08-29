@@ -14,7 +14,7 @@ namespace LegoAbp.Zero.Authorization.Accounts
         /// <summary>
         /// 登录
         /// </summary>
-        void Login(PhoneNumberLoginInput input);
+        Task<SignInResult> Login(PhoneNumberLoginInput input);
         /// <summary>
         /// 注销
         /// </summary>

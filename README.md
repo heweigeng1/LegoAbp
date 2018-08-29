@@ -19,6 +19,8 @@ LegoAbpÊÇ»ùÓÚABPµÄÄ£¿é»¯¿ª·¢¿ò¼Ü,ÎÒÉè¼ÆÕâ¸ö¿ò¼ÜµÄ³õÖÔÊÇ,ÌáÉı´úÂëµÄ¸´ÓÃÂÊ.¸÷¸öÄ£¿
 
 ## ¸üĞÂÃ÷Ï¸
 
+8-24 ¼¯³ÉidentityÈ¨ÏŞÄ£¿é,Óë±¾µØ»¯Ä£¿é
+
 7-10 moduleµÄIRepository×Ô¶¯×¢²áµ½ÈİÆ÷ </br>
 moduleµÄInitializeÖĞÌí¼Ó:IocManager.Resolve<ILegoAbpModuleRepositoryRegistrar>().ModuleRepositoryRegistrar(assembly);
 
