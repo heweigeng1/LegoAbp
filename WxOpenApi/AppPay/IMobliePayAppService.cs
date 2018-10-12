@@ -11,6 +11,6 @@ namespace WxOpenApi.AppPay
     public interface IMobliePayAppService
     {
         [HttpPost]
-        PayingOutput Paying();
+        MobilePayOutput Paying();
     }
 }

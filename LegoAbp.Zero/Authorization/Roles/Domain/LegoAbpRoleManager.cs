@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Identity;
 
 namespace LegoAbp.Zero.Authorization.Roles.Domain
 {
-    public class LegoAbpRoleManager : RoleManager<Role>, IDomainService, ITransientDependency
-    {
-        public LegoAbpRoleManager() : base()
-        {
+    //public class LegoAbpRoleManager : RoleManager<Role>, IDomainService, ITransientDependency
+    //{
+    //    public LegoAbpRoleManager() : base()
+    //    {
 
-        }
-    }
+    //    }
+    //}
 }

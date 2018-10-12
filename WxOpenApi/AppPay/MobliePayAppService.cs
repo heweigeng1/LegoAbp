@@ -47,10 +47,10 @@ namespace WxOpenApi.AppPay
 
         }
 
-        public PayingOutput Paying()
+        public MobilePayOutput Paying()
         {
             #region 统一下单map
-            SortedDictionary<string, string> untifiedOrder = new SortedDictionary<string, string>()
+            SortedDictionary<string, string> sortedDictionary = new SortedDictionary<string, string>()
             {
                 {"appid",WxConfig.AppId},
                 {"attach" , "wxpay" },
@@ -61,22 +61,23 @@ namespace WxOpenApi.AppPay
                 {"spbill_create_ip",""},//用户IP
                 {"total_fee", "0.01"},//金额
                 {"trade_type","APP" },
-                {"out_trade_no",DateTime.Now.ToString("yyyyMMddHHmmss")+WxUtils.RandomStr(2) }
+                {"out_trade_no",DateTime.Now.ToString("yyyyMMddHHmmss")+WxUtils.RandomStr(2) }//订单号
             };
             #endregion
 
             #region 生成sign
-            string md5key = $@"{ untifiedOrder.SortedDictionaryToWxUrl()}&key={WxConfig.PARTNER_ID}";
+            string md5key = $@"{ sortedDictionary.SortedDictionaryToWxUrl()}&key={WxConfig.PARTNER_ID}";
             string sign = WxUtils.GetSign(md5key, "utf-8");
             #endregion
 
             #region 请求微信统一下单接口 获取预支付订单号
-            string xml = untifiedOrder.SortedDictionaryToWxXml().Replace("</xml>", $@"<sign><![CDATA[{ sign }]]></sign></xml>");
+            string xml = sortedDictionary.SortedDictionaryToWxXml().Replace("</xml>", $@"<sign><![CDATA[{ sign }]]></sign></xml>");
             string callbackXml = WxUtils.PostToUnifiedOrder(xml);//请求微信统一下单接口
             MobilePayCallbackDto callbackobj = (MobilePayCallbackDto)WxUtils.XmlDeserialize(typeof(MobilePayCallbackDto), callbackXml);
             #endregion
+
             #region 用户端sign
-            PayingOutput output = new PayingOutput
+            MobilePayOutput output = new MobilePayOutput
             {
                 appid = WxConfig.AppId,
                 noncestr = WxUtils.RandomStr(16),

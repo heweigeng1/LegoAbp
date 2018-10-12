@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WxOpenApi.AppPay.Dtos
 {
-    public class PayingOutput
+    public class MobilePayOutput
     {
         public string appid { get; set; }
         public string partnerid { get; set; }

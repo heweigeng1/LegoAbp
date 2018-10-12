@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WxOpenApi.AppPay.Dtos
 {
-    public class PayingInput
+    public class MobliePayInput
     {
         public string Spbill_Create_Ip { get; set; }
         public Guid UserId { get; set; }

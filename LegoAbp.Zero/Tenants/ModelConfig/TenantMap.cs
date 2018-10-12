@@ -1,9 +1,7 @@
 ﻿using LegoAbp.EntityFrameworkCore;
-using LegoAbp.Zero.Authorization.Users.Domain;
 using LegoAbp.Zero.Tenants.Domain;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LegoAbp.Zero.Tenants.ModelConfig
 {
