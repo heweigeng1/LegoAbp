@@ -10,6 +10,9 @@ using WxOpenApi.Utils;
 
 namespace WxOpenApi.AppPay
 {
+    /// <summary>
+    /// 用控制器接收回调demo
+    /// </summary>
     public class NodifyController:AbpController
     {
       

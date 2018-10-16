@@ -19,5 +19,6 @@ namespace WxOpenApi.Config
         /// 刷卡支付回调接口
         /// </summary>
         public static string PayByCardNodifyUrl = "不含参数的回调接口";
+        
     }
 }

@@ -10,10 +10,11 @@ using Abp.Domain.Services;
 
 namespace WxOpenApi.AppPay
 {
-    public class MobliePayAppService : IDomainService, IMobliePayAppService
+    public class MobliePayManager : DomainService
     {
+        private const string unifiedorderUrl = "https://api.mch.weixin.qq.com/pay/unifiedorder";
         IHttpContextAccessor contextAccessor;
-        public MobliePayAppService(IHttpContextAccessor _contextAccessor)
+        public MobliePayManager(IHttpContextAccessor _contextAccessor)
         {
             contextAccessor = _contextAccessor;
         }
@@ -47,7 +48,7 @@ namespace WxOpenApi.AppPay
 
         }
 
-        public MobilePayOutput Paying()
+        public MobilePayOutput Paying(string total_fee,string out_trade_no)
         {
             #region 统一下单map
             SortedDictionary<string, string> sortedDictionary = new SortedDictionary<string, string>()
@@ -59,9 +60,9 @@ namespace WxOpenApi.AppPay
                 {"nonce_str", WxUtils.RandomStr(16)},
                 {"notify_url", WxConfig.AppPayNodifyUrl},
                 {"spbill_create_ip",""},//用户IP
-                {"total_fee", "0.01"},//金额
+                {"total_fee", total_fee},//金额
                 {"trade_type","APP" },
-                {"out_trade_no",DateTime.Now.ToString("yyyyMMddHHmmss")+WxUtils.RandomStr(2) }//订单号
+                {"out_trade_no",out_trade_no}//订单号
             };
             #endregion
 
@@ -72,7 +73,7 @@ namespace WxOpenApi.AppPay
 
             #region 请求微信统一下单接口 获取预支付订单号
             string xml = sortedDictionary.SortedDictionaryToWxXml().Replace("</xml>", $@"<sign><![CDATA[{ sign }]]></sign></xml>");
-            string callbackXml = WxUtils.PostToUnifiedOrder(xml);//请求微信统一下单接口
+            string callbackXml = WxUtils.PostToWxOpenApi(unifiedorderUrl,xml);//请求微信统一下单接口
             MobilePayCallbackDto callbackobj = (MobilePayCallbackDto)WxUtils.XmlDeserialize(typeof(MobilePayCallbackDto), callbackXml);
             #endregion
 

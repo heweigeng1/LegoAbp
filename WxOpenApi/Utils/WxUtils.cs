@@ -11,8 +11,7 @@ namespace WxOpenApi.Utils
     public static class WxUtils
     {
         private static readonly string randomStr = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        private static readonly string unifiedorderUrl = "https://api.mch.weixin.qq.com/pay/unifiedorder";
-        private static readonly string payByCardUrl = "https://api.mch.weixin.qq.com/pay/micropay";
+       
         public static string RandomStr(int length)
         {
             string result = string.Empty;
@@ -92,30 +91,12 @@ namespace WxOpenApi.Utils
             retStr = retStr.Replace("-", "").ToUpper();
             return retStr;
         }
-        /// <summary>
-        /// 请求微信统一下单接口
-        /// </summary>
-        /// <param name="postData"></param>
-        /// <returns></returns>
-        public static string PostToUnifiedOrder(string postData)
+        public static string PostToWxOpenApi(string url, string postData)
         {
             using (System.Net.WebClient wc = new System.Net.WebClient())
             {
                 wc.Encoding = Encoding.UTF8;
-                return wc.UploadString(unifiedorderUrl, "POST", postData);
-            }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="postData"></param>
-        /// <returns></returns>
-        public static string PostToMicropay(string postData)
-        {
-            using (System.Net.WebClient wc = new System.Net.WebClient())
-            {
-                wc.Encoding = Encoding.UTF8;
-                return wc.UploadString(payByCardUrl, "POST", postData);
+                return wc.UploadString(url, "POST", postData);
             }
         }
         public static object XmlDeserialize(Type type, string xml)
