@@ -47,7 +47,12 @@ namespace WxOpenApi.AppPay
             }
 
         }
-
+        /// <summary>
+        ///统一下单接口
+        /// </summary>
+        /// <param name="total_fee">订单金额</param>
+        /// <param name="out_trade_no">订单号</param>
+        /// <returns></returns>
         public MobilePayOutput Paying(string total_fee,string out_trade_no)
         {
             #region 统一下单map
