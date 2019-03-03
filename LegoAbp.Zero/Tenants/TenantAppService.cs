@@ -1,6 +1,5 @@
 ﻿using Abp.Application.Services;
 using LegoAbp.Zero.Tenants.Domain;
-using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Tenants
 {

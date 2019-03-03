@@ -102,11 +102,8 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         public virtual int AccessFailedCount { get; set; }
         public int? TenantId { get; set; }
         public bool IsActive { get; set; }
-        [ForeignKey("UserId")]
         public virtual ICollection<UserClaim> Claims { get; set; }
-        [ForeignKey("UserId")]
         public virtual ICollection<UserLogin> Logins { get; set; }
-        [ForeignKey("UserId")]
         public virtual ICollection<UserRole> Roles { get; set; }
         #endregion
         /// <summary>
@@ -124,9 +121,8 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         }
         public enum EnumUserType
         {
-            普通用户,
             商户,
-            管理员,
+            Host,
         }
     }
 }

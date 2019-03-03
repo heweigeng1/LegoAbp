@@ -7,9 +7,12 @@ namespace LegoAbp.Zero.Tenants.ModelConfig
 {
     public class TenantMap : EntityConfigurationBase<Tenant, int>
     {
+        public const int defaultkey = 1;
+        public const string defaultCode = "default";
+        public const string defaultTenantName = "default";
         public override void Configure(EntityTypeBuilder<Tenant> builder)
         {
-            builder.HasData(new Tenant { Id = 1, TenantName = "defult", IsDeleted = false, IsActive = true, CreationTime = DateTime.Now, TenantCode = "123456" });
+            builder.HasData(new Tenant { Id = defaultkey, TenantName = defaultTenantName, IsDeleted = false, IsActive = true, CreationTime = DateTime.Now, TenantCode = defaultCode });
         }
     }
 }

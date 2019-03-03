@@ -31,7 +31,7 @@ LegoAbpZeroLocalization里面包含了一个Configure方法,用来配置本地�
 LegoAbpZeroLocalization.Configure(Configuration.Localization);
 ```
 
-## 关于异步Service抛异常会中断调试
+## 异步Service抛异常会中断调试
 
 ```c#
         public async void Login()
