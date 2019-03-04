@@ -30,7 +30,6 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         public UserClaim(User user, Claim claim)
         {
             Id = Guid.NewGuid();
-            TenantId = user.TenantId;
             UserId = user.Id;
             ClaimType = claim.Type;
             ClaimValue = claim.Value;

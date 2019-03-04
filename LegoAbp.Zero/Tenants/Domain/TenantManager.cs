@@ -42,7 +42,7 @@ namespace LegoAbp.Zero.Tenants.Domain
             {
                 throw new UserFriendlyException(L("InvalidTenancyName"));
             }
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
         protected virtual string L(string name)
         {

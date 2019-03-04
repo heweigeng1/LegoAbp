@@ -1,16 +1,13 @@
 ﻿using Abp.Collections.Extensions;
 using Abp.Dependency;
 using Abp.EntityFramework;
-using Abp.EntityFramework.Repositories;
 using Abp.EntityFrameworkCore;
 using Abp.EntityFrameworkCore.Repositories;
-using Abp.EntityFrameworkCore.Uow;
 using Abp.Modules;
 using Abp.Orm;
 using Abp.Reflection;
 using Abp.Reflection.Extensions;
 using Castle.MicroKernel.Registration;
-using LegoAbp.Reflection;
 using System;
 using System.Reflection;
 

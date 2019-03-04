@@ -34,19 +34,5 @@ namespace LegoAbp.EntityFrameworkCore
             }
         }
     }
-
-    //public class UserA : Entity<Guid>
-    //{
-    //    [MaxLength(10)]
-    //    public string NameB { get; set; }
-    //    public string Namec { get; set; }
-    //    public string Named { get; set; }
-    //}
-    //public class UserAMap : IEntityTypeConfiguration<UserA>
-    //{
-    //    public void Configure(EntityTypeBuilder<UserA> builder)
-    //    {
-    //        builder.ToTable("UserC");
-    //    }
-    //}
+    
 }

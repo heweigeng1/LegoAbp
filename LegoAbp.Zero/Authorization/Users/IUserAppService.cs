@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LegoAbp.Zero.Authorization.Users
 {
-    public interface IUserAppService : IAsyncCrudAppService<UserDto,Guid,SearchUserInput,CreateUser,UserDto>
+    public interface IUserAppService : IAsyncCrudAppService<UserDto,Guid,SearchUserInput,CreateUserInput,UserDto>
     {
     }
 }

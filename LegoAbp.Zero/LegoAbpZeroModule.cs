@@ -1,19 +1,10 @@
 ﻿using Abp.AspNetCore.Configuration;
 using Abp.AutoMapper;
-using Abp.Dependency;
-using Abp.Localization;
-using Abp.Localization.Dictionaries;
-using Abp.Localization.Dictionaries.Xml;
-using Abp.Localization.Sources;
 using Abp.Modules;
-using Abp.Reflection.Extensions;
-using Abp.Zero;
 using AbpTree;
 using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Repository;
-using LegoAbp.Zero;
 using LegoAbp.Zero.Authorization;
-using LegoAbp.Zero.Authorization.Identity;
 using LegoAbp.Zero.Authorization.Identity.Localization;
 using LegoAbp.Zero.Localization;
 using System.Reflection;
@@ -30,7 +21,8 @@ namespace LegoAbp.Zero
     {
         public override void PreInitialize()
         {
-          
+            //开启多租户
+            Configuration.MultiTenancy.IsEnabled = true;
             //配置Identity本地化文件
             LegoAbpZeroIdentityLocalization.Configure(Configuration.Localization);
             //添加租户的本地化文本

@@ -31,8 +31,7 @@ namespace LegoAbp.Paged
             query = query.OrderBy(paged.Pagination.Sorter, paged.Pagination.SortDirection);
             //分页
             query = query.Paging(paged.Pagination.Current, paged.Pagination.PageSize);
-            //query = ApplySorting(query, input);
-            //query = ApplyPaging(query, input);
+
             var entities = await AsyncQueryableExecuter.ToListAsync(query);
             return new AntdPagedResultDto<TEntityDto>(
                entities.Select(MapToEntityDto).ToList(),
@@ -40,7 +39,6 @@ namespace LegoAbp.Paged
                paged.Pagination.PageSize,
                totalCount
             );
-
         }
     }
 }

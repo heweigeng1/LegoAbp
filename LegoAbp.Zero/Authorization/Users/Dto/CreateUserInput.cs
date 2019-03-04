@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
+using LegoAbp.Entites;
 using LegoAbp.Utils;
 using LegoAbp.Zero.Authorization.Users.Domain;
 using System;
@@ -8,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 namespace LegoAbp.Zero.Authorization.Users.Dto
 {
     [AutoMap(typeof(User))]
-    public class CreateUser : FullAuditedEntityDto<Guid>
+    public class CreateUserInput : LegoAbpEntityBase<Guid>
     {
         [Required]
         [StringLength(User.MaxUserNameLength)]

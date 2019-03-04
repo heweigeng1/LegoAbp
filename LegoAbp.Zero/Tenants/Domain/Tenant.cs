@@ -29,5 +29,6 @@ namespace LegoAbp.Zero.Tenants.Domain
         [StringLength(MaxTenantCodeLength)]
         public string TenantCode { get; set; }
         public bool IsActive { get; set; }
+        public string LogoPath { get; set; }
     }
 }

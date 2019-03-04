@@ -48,10 +48,9 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
 
         }
 
-        public UserLogin(int? tenantId, Guid userId, string loginProvider, string providerKey)
+        public UserLogin( Guid userId, string loginProvider, string providerKey)
         {
             Id = Guid.NewGuid();
-            TenantId = tenantId;
             UserId = userId;
             LoginProvider = loginProvider;
             ProviderKey = providerKey;
