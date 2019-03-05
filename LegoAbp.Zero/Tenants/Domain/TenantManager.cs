@@ -2,10 +2,9 @@
 using Abp.Domain.Services;
 using Abp.Localization;
 using Abp.UI;
-using LegoAbp.Zero;
 using LegoAbp.Zero.Authorization.Users.Domain;
 using System;
-using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -35,7 +34,18 @@ namespace LegoAbp.Zero.Tenants.Domain
             }
             await _tenantRepository.InsertAsync(tenant);
         }
+        public virtual async Task ChangeTenantNameAsync(string newTenantName, int Id)
+        {
 
+            await ValidateTenantNameAsync(newTenantName);
+            if (_tenantRepository.GetAll().Any(c => c.Id != Id && c.TenantName == newTenantName))
+            {
+                throw new UserFriendlyException("店铺名称已被占用");
+            }
+            var entity = _tenantRepository.FirstOrDefault(c => c.Id == Id);
+            entity.TenantName = newTenantName;
+            await _tenantRepository.UpdateAsync(entity);
+        }
         protected virtual Task ValidateTenantNameAsync(string tenantName)
         {
             if (!Regex.IsMatch(tenantName, Tenant.TenancyNameRegex))
