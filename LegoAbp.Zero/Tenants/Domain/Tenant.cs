@@ -47,6 +47,8 @@ namespace LegoAbp.Zero.Tenants.Domain
         /// </summary>
         [StringLength(EntityCommonConst.MaxPhoneNumberLength)]
         public string PhoneNumber { get; set; }
+        [StringLength(EntityCommonConst.MaxPhoneNumberLength)]
+        public string QQNumber { get; set; }
         /// <summary>
         /// 地址
         /// </summary>

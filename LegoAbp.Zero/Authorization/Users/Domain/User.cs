@@ -5,17 +5,12 @@ using LegoAbp.Zero.Authorization.Roles.Domain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LegoAbp.Zero.Authorization.Users.Domain
 {
-    public class User : LegoAbpEntityBase<Guid>, IMayHaveTenant, IPassivable, IHasCreationTime, IHasModificationTime, ISoftDelete
+    public class User : LegoAbpEntityBase<Guid>, IMayHaveTenant, IPassivable, IHasCreationTime, IHasModificationTime, ISoftDelete, IPhoneNumber
     {
         #region 常量
-        /// <summary>
-        /// 用户名长度<see cref="UserName"/>最大长度
-        /// </summary>
-        public const int MaxUserNameLength = 128;
         /// <summary>
         /// 密码<see cref="Password"/>最大长度
         /// </summary>
@@ -24,10 +19,6 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         /// 密码<see cref="Password"/>最短位数
         /// </summary>
         public const int MinPasswordLength = 6;
-        /// <summary>
-        /// 手机号<see cref="PhoneNumber"/>最大长度
-        /// </summary>
-        public const int MaxPhoneNumLength = 16;
         /// <summary>
         /// Maximum length of the <see cref="EmailAddress"/> property.
         /// </summary>
@@ -43,9 +34,9 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         /// 用户名
         /// </summary>
         [Required]
-        [StringLength(MaxUserNameLength)]
+        [StringLength(EntityCommonConst.MaxNameLength)]
         public virtual string UserName { get; set; }
-        [StringLength(MaxPhoneNumLength)]
+        [StringLength(EntityCommonConst.MaxPhoneNumberLength)]
         public string PhoneNumber { get; set; }
         /// <summary>
         /// 是否验证过手机
@@ -60,7 +51,7 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         /// <summary>
         /// 统一规则用户名
         /// </summary>
-        [StringLength(MaxUserNameLength)]
+        [StringLength(EntityCommonConst.MaxNameLength)]
         public virtual string NormalizedUserName { get; set; }
         /// <summary>
         /// 统一规则邮箱
@@ -70,6 +61,7 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         /// <summary>
         /// 邮箱
         /// </summary>
+        [StringLength(MaxEmailAddressLength)]
         public virtual string EmailAddress { get; set; }
         /// <summary>
         ///邮箱是否验证 <see cref="EmailAddress"/> .
