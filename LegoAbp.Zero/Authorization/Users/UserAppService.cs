@@ -8,10 +8,10 @@ using System;
 namespace LegoAbp.Zero.Authorization.Users
 {
 
-    public class UserAppService: AsyncLegoAbpCrudAppService<User,UserDto,Guid,SearchUserInput,CreateUserInput,UserDto>,IUserAppService
+    public class UserAppService: AsyncLegoAbpCrudAppService<User,UserDto,long,SearchUserInput,CreateUserInput,UserDto>,IUserAppService
     {
-        private readonly IRepository<User, Guid> _repository;
-        public UserAppService(IRepository<User, Guid> repository) : base(repository)
+        private readonly IRepository<User, long> _repository;
+        public UserAppService(IRepository<User, long> repository) : base(repository)
         {
             _repository = repository;
         }

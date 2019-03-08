@@ -27,7 +27,7 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         /// <summary>
         /// Id of the User.
         /// </summary>
-        public virtual Guid UserId { get; set; }
+        public virtual long UserId { get; set; }
 
         /// <summary>
         /// Login Provider.
@@ -48,7 +48,7 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
 
         }
 
-        public UserLogin( Guid userId, string loginProvider, string providerKey)
+        public UserLogin( long userId, string loginProvider, string providerKey)
         {
             Id = Guid.NewGuid();
             UserId = userId;

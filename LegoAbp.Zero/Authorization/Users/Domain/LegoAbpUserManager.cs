@@ -6,15 +6,14 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Authorization.Users.Domain
 {
     //public class AbpUserManager : UserManager<User>
     public class LegoAbpUserManager : UserManager<User>, IDomainService, ITransientDependency
     {
-        private readonly IRepository<User, Guid> _repository;
-        public LegoAbpUserManager(IRepository<User, Guid> repository, 
+        private readonly IRepository<User, long> _userRepository;
+        public LegoAbpUserManager(IRepository<User, long> userRepository, 
             IUserStore<User> store,
             IOptions<IdentityOptions> optionsAccessor,
             IPasswordHasher<User> passwordHasher,
@@ -33,7 +32,7 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
                 services,
                 logger)
         {
-            _repository = repository;
+            _userRepository = userRepository;
         }
     }
 }

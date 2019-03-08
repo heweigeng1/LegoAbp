@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LegoAbp.Zero.Authorization.Users.Domain
 {
-    public class User : LegoAbpEntityBase<Guid>, IMayHaveTenant, IPassivable, IHasCreationTime, IHasModificationTime, ISoftDelete, IPhoneNumber
+    public class User : LegoAbpEntityBase<long>, IMayHaveTenant, IPassivable, IHasCreationTime, IHasModificationTime, ISoftDelete, IPhoneNumber
     {
         #region 常量
         /// <summary>

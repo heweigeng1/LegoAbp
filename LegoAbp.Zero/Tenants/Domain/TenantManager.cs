@@ -1,7 +1,9 @@
-﻿using Abp.Domain.Repositories;
+﻿
+using Abp.Domain.Repositories;
 using Abp.Domain.Services;
 using Abp.Localization;
 using Abp.UI;
+using LegoAbp.Zero.Authorization.Roles.Domain;
 using LegoAbp.Zero.Authorization.Users.Domain;
 using System;
 using System.Linq;
@@ -16,14 +18,17 @@ namespace LegoAbp.Zero.Tenants.Domain
         protected string LocalizationSourceName { get; set; }
 
         protected IRepository<Tenant, int> _tenantRepository;
-        protected IRepository<User, Guid> _userRepository;
-        public TenantManager(IRepository<Tenant, int> tenantRepository, IRepository<User, Guid> userRepository, ILocalizationManager localizationManager)
+        protected IRepository<UserRole, Guid> _userRoleRepository;
+        protected IRepository<User, long> _userRepository;
+        public TenantManager(IRepository<Tenant, int> tenantRepository, IRepository<User, long> userRepository, ILocalizationManager localizationManager, IRepository<UserRole, Guid> userRoleRepository)
         {
             _tenantRepository = tenantRepository;
             _userRepository = userRepository;
             _localizationManager = localizationManager;
+            _userRoleRepository = userRoleRepository;
             LocalizationSourceName = LegoAbpZeroConsts.LocalizationSourceName;
         }
+
         public virtual async Task CreateAsync(Tenant tenant)
         {
             await ValidateTenantNameAsync(tenant.TenantName);
@@ -34,6 +39,16 @@ namespace LegoAbp.Zero.Tenants.Domain
             }
             await _tenantRepository.InsertAsync(tenant);
         }
+
+        public virtual async Task RemoveTenantUserRoleAsync(TenantUser tenantUser)
+        {
+            var data = _userRoleRepository.GetAll().Where(c => c.UserId == tenantUser.UserId && c.TenantId == tenantUser.TenantId).ToList();
+            foreach (var item in data)
+            {
+               await _userRoleRepository.DeleteAsync(item);
+            }
+        }
+
         public virtual async Task ChangeTenantNameAsync(string newTenantName, int Id)
         {
 
@@ -46,6 +61,7 @@ namespace LegoAbp.Zero.Tenants.Domain
             entity.TenantName = newTenantName;
             await _tenantRepository.UpdateAsync(entity);
         }
+
         protected virtual Task ValidateTenantNameAsync(string tenantName)
         {
             if (!Regex.IsMatch(tenantName, Tenant.TenancyNameRegex))
@@ -54,6 +70,7 @@ namespace LegoAbp.Zero.Tenants.Domain
             }
             return Task.CompletedTask;
         }
+
         protected virtual string L(string name)
         {
             return _localizationManager.GetString(LocalizationSourceName, name);

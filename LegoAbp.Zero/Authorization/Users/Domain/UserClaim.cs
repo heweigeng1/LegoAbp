@@ -15,7 +15,7 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
 
         public virtual int? TenantId { get; set; }
 
-        public virtual Guid UserId { get; set; }
+        public virtual long UserId { get; set; }
 
         [StringLength(MaxClaimTypeLength)]
         public virtual string ClaimType { get; set; }

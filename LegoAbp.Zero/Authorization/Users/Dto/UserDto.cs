@@ -6,7 +6,7 @@ using System;
 namespace LegoAbp.Zero.Authorization.Users.Dto
 {
     [AutoMap(typeof(User))]
-    public class UserDto : FullAuditedEntityDto<Guid>
+    public class UserDto : FullAuditedEntityDto<long>
     {
         public string UserName { get; set; }
         public string Password { get; set; }

@@ -43,13 +43,13 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         private const string InternalLoginProvider = "[AspNetUserStore]";
         private const string AuthenticatorKeyTokenName = "AuthenticatorKey";
 
-        private readonly IRepository<User, Guid> _userRepository;
+        private readonly IRepository<User, long> _userRepository;
         private readonly IRepository<Role, Guid> _roleRepository;
         private readonly IRepository<UserLogin, Guid> _userLoginRepository;
         private readonly IRepository<UserRole, Guid> _userRoleRepository;
         private readonly IAsyncQueryableExecuter _asyncQueryableExecuter;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
-        public UserStore(IRepository<User, Guid> userRepository, IRepository<Role, Guid> roleRepository, IUnitOfWorkManager unitOfWorkManager, IAsyncQueryableExecuter asyncQueryableExecuter)
+        public UserStore(IRepository<User, long> userRepository, IRepository<Role, Guid> roleRepository, IUnitOfWorkManager unitOfWorkManager, IAsyncQueryableExecuter asyncQueryableExecuter)
         {
             _userRepository = userRepository;
             _roleRepository = roleRepository;
@@ -216,7 +216,7 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            return _userRepository.FirstOrDefaultAsync(userId.To<Guid>());
+            return _userRepository.FirstOrDefaultAsync(userId.To<long>());
         }
 
         public Task<User> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
