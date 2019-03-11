@@ -13,16 +13,16 @@ namespace LegoAbp.Web.Views.Shared.Components.LanguageSelection
             _languageManager = languageManager;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
-        {
-            var model = new LanguageSelectionViewModel
-            {
-                CurrentLanguage = _languageManager.CurrentLanguage,
-                Languages = _languageManager.GetLanguages(),
-                CurrentUrl = Request.Path
-            };
+        //public  Task<IViewComponentResult> InvokeAsync()
+        //{
+        //    var model = new LanguageSelectionViewModel
+        //    {
+        //        CurrentLanguage = _languageManager.CurrentLanguage,
+        //        Languages = _languageManager.GetLanguages(),
+        //        CurrentUrl = Request.Path
+        //    };
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
     }
 }

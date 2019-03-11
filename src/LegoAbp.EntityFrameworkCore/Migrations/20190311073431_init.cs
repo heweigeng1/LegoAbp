@@ -44,7 +44,14 @@ namespace LegoAbp.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     TenantName = table.Column<string>(maxLength: 32, nullable: true),
                     TenantCode = table.Column<string>(maxLength: 12, nullable: true),
-                    IsActive = table.Column<bool>(nullable: false)
+                    IsActive = table.Column<bool>(nullable: false),
+                    LogoPath = table.Column<string>(maxLength: 512, nullable: true),
+                    CompanyProfile = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(maxLength: 16, nullable: true),
+                    QQNumber = table.Column<string>(maxLength: 16, nullable: true),
+                    Address = table.Column<string>(maxLength: 512, nullable: true),
+                    StartTime = table.Column<DateTime>(nullable: true),
+                    EndTime = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,7 +62,8 @@ namespace LegoAbp.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
@@ -65,7 +73,7 @@ namespace LegoAbp.Migrations
                     Password = table.Column<string>(maxLength: 128, nullable: false),
                     NormalizedUserName = table.Column<string>(maxLength: 128, nullable: true),
                     NormalizedEmailAddress = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailAddress = table.Column<string>(nullable: true),
+                    EmailAddress = table.Column<string>(maxLength: 256, nullable: true),
                     IsEmailConfirmed = table.Column<bool>(nullable: false),
                     SecurityStamp = table.Column<string>(maxLength: 128, nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
@@ -89,7 +97,7 @@ namespace LegoAbp.Migrations
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     TenantId = table.Column<int>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<long>(nullable: false),
                     ClaimType = table.Column<string>(maxLength: 256, nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
                 },
@@ -110,7 +118,7 @@ namespace LegoAbp.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     TenantId = table.Column<int>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<long>(nullable: false),
                     LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
                     ProviderKey = table.Column<string>(maxLength: 256, nullable: false)
                 },
@@ -134,33 +142,34 @@ namespace LegoAbp.Migrations
                     CreatorUserId = table.Column<long>(nullable: true),
                     TenantId = table.Column<int>(nullable: true),
                     UserId = table.Column<Guid>(nullable: false),
-                    RoleId = table.Column<Guid>(nullable: false)
+                    RoleId = table.Column<Guid>(nullable: false),
+                    UserId1 = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserRole", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserRole_User_UserId",
-                        column: x => x.UserId,
+                        name: "FK_UserRole_User_UserId1",
+                        column: x => x.UserId1,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
                 table: "Role",
                 columns: new[] { "Id", "ConcurrencyStamp", "CreationTime", "CreatorUserId", "DeleterUserId", "DeletionTime", "DisplayName", "IsDefault", "IsDeleted", "IsStatic", "LastModificationTime", "LastModifierUserId", "Name", "NormalizedName", "TenantId" },
-                values: new object[] { new Guid("2a88fe00-b533-4eb0-8888-14419cf56b9f"), "5296cb2b-3b15-4dbd-8911-b695052b4ab5", new DateTime(2019, 3, 4, 15, 34, 52, 691, DateTimeKind.Local), null, null, null, "超级管理员", false, false, false, null, null, "admin", "ADMIN", null });
+                values: new object[] { new Guid("2a88fe00-b533-4eb0-8888-14419cf56b9f"), "91400b30-7289-4312-ab6f-7c60732c2a05", new DateTime(2019, 3, 11, 15, 34, 30, 811, DateTimeKind.Local), null, null, null, "超级管理员", false, false, false, null, null, "admin", "ADMIN", null });
 
             migrationBuilder.InsertData(
                 table: "Tenant",
-                columns: new[] { "Id", "CreationTime", "IsActive", "IsDeleted", "LastModificationTime", "TenantCode", "TenantName" },
-                values: new object[] { 1, new DateTime(2019, 3, 4, 15, 34, 52, 400, DateTimeKind.Local), true, false, null, "default", "default" });
+                columns: new[] { "Id", "Address", "CompanyProfile", "CreationTime", "EndTime", "IsActive", "IsDeleted", "LastModificationTime", "LogoPath", "PhoneNumber", "QQNumber", "StartTime", "TenantCode", "TenantName" },
+                values: new object[] { 1, null, null, new DateTime(2019, 3, 11, 15, 34, 30, 687, DateTimeKind.Local), null, true, false, null, null, null, null, null, "default", "default" });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreationTime", "EmailAddress", "IsActive", "IsDeleted", "IsEmailConfirmed", "IsLockoutEnabled", "IsPhoneNumberConfirmed", "LastModificationTime", "LockoutEndDateUtc", "NormalizedEmailAddress", "NormalizedUserName", "Password", "PhoneNumber", "SecurityStamp", "Sex", "TenantId", "UserName" },
-                values: new object[] { new Guid("5432cc63-f193-4580-aa5c-ec133a077973"), 0, null, new DateTime(2019, 3, 4, 15, 34, 52, 685, DateTimeKind.Local), null, true, false, false, false, false, null, null, null, null, "123456", null, null, 0, null, "admin" });
+                values: new object[] { 1L, 0, null, new DateTime(2019, 3, 11, 15, 34, 30, 807, DateTimeKind.Local), null, true, false, false, false, false, null, null, null, null, "123456", null, null, 0, null, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserClaim_UserId",
@@ -173,9 +182,9 @@ namespace LegoAbp.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserRole_UserId",
+                name: "IX_UserRole_UserId1",
                 table: "UserRole",
-                column: "UserId");
+                column: "UserId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -64,7 +64,7 @@ namespace LegoAbp.Migrations
                     b.ToTable("Role");
 
                     b.HasData(
-                        new { Id = new Guid("2a88fe00-b533-4eb0-8888-14419cf56b9f"), ConcurrencyStamp = "5296cb2b-3b15-4dbd-8911-b695052b4ab5", CreationTime = new DateTime(2019, 3, 4, 15, 34, 52, 691, DateTimeKind.Local), DisplayName = "超级管理员", IsDefault = false, IsDeleted = false, IsStatic = false, Name = "admin", NormalizedName = "ADMIN" }
+                        new { Id = new Guid("2a88fe00-b533-4eb0-8888-14419cf56b9f"), ConcurrencyStamp = "91400b30-7289-4312-ab6f-7c60732c2a05", CreationTime = new DateTime(2019, 3, 11, 15, 34, 30, 811, DateTimeKind.Local), DisplayName = "超级管理员", IsDefault = false, IsDeleted = false, IsStatic = false, Name = "admin", NormalizedName = "ADMIN" }
                     );
                 });
 
@@ -83,17 +83,20 @@ namespace LegoAbp.Migrations
 
                     b.Property<Guid>("UserId");
 
+                    b.Property<long?>("UserId1");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("UserRole");
                 });
 
             modelBuilder.Entity("LegoAbp.Zero.Authorization.Users.Domain.User", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AccessFailedCount");
 
@@ -101,7 +104,8 @@ namespace LegoAbp.Migrations
 
                     b.Property<DateTime>("CreationTime");
 
-                    b.Property<string>("EmailAddress");
+                    b.Property<string>("EmailAddress")
+                        .HasMaxLength(256);
 
                     b.Property<bool>("IsActive");
 
@@ -146,7 +150,7 @@ namespace LegoAbp.Migrations
                     b.ToTable("User");
 
                     b.HasData(
-                        new { Id = new Guid("5432cc63-f193-4580-aa5c-ec133a077973"), AccessFailedCount = 0, CreationTime = new DateTime(2019, 3, 4, 15, 34, 52, 685, DateTimeKind.Local), IsActive = true, IsDeleted = false, IsEmailConfirmed = false, IsLockoutEnabled = false, IsPhoneNumberConfirmed = false, Password = "123456", Sex = 0, UserName = "admin" }
+                        new { Id = 1L, AccessFailedCount = 0, CreationTime = new DateTime(2019, 3, 11, 15, 34, 30, 807, DateTimeKind.Local), IsActive = true, IsDeleted = false, IsEmailConfirmed = false, IsLockoutEnabled = false, IsPhoneNumberConfirmed = false, Password = "123456", Sex = 0, UserName = "admin" }
                     );
                 });
 
@@ -166,7 +170,7 @@ namespace LegoAbp.Migrations
 
                     b.Property<int?>("TenantId");
 
-                    b.Property<Guid>("UserId");
+                    b.Property<long>("UserId");
 
                     b.HasKey("Id");
 
@@ -190,7 +194,7 @@ namespace LegoAbp.Migrations
 
                     b.Property<int?>("TenantId");
 
-                    b.Property<Guid>("UserId");
+                    b.Property<long>("UserId");
 
                     b.HasKey("Id");
 
@@ -205,13 +209,31 @@ namespace LegoAbp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Address")
+                        .HasMaxLength(512);
+
+                    b.Property<string>("CompanyProfile");
+
                     b.Property<DateTime>("CreationTime");
+
+                    b.Property<DateTime?>("EndTime");
 
                     b.Property<bool>("IsActive");
 
                     b.Property<bool>("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<string>("LogoPath")
+                        .HasMaxLength(512);
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(16);
+
+                    b.Property<string>("QQNumber")
+                        .HasMaxLength(16);
+
+                    b.Property<DateTime?>("StartTime");
 
                     b.Property<string>("TenantCode")
                         .HasMaxLength(12);
@@ -224,7 +246,7 @@ namespace LegoAbp.Migrations
                     b.ToTable("Tenant");
 
                     b.HasData(
-                        new { Id = 1, CreationTime = new DateTime(2019, 3, 4, 15, 34, 52, 400, DateTimeKind.Local), IsActive = true, IsDeleted = false, TenantCode = "default", TenantName = "default" }
+                        new { Id = 1, CreationTime = new DateTime(2019, 3, 11, 15, 34, 30, 687, DateTimeKind.Local), IsActive = true, IsDeleted = false, TenantCode = "default", TenantName = "default" }
                     );
                 });
 
@@ -232,8 +254,7 @@ namespace LegoAbp.Migrations
                 {
                     b.HasOne("LegoAbp.Zero.Authorization.Users.Domain.User")
                         .WithMany("Roles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("LegoAbp.Zero.Authorization.Users.Domain.UserClaim", b =>

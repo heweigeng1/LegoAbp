@@ -10,5 +10,6 @@ namespace LegoAbp.Zero.Tenants
         {
             _tenantManager = tenantManager;
         }
+        
     }
 }

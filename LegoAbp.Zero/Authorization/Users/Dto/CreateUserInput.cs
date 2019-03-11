@@ -12,7 +12,7 @@ namespace LegoAbp.Zero.Authorization.Users.Dto
     public class CreateUserInput : LegoAbpEntityBase<Guid>
     {
         [Required]
-        [StringLength(User.MaxUserNameLength)]
+        [StringLength(EntityCommonConst.MaxNameLength)]
         public string UserName { get; set; }
         [StringLength(User.MaxPasswordLength, MinimumLength = User.MinPasswordLength, ErrorMessage = "密码长度不正确!")]
         public string Password { get; set; }

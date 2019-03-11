@@ -10,7 +10,7 @@ namespace LegoAbp.Zero.Tenants.Domain
     public class TenantUser : LegoAbpEntityBase<long>, IPhoneNumber
     {
         public int TenantId { get; set; }
-        public Guid UserId { get; set; }
+        public long UserId { get; set; }
         [StringLength(EntityCommonConst.MaxNameLength)]
         public string NickName { get; set; }
         [StringLength(EntityCommonConst.MaxPhoneNumberLength)]

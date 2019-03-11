@@ -13,10 +13,10 @@ namespace LegoAbp.Zero.Authorization.Accounts
 {
     public class AccountAppService : ApplicationService, IAccountAppService
     {
-        private readonly IRepository<User, Guid> _userRepository;
+        private readonly IRepository<User, long> _userRepository;
         private readonly LegoAbpUserManager _userManager;
         private readonly SignInManager<User> _signInManager;
-        public AccountAppService(IRepository<User, Guid> userRepository, LegoAbpUserManager userManager, SignInManager<User> signInManager)
+        public AccountAppService(IRepository<User, long> userRepository, LegoAbpUserManager userManager, SignInManager<User> signInManager)
         {
 
             LocalizationSourceName = LegoAbpZeroConsts.LocalizationIdentitySourceName;
@@ -29,7 +29,6 @@ namespace LegoAbp.Zero.Authorization.Accounts
         {
             var user = new User
             {
-                Id = Guid.NewGuid(),
                 UserName = input.PhoneNumber,
                 PhoneNumber = input.PhoneNumber,
             };
