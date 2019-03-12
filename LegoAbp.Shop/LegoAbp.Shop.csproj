@@ -8,4 +8,16 @@
     <PackageReference Include="Abp" Version="3.8.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Goods\" />
+    <Folder Include="Orders\" />
+    <Folder Include="Stores\Dto\" />
+    <Folder Include="Stores\ModelConfig\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LegoAbp.Zero\LegoAbp.Zero.csproj" />
+    <ProjectReference Include="..\src\LegoAbp.Core\LegoAbp.Core.csproj" />
+  </ItemGroup>
+
 </Project>

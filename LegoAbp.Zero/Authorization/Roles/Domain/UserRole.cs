@@ -11,7 +11,7 @@ namespace LegoAbp.Zero.Authorization.Roles.Domain
         /// <summary>
         /// User id.
         /// </summary>
-        public virtual Guid UserId { get; set; }
+        public virtual long UserId { get; set; }
 
         /// <summary>
         /// Role id.

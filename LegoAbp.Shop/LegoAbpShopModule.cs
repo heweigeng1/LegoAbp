@@ -1,12 +1,17 @@
-﻿using Abp.Modules;
-using System;
+﻿using Abp.AutoMapper;
+using Abp.Modules;
+using LegoAbp.Zero;
 using System.Reflection;
 
 namespace LegoAbp.Shop
 {
-    
 
-    public class LegoAbpShopModule:AbpModule
+    [DependsOn(
+        typeof(LegoAbpZeroModule),
+        typeof(LegoAbpCoreModule),
+        typeof(AbpAutoMapperModule)
+        )]
+    public class LegoAbpShopModule : AbpModule
     {
 
         public override void PreInitialize()
