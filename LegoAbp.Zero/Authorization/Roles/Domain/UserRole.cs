@@ -31,7 +31,7 @@ namespace LegoAbp.Zero.Authorization.Roles.Domain
         /// </summary>
         /// <param name="userId">User id</param>
         /// <param name="roleId">Role id</param>
-        public UserRole(int? tenantId, Guid userId, Guid roleId)
+        public UserRole(int? tenantId, long userId, Guid roleId)
         {
             TenantId = tenantId;
             UserId = userId;

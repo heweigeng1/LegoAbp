@@ -64,7 +64,7 @@ namespace LegoAbp.Migrations
                     b.ToTable("Role");
 
                     b.HasData(
-                        new { Id = new Guid("2a88fe00-b533-4eb0-8888-14419cf56b9f"), ConcurrencyStamp = "91400b30-7289-4312-ab6f-7c60732c2a05", CreationTime = new DateTime(2019, 3, 11, 15, 34, 30, 811, DateTimeKind.Local), DisplayName = "超级管理员", IsDefault = false, IsDeleted = false, IsStatic = false, Name = "admin", NormalizedName = "ADMIN" }
+                        new { Id = new Guid("2a88fe00-b533-4eb0-8888-14419cf56b9f"), ConcurrencyStamp = "c35c3420-1929-461d-8368-3552f497e5b2", CreationTime = new DateTime(2019, 3, 13, 13, 48, 25, 146, DateTimeKind.Local), DisplayName = "超级管理员", IsDefault = false, IsDeleted = false, IsStatic = false, Name = "admin", NormalizedName = "ADMIN" }
                     );
                 });
 
@@ -81,13 +81,11 @@ namespace LegoAbp.Migrations
 
                     b.Property<int?>("TenantId");
 
-                    b.Property<Guid>("UserId");
-
-                    b.Property<long?>("UserId1");
+                    b.Property<long>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserRole");
                 });
@@ -150,7 +148,7 @@ namespace LegoAbp.Migrations
                     b.ToTable("User");
 
                     b.HasData(
-                        new { Id = 1L, AccessFailedCount = 0, CreationTime = new DateTime(2019, 3, 11, 15, 34, 30, 807, DateTimeKind.Local), IsActive = true, IsDeleted = false, IsEmailConfirmed = false, IsLockoutEnabled = false, IsPhoneNumberConfirmed = false, Password = "123456", Sex = 0, UserName = "admin" }
+                        new { Id = 1L, AccessFailedCount = 0, CreationTime = new DateTime(2019, 3, 13, 13, 48, 25, 139, DateTimeKind.Local), IsActive = true, IsDeleted = false, IsEmailConfirmed = false, IsLockoutEnabled = false, IsPhoneNumberConfirmed = false, Password = "123456", Sex = 0, UserName = "admin" }
                     );
                 });
 
@@ -246,7 +244,7 @@ namespace LegoAbp.Migrations
                     b.ToTable("Tenant");
 
                     b.HasData(
-                        new { Id = 1, CreationTime = new DateTime(2019, 3, 11, 15, 34, 30, 687, DateTimeKind.Local), IsActive = true, IsDeleted = false, TenantCode = "default", TenantName = "default" }
+                        new { Id = 1, CreationTime = new DateTime(2019, 3, 13, 13, 48, 24, 819, DateTimeKind.Local), IsActive = true, IsDeleted = false, TenantCode = "default", TenantName = "default" }
                     );
                 });
 
@@ -254,7 +252,8 @@ namespace LegoAbp.Migrations
                 {
                     b.HasOne("LegoAbp.Zero.Authorization.Users.Domain.User")
                         .WithMany("Roles")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("LegoAbp.Zero.Authorization.Users.Domain.UserClaim", b =>

@@ -27,7 +27,7 @@ namespace LegoAbp.EntityFrameworkCore
         /// 将当前实体类映射对象注册到数据上下文模型构建器中
         /// </summary>
         /// <param name="modelBuilder">上下文模型构建器</param>
-        public void RegistTo(ModelBuilder modelBuilder)
+        public  void RegistTo(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(this);
         }

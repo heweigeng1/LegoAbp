@@ -141,35 +141,34 @@ namespace LegoAbp.Migrations
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     TenantId = table.Column<int>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false),
-                    RoleId = table.Column<Guid>(nullable: false),
-                    UserId1 = table.Column<long>(nullable: true)
+                    UserId = table.Column<long>(nullable: false),
+                    RoleId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserRole", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserRole_User_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_UserRole_User_UserId",
+                        column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "Role",
                 columns: new[] { "Id", "ConcurrencyStamp", "CreationTime", "CreatorUserId", "DeleterUserId", "DeletionTime", "DisplayName", "IsDefault", "IsDeleted", "IsStatic", "LastModificationTime", "LastModifierUserId", "Name", "NormalizedName", "TenantId" },
-                values: new object[] { new Guid("2a88fe00-b533-4eb0-8888-14419cf56b9f"), "91400b30-7289-4312-ab6f-7c60732c2a05", new DateTime(2019, 3, 11, 15, 34, 30, 811, DateTimeKind.Local), null, null, null, "超级管理员", false, false, false, null, null, "admin", "ADMIN", null });
+                values: new object[] { new Guid("2a88fe00-b533-4eb0-8888-14419cf56b9f"), "c35c3420-1929-461d-8368-3552f497e5b2", new DateTime(2019, 3, 13, 13, 48, 25, 146, DateTimeKind.Local), null, null, null, "超级管理员", false, false, false, null, null, "admin", "ADMIN", null });
 
             migrationBuilder.InsertData(
                 table: "Tenant",
                 columns: new[] { "Id", "Address", "CompanyProfile", "CreationTime", "EndTime", "IsActive", "IsDeleted", "LastModificationTime", "LogoPath", "PhoneNumber", "QQNumber", "StartTime", "TenantCode", "TenantName" },
-                values: new object[] { 1, null, null, new DateTime(2019, 3, 11, 15, 34, 30, 687, DateTimeKind.Local), null, true, false, null, null, null, null, null, "default", "default" });
+                values: new object[] { 1, null, null, new DateTime(2019, 3, 13, 13, 48, 24, 819, DateTimeKind.Local), null, true, false, null, null, null, null, null, "default", "default" });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreationTime", "EmailAddress", "IsActive", "IsDeleted", "IsEmailConfirmed", "IsLockoutEnabled", "IsPhoneNumberConfirmed", "LastModificationTime", "LockoutEndDateUtc", "NormalizedEmailAddress", "NormalizedUserName", "Password", "PhoneNumber", "SecurityStamp", "Sex", "TenantId", "UserName" },
-                values: new object[] { 1L, 0, null, new DateTime(2019, 3, 11, 15, 34, 30, 807, DateTimeKind.Local), null, true, false, false, false, false, null, null, null, null, "123456", null, null, 0, null, "admin" });
+                values: new object[] { 1L, 0, null, new DateTime(2019, 3, 13, 13, 48, 25, 139, DateTimeKind.Local), null, true, false, false, false, false, null, null, null, null, "123456", null, null, 0, null, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserClaim_UserId",
@@ -182,9 +181,9 @@ namespace LegoAbp.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserRole_UserId1",
+                name: "IX_UserRole_UserId",
                 table: "UserRole",
-                column: "UserId1");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
