@@ -9,7 +9,6 @@ using System.Collections.Generic;
 
 namespace LegoAbp.Zero.Authorization.Users.Domain
 {
-    //public class AbpUserManager : UserManager<User>
     public class LegoAbpUserManager : UserManager<User>, IDomainService, ITransientDependency
     {
         private readonly IRepository<User, long> _userRepository;

@@ -19,5 +19,6 @@ namespace LegoAbp.Zero.Authorization.Accounts
         /// 注销
         /// </summary>
         string Logout();
+        
     }
 }

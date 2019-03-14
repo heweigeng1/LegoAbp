@@ -41,7 +41,7 @@ namespace LegoAbp.Zero.Authorization.Accounts
             var user = _userRepository.FirstOrDefault(c => c.PhoneNumber == input.PhoneNumber);
             return await _signInManager.PasswordSignInAsync(user, input.Password, true, true);
         }
-
+       
         public string Logout()
         {
             return LocalizationManager.GetSource(LegoAbpZeroConsts.LocalizationSourceName).GetString(PermissionNames.User_Create);
