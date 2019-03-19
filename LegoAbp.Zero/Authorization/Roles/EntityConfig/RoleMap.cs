@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 
-namespace LegoAbp.Zero.Authorization.Roles.ModelConfig
+namespace LegoAbp.Zero.Authorization.Roles.EntityConfig
 {
-    public class RoleMap : EntityConfigurationBase<Role, Guid>
+    public class RoleMap : EntityConfigurationBase<Role>
     {
-        public const string defaultKey = "2a88fe00-b533-4eb0-8888-14419cf56b9f";
+        public const int adminRoleId = 1;
         public const string defaultName = "admin";
         public const string defaultDisplayName = "超级管理员";
 

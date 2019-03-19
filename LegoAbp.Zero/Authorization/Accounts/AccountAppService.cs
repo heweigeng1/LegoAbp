@@ -25,6 +25,12 @@ namespace LegoAbp.Zero.Authorization.Accounts
             _userManager = userManager;
             _signInManager = signInManager;
         }
+
+        /// <summary>
+        /// 手机号注册
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<IdentityResult> RegisterByPhone(PhoneNumberRegisterInput input)
         {
             var user = new User
@@ -35,7 +41,7 @@ namespace LegoAbp.Zero.Authorization.Accounts
             var result = await _userManager.CreateAsync(user, input.Password);
             return result;
         }
-        //[AbpAuthorize(PermissionNames.User_Create)]
+
         public async Task<SignInResult> Login(PhoneNumberLoginInput input)
         {
             var user = _userRepository.FirstOrDefault(c => c.PhoneNumber == input.PhoneNumber);

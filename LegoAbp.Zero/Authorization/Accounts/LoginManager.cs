@@ -1,22 +1,31 @@
 ﻿using Abp.Authorization;
+using Abp.Authorization.Roles;
 using Abp.Authorization.Users;
 using Abp.Configuration;
 using Abp.Configuration.Startup;
+using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
+using Abp.Extensions;
+using Abp.Runtime.Security;
 using Abp.Zero.Configuration;
 using LegoAbp.Zero.Authorization.Roles.Domain;
 using LegoAbp.Zero.Authorization.Users.Domain;
 using LegoAbp.Zero.Tenants.Domain;
+using Microsoft.AspNetCore.Identity;
+using System;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Authorization.Accounts
 {
     public class LogInManager : AbpLogInManager<Tenant, Role, User>
     {
-        private readonly UserManager _userManager;
+        private readonly LegoAbpUserManager _userManager;
         private readonly AbpUserClaimsPrincipalFactory<User, Role> _claimsPrincipalFactory;
-        public LogInManager(
-            UserManager userManager,
+
+        public LogInManager(LegoAbpUserManager userManager,
             IMultiTenancyConfig multiTenancyConfig,
             IRepository<Tenant> tenantRepository,
             IUnitOfWorkManager unitOfWorkManager,
@@ -25,32 +34,22 @@ namespace LegoAbp.Zero.Authorization.Accounts
             IUserManagementConfig userManagementConfig,
             IIocResolver iocResolver,
             IPasswordHasher<User> passwordHasher,
-            RoleManager roleManager,
-            UserClaimsPrincipalFactory claimsPrincipalFactory)
-            : base(
-                  userManager,
-                  multiTenancyConfig,
-                  tenantRepository,
-                  unitOfWorkManager,
-                  settingManager,
-                  userLoginAttemptRepository,
-                  userManagementConfig,
-                  iocResolver,
-                  passwordHasher,
-                  roleManager,
-                  claimsPrincipalFactory)
+            AbpRoleManager<Role, User> roleManager,
+            AbpUserClaimsPrincipalFactory<User, Role> claimsPrincipalFactory) : base(userManager, multiTenancyConfig, tenantRepository, unitOfWorkManager, settingManager, userLoginAttemptRepository, userManagementConfig, iocResolver, passwordHasher, roleManager, claimsPrincipalFactory)
         {
-            _userManager = userManager;
-            _claimsPrincipalFactory = claimsPrincipalFactory;
+
         }
+
         public override Task<AbpLoginResult<Tenant, User>> LoginAsync(string userNameOrEmailAddress, string plainPassword, string tenancyName = null, bool shouldLockout = true)
         {
             return base.LoginAsync(userNameOrEmailAddress, plainPassword, tenancyName, shouldLockout);
         }
+
         public Task<AbpLoginResult<Tenant, User>> CreateLoginResult(User user, Tenant tenant = null)
         {
             return CreateLoginResultAsync(user, tenant);
         }
+
         protected override async Task<AbpLoginResult<Tenant, User>> LoginAsyncInternal(string userNameOrEmailAddress, string plainPassword, string tenancyName, bool shouldLockout)
         {
             if (userNameOrEmailAddress.IsNullOrEmpty())
@@ -126,6 +125,7 @@ namespace LegoAbp.Zero.Authorization.Accounts
                 return await CreateLoginResultAsync(user, tenant);
             }
         }
+
         [UnitOfWork(IsDisabled = true)]
         protected override async Task<AbpLoginResult<Tenant, User>> CreateLoginResultAsync(User user, Tenant tenant = null)
         {

@@ -90,7 +90,6 @@ namespace Abp.Localization
         {
             if (!_configuration.IsEnabled)
             {
-                int b = 1;
                 //return new NullLocalizationSource();
             }
 

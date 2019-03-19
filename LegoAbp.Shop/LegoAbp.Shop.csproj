@@ -12,7 +12,7 @@
     <Folder Include="Goods\" />
     <Folder Include="Orders\" />
     <Folder Include="Stores\Dto\" />
-    <Folder Include="Stores\ModelConfig\" />
+    <Folder Include="Stores\EntityConfig\" />
   </ItemGroup>
 
   <ItemGroup>

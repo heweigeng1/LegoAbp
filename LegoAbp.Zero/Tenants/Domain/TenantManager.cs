@@ -31,9 +31,9 @@ namespace LegoAbp.Zero.Tenants.Domain
 
         public virtual async Task CreateAsync(Tenant tenant)
         {
-            await ValidateTenantNameAsync(tenant.TenantName);
+            await ValidateTenantNameAsync(tenant.Name);
 
-            if (_tenantRepository.FirstOrDefault(c => c.TenantName == tenant.TenantName) != null)
+            if (_tenantRepository.FirstOrDefault(c => c.Name == tenant.Name) != null)
             {
                 throw new UserFriendlyException("TenancyNameIsAlreadyTaken");
             }
@@ -63,12 +63,12 @@ namespace LegoAbp.Zero.Tenants.Domain
         public virtual async Task ChangeTenantNameAsync(string newTenantName, int Id)
         {
             await ValidateTenantNameAsync(newTenantName);
-            if (_tenantRepository.GetAll().Any(c => c.Id != Id && c.TenantName == newTenantName))
+            if (_tenantRepository.GetAll().Any(c => c.Id != Id && c.Name == newTenantName))
             {
                 throw new UserFriendlyException("店铺名称已被占用");
             }
             var entity = _tenantRepository.FirstOrDefault(c => c.Id == Id);
-            entity.TenantName = newTenantName;
+            entity.Name = newTenantName;
             await _tenantRepository.UpdateAsync(entity);
         }
 

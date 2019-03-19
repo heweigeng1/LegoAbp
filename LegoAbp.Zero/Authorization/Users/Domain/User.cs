@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Entities;
+﻿using Abp.Authorization.Users;
+using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using LegoAbp.Entites;
 using LegoAbp.Zero.Authorization.Roles.Domain;
@@ -8,13 +9,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LegoAbp.Zero.Authorization.Users.Domain
 {
-    public class User : LegoAbpEntityBase<long>, IMayHaveTenant, IPassivable, IHasCreationTime, IHasModificationTime, ISoftDelete, IPhoneNumber
+    public class User : AbpUser<User>
     {
         #region 常量
-        /// <summary>
-        /// 密码<see cref="Password"/>最大长度
-        /// </summary>
-        public const int MaxPasswordLength = 128;
         /// <summary>
         /// 密码<see cref="Password"/>最短位数
         /// </summary>
@@ -22,90 +19,26 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
         /// <summary>
         /// Maximum length of the <see cref="EmailAddress"/> property.
         /// </summary>
-        public const int MaxEmailAddressLength = 256;
-        /// <summary>
-        /// Maximum length of the <see cref="SecurityStamp"/> property.
-        /// </summary>
-        public const int MaxSecurityStampLength = 128;
         #endregion
 
         #region 属性
-        /// <summary>
-        /// 用户名
-        /// </summary>
-        [Required]
-        [StringLength(EntityCommonConst.MaxNameLength)]
-        public virtual string UserName { get; set; }
-        [StringLength(EntityCommonConst.MaxPhoneNumberLength)]
-        public string PhoneNumber { get; set; }
-        /// <summary>
-        /// 是否验证过手机
-        /// </summary>
-        public virtual bool IsPhoneNumberConfirmed { get; set; }
-        /// <summary>
-        /// 密码
-        /// </summary>
-        [Required]
-        [StringLength(MaxPasswordLength)]
-        public virtual string Password { get; set; }
-        /// <summary>
-        /// 统一规则用户名
-        /// </summary>
-        [StringLength(EntityCommonConst.MaxNameLength)]
-        public virtual string NormalizedUserName { get; set; }
-        /// <summary>
-        /// 统一规则邮箱
-        /// </summary>
-        [StringLength(MaxEmailAddressLength)]
-        public virtual string NormalizedEmailAddress { get; set; }
-        /// <summary>
-        /// 邮箱
-        /// </summary>
-        [StringLength(MaxEmailAddressLength)]
-        public virtual string EmailAddress { get; set; }
-        /// <summary>
-        ///邮箱是否验证 <see cref="EmailAddress"/> .
-        /// </summary>
-        public virtual bool IsEmailConfirmed { get; set; }
-        /// <summary>
-        /// 安全标记.
-        /// </summary>
-        [StringLength(MaxSecurityStampLength)]
-        public virtual string SecurityStamp { get; set; }
-        /// <summary>
-        /// 并发锁
-        /// </summary>
-        public virtual string ConcurrencyStamp { get; set; }
-        /// <summary>
-        /// 是否锁定
-        /// </summary>
-        public virtual bool IsLockoutEnabled { get; set; }
-        /// <summary>
-        /// 锁定结束时间
-        /// </summary>
-        public virtual DateTime? LockoutEndDateUtc { get; set; }
         /// <summary>
         /// 性别<see cref="EnumSex"/>
         /// </summary>
         public int Sex { get; set; }
         /// <summary>
-        /// 访问失败计数
+        /// 邮箱/>
         /// </summary>
-        public virtual int AccessFailedCount { get; set; }
-        public int? TenantId { get; set; }
-        public bool IsActive { get; set; }
-        public virtual ICollection<UserClaim> Claims { get; set; }
-        public virtual ICollection<UserLogin> Logins { get; set; }
-        public virtual ICollection<UserRole> Roles { get; set; }
-        #endregion
+        public new string EmailAddress { get; set; }
         /// <summary>
-        /// 统一规则
+        /// 规范化邮箱地址(大写)
         /// </summary>
-        public void SetNormalizedNames()
-        {
-            NormalizedUserName = UserName.ToUpperInvariant();
-            NormalizedEmailAddress = EmailAddress.ToUpperInvariant();
-        }
+        public new string NormalizedEmailAddress { get; set; }
+        /// <summary>
+        /// 姓
+        /// </summary>
+        public new string Surname { get; set; }
+        #endregion
         public enum EnumSex
         {
             女,

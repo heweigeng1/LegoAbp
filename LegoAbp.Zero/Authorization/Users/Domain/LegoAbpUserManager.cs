@@ -1,6 +1,14 @@
-﻿using Abp.Dependency;
+﻿using Abp.Authorization;
+using Abp.Authorization.Roles;
+using Abp.Authorization.Users;
+using Abp.Configuration;
+using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Domain.Services;
+using Abp.Domain.Uow;
+using Abp.Organizations;
+using Abp.Runtime.Caching;
+using LegoAbp.Zero.Authorization.Roles.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -9,29 +17,24 @@ using System.Collections.Generic;
 
 namespace LegoAbp.Zero.Authorization.Users.Domain
 {
-    public class LegoAbpUserManager : UserManager<User>, IDomainService, ITransientDependency
+    public class LegoAbpUserManager : AbpUserManager<Role,User>, IDomainService, ITransientDependency
     {
-        private readonly IRepository<User, long> _userRepository;
-        public LegoAbpUserManager(IRepository<User, long> userRepository, 
-            IUserStore<User> store,
+
+        public LegoAbpUserManager(AbpRoleManager<Role, User> roleManager,
+            AbpUserStore<Role, User> userStore,
             IOptions<IdentityOptions> optionsAccessor,
             IPasswordHasher<User> passwordHasher,
             IEnumerable<IUserValidator<User>> userValidators,
             IEnumerable<IPasswordValidator<User>> passwordValidators, 
-            ILookupNormalizer keyNormalizer, 
-            IdentityErrorDescriber errors, 
-            IServiceProvider services,
-            ILogger<UserManager<User>> logger) : base(store,
-                optionsAccessor,
-                passwordHasher,
-                userValidators,
-                passwordValidators,
-                keyNormalizer,
-                errors,
-                services,
-                logger)
+            ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors,
+            IServiceProvider services, ILogger<UserManager<User>> logger,
+            IPermissionManager permissionManager, IUnitOfWorkManager unitOfWorkManager, 
+            ICacheManager cacheManager, IRepository<OrganizationUnit, long> organizationUnitRepository, 
+            IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository,
+            IOrganizationUnitSettings organizationUnitSettings, 
+            ISettingManager settingManager) : base(roleManager, userStore, optionsAccessor, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger, permissionManager, unitOfWorkManager, cacheManager, organizationUnitRepository, userOrganizationUnitRepository, organizationUnitSettings, settingManager)
         {
-            _userRepository = userRepository;
+
         }
     }
 }

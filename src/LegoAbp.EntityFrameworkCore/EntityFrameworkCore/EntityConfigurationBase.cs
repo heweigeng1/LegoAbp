@@ -9,9 +9,9 @@ namespace LegoAbp.EntityFrameworkCore
     /// </summary>
     /// <typeparam name="TEntity">实体类型</typeparam>
     /// <typeparam name="TKey">主键类型</typeparam>
-    public abstract class EntityConfigurationBase<TEntity, TKey> : IEntityTypeConfiguration<TEntity>, IEntityRegister
+    public abstract class EntityConfigurationBase<TEntity> : IEntityTypeConfiguration<TEntity>, IEntityRegister
         where TEntity : class
-        where TKey : IEquatable<TKey>
+        //where TKey : IEquatable<TKey>
     {
         /// <summary>
         /// 获取 所属的上下文类型，如为null，将使用默认上下文， 否则使用指定类型的上下文类型
