@@ -9,7 +9,7 @@ namespace LegoAbp.Zero.Tenants.Domain
     /// <summary>
     /// 租户用户表
     /// </summary>
-    public class TenantUser : IHasCreationTime, IHasModificationTime, ISoftDelete, IPhoneNumber
+    public class TenantUser : LegoAbpEntityBase<long>, IPhoneNumber
     {
         public int TenantId { get; set; }
         public long UserId { get; set; }
@@ -17,8 +17,5 @@ namespace LegoAbp.Zero.Tenants.Domain
         public string NickName { get; set; }
         [StringLength(EntityCommonConst.MaxPhoneNumberLength)]
         public string PhoneNumber { get; set; }
-        public DateTime CreationTime { get; set; }
-        public DateTime? LastModificationTime { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }

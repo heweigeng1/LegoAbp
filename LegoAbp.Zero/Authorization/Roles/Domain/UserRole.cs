@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Entities;
+﻿using Abp.Authorization;
+using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using System;
 
@@ -17,7 +18,6 @@ namespace LegoAbp.Zero.Authorization.Roles.Domain
         /// Role id.
         /// </summary>
         public virtual Guid RoleId { get; set; }
-
         /// <summary>
         /// Creates a new <see cref="UserRole"/> object.
         /// </summary>

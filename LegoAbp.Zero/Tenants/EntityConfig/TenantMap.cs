@@ -6,7 +6,7 @@ using System;
 
 namespace LegoAbp.Zero.Tenants.EntityConfig
 {
-    public class TenantMap : EntityConfigurationBase<Tenant>
+    public class TenantMap : EntityConfigurationBase<Tenant,int>
     {
         public const int defaultKey = 1;
         public const string defaultCode = "default";

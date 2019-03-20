@@ -8,14 +8,14 @@ using System.Text;
 
 namespace LegoAbp.Zero.Tenants.EntityConfig
 {
-    public class TenantUserMap : EntityConfigurationBase<TenantUser>
+    public class TenantUserMap : EntityConfigurationBase<TenantUser, long>
     {
+        public const long defaultKey = 1;
         public const string tenantUserPhoneNumber = "13333333333";
         public override void Configure(EntityTypeBuilder<TenantUser> builder)
         {
-            builder.HasKey(c => new { c.TenantId, c.UserId });
             //添加租户用户
-            builder.HasData(new TenantUser { CreationTime = DateTime.Now, NickName = UserMap.defaultName, PhoneNumber = tenantUserPhoneNumber, TenantId = TenantMap.defaultKey, UserId = UserMap.defaultKey, });
+            builder.HasData(new TenantUser { Id = defaultKey, CreationTime = DateTime.Now, NickName = UserMap.defaultName, PhoneNumber = tenantUserPhoneNumber, TenantId = TenantMap.defaultKey, UserId = UserMap.defaultKey });
         }
     }
 }
