@@ -4,14 +4,16 @@ using LegoAbp.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LegoAbp.Migrations
 {
     [DbContext(typeof(LegoAbpDbContext))]
-    partial class LegoAbpDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190321020542_init2")]
+    partial class init2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -387,7 +389,7 @@ namespace LegoAbp.Migrations
                     b.ToTable("AbpRoles");
 
                     b.HasData(
-                        new { Id = 1, ConcurrencyStamp = "226a8cde-7c93-40fd-87a6-34bfe17080bd", CreationTime = new DateTime(2019, 3, 21, 12, 5, 59, 222, DateTimeKind.Local), DisplayName = "超级管理员", IsDefault = false, IsDeleted = false, IsStatic = false, Name = "admin", NormalizedName = "ADMIN" }
+                        new { Id = 1, ConcurrencyStamp = "365f598b-dfc6-4091-aaeb-2907d1719a35", CreationTime = new DateTime(2019, 3, 21, 10, 5, 41, 160, DateTimeKind.Local), DisplayName = "超级管理员", IsDefault = false, IsDeleted = false, IsStatic = false, Name = "admin", NormalizedName = "ADMIN" }
                     );
                 });
 
@@ -476,7 +478,7 @@ namespace LegoAbp.Migrations
                     b.ToTable("AbpUsers");
 
                     b.HasData(
-                        new { Id = 1L, AccessFailedCount = 0, ConcurrencyStamp = "97e5feea-2f42-4442-8a55-19d09e34c898", CreationTime = new DateTime(2019, 3, 21, 12, 5, 59, 100, DateTimeKind.Local), IsActive = true, IsDeleted = false, IsEmailConfirmed = false, IsLockoutEnabled = true, IsPhoneNumberConfirmed = false, IsTwoFactorEnabled = false, Name = "admin", NormalizedUserName = "ADMIN", Password = "AQAAAAEAACcQAAAAEGCkXUNdheKPkNgYGXtAfULw2Dlq5jpMkSw1KzMlsNr5/n07TusO+OZ+SJ1s27/bmQ==", PhoneNumber = "13333333333", SecurityStamp = "bec4f0a1-3886-a6db-a4cf-39ecb09a2cbc", Sex = 0, UserName = "admin" }
+                        new { Id = 1L, AccessFailedCount = 0, ConcurrencyStamp = "504e0359-6f45-4247-a2f8-910f3c2ddfaf", CreationTime = new DateTime(2019, 3, 21, 10, 5, 41, 9, DateTimeKind.Local), IsActive = true, IsDeleted = false, IsEmailConfirmed = false, IsLockoutEnabled = true, IsPhoneNumberConfirmed = false, IsTwoFactorEnabled = false, Name = "admin", NormalizedUserName = "ADMIN", Password = "AQAAAAEAACcQAAAAEC0nZELcchgbjAjua5ie6GGLKPrO6lGOpksJVCcCeau+Fp7aglIkI0cTN/Hx0Nd47g==", SecurityStamp = "b2284401-b1a9-83ba-578f-39ecb02c0911", Sex = 0, UserName = "admin" }
                     );
                 });
 
@@ -556,7 +558,7 @@ namespace LegoAbp.Migrations
                     b.ToTable("AbpTenants");
 
                     b.HasData(
-                        new { Id = 1, CreationTime = new DateTime(2019, 3, 21, 12, 5, 59, 53, DateTimeKind.Local), IsActive = true, IsDeleted = false, Name = "default", TenancyName = "default", TenantCode = "default" }
+                        new { Id = 1, CreationTime = new DateTime(2019, 3, 21, 10, 5, 40, 944, DateTimeKind.Local), IsActive = true, IsDeleted = false, Name = "default", TenancyName = "default", TenantCode = "default" }
                     );
                 });
 
@@ -587,7 +589,7 @@ namespace LegoAbp.Migrations
                     b.ToTable("TenantUser");
 
                     b.HasData(
-                        new { Id = 1L, CreationTime = new DateTime(2019, 3, 21, 12, 5, 59, 57, DateTimeKind.Local), IsDeleted = false, NickName = "admin", PhoneNumber = "13333333333", TenantId = 1, UserId = 1L }
+                        new { Id = 1L, CreationTime = new DateTime(2019, 3, 21, 10, 5, 40, 952, DateTimeKind.Local), IsDeleted = false, NickName = "admin", PhoneNumber = "13333333333", TenantId = 1, UserId = 1L }
                     );
                 });
 

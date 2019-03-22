@@ -20,6 +20,7 @@ namespace LegoAbp
         public override void PreInitialize()
         {
             Configuration.Auditing.IsEnabledForAnonymousUsers = true;
+
             LegoAbpLocalizationConfigurer.Configure(Configuration.Localization);
         }
 

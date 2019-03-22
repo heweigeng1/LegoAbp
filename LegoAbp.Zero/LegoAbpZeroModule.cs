@@ -1,6 +1,7 @@
 ﻿using Abp.AspNetCore.Configuration;
 using Abp.AutoMapper;
 using Abp.Modules;
+using Abp.Zero;
 using AbpTree;
 using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Repository;
@@ -15,6 +16,7 @@ namespace LegoAbp.Zero
         typeof(LegoAbpEntityFrameworkCoreModule),
         typeof(LegoAbpCoreModule),
         typeof(AbpTreeModule),
+        typeof(AbpZeroCoreModule),
         typeof(AbpAutoMapperModule)
         )]
     public class LegoAbpZeroModule : AbpModule
@@ -23,6 +25,8 @@ namespace LegoAbp.Zero
         {
             //开启多租户
             Configuration.MultiTenancy.IsEnabled = true;
+            Configuration.Auditing.IsEnabled = true;
+            Configuration.Auditing.IsEnabledForAnonymousUsers = true;
             //配置Identity本地化文件
             LegoAbpZeroIdentityLocalization.Configure(Configuration.Localization);
             //添加租户的本地化文本

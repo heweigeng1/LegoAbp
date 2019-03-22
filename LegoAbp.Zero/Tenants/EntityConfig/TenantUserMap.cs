@@ -1,4 +1,5 @@
-﻿using LegoAbp.EntityFrameworkCore;
+﻿using LegoAbp.Entites;
+using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Zero.Authorization.Users.EntityConfig;
 using LegoAbp.Zero.Tenants.Domain;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -15,7 +16,7 @@ namespace LegoAbp.Zero.Tenants.EntityConfig
         public override void Configure(EntityTypeBuilder<TenantUser> builder)
         {
             //添加租户用户
-            builder.HasData(new TenantUser { Id = defaultKey, CreationTime = DateTime.Now, NickName = UserMap.defaultName, PhoneNumber = tenantUserPhoneNumber, TenantId = TenantMap.defaultKey, UserId = UserMap.defaultKey });
+            builder.HasData(new TenantUser { Id = defaultKey, CreationTime = MapStaticValue.DefaultTime, NickName = UserMap.defaultName, PhoneNumber = tenantUserPhoneNumber, TenantId = TenantMap.defaultKey, UserId = UserMap.defaultKey });
         }
     }
 }

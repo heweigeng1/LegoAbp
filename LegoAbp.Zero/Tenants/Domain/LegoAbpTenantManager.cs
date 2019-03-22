@@ -1,10 +1,15 @@
 ﻿
+using Abp.Application.Editions;
+using Abp.Application.Features;
+using Abp.Authorization.Users;
 using Abp.Domain.Repositories;
 using Abp.Domain.Services;
 using Abp.Localization;
+using Abp.MultiTenancy;
 using Abp.UI;
 using LegoAbp.Zero.Authorization.Roles.Domain;
 using LegoAbp.Zero.Authorization.Users.Domain;
+using LegoAbp.Zero.Editions.Domain;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -12,32 +17,19 @@ using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Tenants.Domain
 {
-    public class TenantManager : IDomainService
+    public class LegoAbpTenantManager : AbpTenantManager<Tenant, User>, IDomainService
     {
         public ILocalizationManager _localizationManager;
-        protected string LocalizationSourceName { get; set; }
 
-        protected IRepository<Tenant, int> _tenantRepository;
-        protected IRepository<UserRole, Guid> _userRoleRepository;
-        protected IRepository<User, long> _userRepository;
-        public TenantManager(IRepository<Tenant, int> tenantRepository, IRepository<User, long> userRepository, ILocalizationManager localizationManager, IRepository<UserRole, Guid> userRoleRepository)
+        protected readonly IRepository<Tenant> _tenantRepository;
+        protected readonly IRepository<UserRole, long> _userRoleRepository;
+        protected readonly IRepository<User, long> _userRepository;
+
+        public LegoAbpTenantManager(IRepository<Tenant> tenantRepository, IRepository<UserRole, long> userRoleRepository, IRepository<User, long> userRepository, IRepository<TenantFeatureSetting, long> tenantFeatureRepository, LegoAbpEditionManager editionManager, IAbpZeroFeatureValueStore featureValueStore) : base(tenantRepository, tenantFeatureRepository, editionManager, featureValueStore)
         {
             _tenantRepository = tenantRepository;
-            _userRepository = userRepository;
-            _localizationManager = localizationManager;
             _userRoleRepository = userRoleRepository;
-            LocalizationSourceName = LegoAbpZeroConsts.LocalizationSourceName;
-        }
-
-        public virtual async Task CreateAsync(Tenant tenant)
-        {
-            await ValidateTenantNameAsync(tenant.Name);
-
-            if (_tenantRepository.FirstOrDefault(c => c.Name == tenant.Name) != null)
-            {
-                throw new UserFriendlyException("TenancyNameIsAlreadyTaken");
-            }
-            await _tenantRepository.InsertAsync(tenant);
+            _userRepository = userRepository;
         }
 
         /// <summary>
@@ -50,7 +42,7 @@ namespace LegoAbp.Zero.Tenants.Domain
             var data = _userRoleRepository.GetAll().Where(c => c.UserId == tenantUser.UserId && c.TenantId == tenantUser.TenantId).ToList();
             foreach (var item in data)
             {
-               await _userRoleRepository.DeleteAsync(item);
+                await _userRoleRepository.DeleteAsync(item);
             }
         }
 
@@ -81,9 +73,5 @@ namespace LegoAbp.Zero.Tenants.Domain
             return Task.CompletedTask;
         }
 
-        protected virtual string L(string name)
-        {
-            return _localizationManager.GetString(LocalizationSourceName, name);
-        }
     }
 }

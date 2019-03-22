@@ -1,4 +1,5 @@
-﻿using LegoAbp.EntityFrameworkCore;
+﻿using LegoAbp.Entites;
+using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Zero.Authorization.Users.EntityConfig;
 using LegoAbp.Zero.Tenants.Domain;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -13,7 +14,7 @@ namespace LegoAbp.Zero.Tenants.EntityConfig
         public const string defaultName = "default";
         public override void Configure(EntityTypeBuilder<Tenant> builder)
         {
-            builder.HasData(new Tenant { Id = defaultKey, Name = defaultName, TenancyName = defaultName, IsDeleted = false, IsActive = true, CreationTime = DateTime.Now, TenantCode = defaultCode });
+            builder.HasData(new Tenant { Id = defaultKey, Name = defaultName, TenancyName = defaultName, IsDeleted = false, IsActive = true, CreationTime = MapStaticValue.DefaultTime, TenantCode = defaultCode });
         }
     }
 }

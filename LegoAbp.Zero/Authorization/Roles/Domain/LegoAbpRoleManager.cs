@@ -14,7 +14,7 @@ namespace LegoAbp.Zero.Authorization.Roles.Domain
 {
     public class LegoAbpRoleManager : AbpRoleManager<Role, User>, IDomainService, ITransientDependency
     {
-        public LegoAbpRoleManager(AbpRoleStore<Role, User> store, IEnumerable<IRoleValidator<Role>> roleValidators, ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors, ILogger<AbpRoleManager<Role, User>> logger, IPermissionManager permissionManager, ICacheManager cacheManager, IUnitOfWorkManager unitOfWorkManager, IRoleManagementConfig roleManagementConfig) : base(store, roleValidators, keyNormalizer, errors, logger, permissionManager, cacheManager, unitOfWorkManager, roleManagementConfig)
+        public LegoAbpRoleManager(RoleStore store, IEnumerable<IRoleValidator<Role>> roleValidators, ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors, ILogger<AbpRoleManager<Role, User>> logger, IPermissionManager permissionManager, ICacheManager cacheManager, IUnitOfWorkManager unitOfWorkManager, IRoleManagementConfig roleManagementConfig) : base(store, roleValidators, keyNormalizer, errors, logger, permissionManager, cacheManager, unitOfWorkManager, roleManagementConfig)
         {
         }
     }

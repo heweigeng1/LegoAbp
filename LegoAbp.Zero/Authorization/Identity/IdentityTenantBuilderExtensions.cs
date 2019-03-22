@@ -9,7 +9,7 @@ namespace LegoAbp.Zero.Authorization.Identity
             where TTenantManager : class
         {
             var type = typeof(TTenantManager);
-            var abpManagerType = typeof(TenantManager).MakeGenericType(builder.TenantType, builder.UserType);
+            var abpManagerType = typeof(LegoAbpTenantManager).MakeGenericType(builder.TenantType, builder.UserType);
             builder.Services.AddScoped(type, provider => provider.GetRequiredService(abpManagerType));
             builder.Services.AddScoped(abpManagerType, type);
             return builder;

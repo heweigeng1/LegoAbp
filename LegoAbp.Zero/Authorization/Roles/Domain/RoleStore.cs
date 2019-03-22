@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace LegoAbp.Zero.Authorization.Roles.Domain
 {
-    public class RoleStore : AbpRoleStore<Role, User>
+    public class RoleStore : AbpRoleStore<Role, User>, ITransientDependency
     {
         public RoleStore(IUnitOfWorkManager unitOfWorkManager, IRepository<Role> roleRepository, IRepository<RolePermissionSetting, long> rolePermissionSettingRepository) : base(unitOfWorkManager, roleRepository, rolePermissionSettingRepository)
         {

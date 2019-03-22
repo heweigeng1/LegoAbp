@@ -9,6 +9,7 @@ using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.Runtime.Security;
 using Abp.Zero.Configuration;
+using LegoAbp.Zero.Authorization.Identity;
 using LegoAbp.Zero.Authorization.Roles.Domain;
 using LegoAbp.Zero.Authorization.Users.Domain;
 using LegoAbp.Zero.Tenants.Domain;
@@ -23,7 +24,7 @@ namespace LegoAbp.Zero.Authorization.Accounts
     public class LogInManager : AbpLogInManager<Tenant, Role, User>
     {
         private readonly LegoAbpUserManager _userManager;
-        private readonly AbpUserClaimsPrincipalFactory<User, Role> _claimsPrincipalFactory;
+        private readonly LegoAbpUserClaimsPrincipalFactory _claimsPrincipalFactory;
 
         public LogInManager(LegoAbpUserManager userManager,
             IMultiTenancyConfig multiTenancyConfig,
@@ -34,8 +35,8 @@ namespace LegoAbp.Zero.Authorization.Accounts
             IUserManagementConfig userManagementConfig,
             IIocResolver iocResolver,
             IPasswordHasher<User> passwordHasher,
-            AbpRoleManager<Role, User> roleManager,
-            AbpUserClaimsPrincipalFactory<User, Role> claimsPrincipalFactory) : base(userManager, multiTenancyConfig, tenantRepository, unitOfWorkManager, settingManager, userLoginAttemptRepository, userManagementConfig, iocResolver, passwordHasher, roleManager, claimsPrincipalFactory)
+            LegoAbpRoleManager roleManager,
+            LegoAbpUserClaimsPrincipalFactory claimsPrincipalFactory) : base(userManager, multiTenancyConfig, tenantRepository, unitOfWorkManager, settingManager, userLoginAttemptRepository, userManagementConfig, iocResolver, passwordHasher, roleManager, claimsPrincipalFactory)
         {
 
         }

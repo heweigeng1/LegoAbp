@@ -20,14 +20,14 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
     public class LegoAbpUserManager : AbpUserManager<Role,User>, IDomainService, ITransientDependency
     {
 
-        public LegoAbpUserManager(AbpRoleManager<Role, User> roleManager,
-            AbpUserStore<Role, User> userStore,
+        public LegoAbpUserManager(LegoAbpRoleManager roleManager,
+            UserStore userStore,
             IOptions<IdentityOptions> optionsAccessor,
             IPasswordHasher<User> passwordHasher,
             IEnumerable<IUserValidator<User>> userValidators,
             IEnumerable<IPasswordValidator<User>> passwordValidators, 
             ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors,
-            IServiceProvider services, ILogger<UserManager<User>> logger,
+            IServiceProvider services, ILogger<LegoAbpUserManager> logger,
             IPermissionManager permissionManager, IUnitOfWorkManager unitOfWorkManager, 
             ICacheManager cacheManager, IRepository<OrganizationUnit, long> organizationUnitRepository, 
             IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository,

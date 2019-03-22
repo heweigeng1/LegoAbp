@@ -1,4 +1,5 @@
-﻿using LegoAbp.EntityFrameworkCore;
+﻿using LegoAbp.Entites;
+using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Zero.Authorization.Roles.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -14,13 +15,9 @@ namespace LegoAbp.Zero.Authorization.Roles.EntityConfig
 
         public override void Configure(EntityTypeBuilder<Role> builder)
         {
-            builder.HasData(new Role { Id = adminRoleId, Name = defaultName, NormalizedName = defaultName.ToUpperInvariant(), DisplayName = defaultDisplayName, IsDeleted = false, CreationTime = DateTime.Now });
+            builder.HasData(new Role { Id = adminRoleId, Name = defaultName, NormalizedName = defaultName.ToUpperInvariant(), DisplayName = defaultDisplayName, IsDeleted = false, CreationTime = MapStaticValue.DefaultTime });
            
         }
 
-        public override void RegistTo(ModelBuilder modelBuilder)
-        {
-            base.RegistTo(modelBuilder);
-        }
     }
 }
