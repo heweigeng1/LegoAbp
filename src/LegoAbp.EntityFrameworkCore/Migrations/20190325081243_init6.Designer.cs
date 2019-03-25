@@ -4,14 +4,16 @@ using LegoAbp.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LegoAbp.Migrations
 {
     [DbContext(typeof(LegoAbpDbContext))]
-    partial class LegoAbpDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190325081243_init6")]
+    partial class init6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -401,29 +403,6 @@ namespace LegoAbp.Migrations
                     b.ToTable("AbpOrganizationUnits");
                 });
 
-            modelBuilder.Entity("Abp.Organizations.OrganizationUnitRole", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreationTime");
-
-                    b.Property<long?>("CreatorUserId");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<long>("OrganizationUnitId");
-
-                    b.Property<int>("RoleId");
-
-                    b.Property<int?>("TenantId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AbpOrganizationUnitRoles");
-                });
-
             modelBuilder.Entity("LegoAbp.Zero.Authorization.Roles.Domain.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -479,7 +458,7 @@ namespace LegoAbp.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "7c815c55-dd60-455e-a1b5-1cdc5b4d0dc0",
+                            ConcurrencyStamp = "d1b0dc2c-2ea5-4c85-b552-f3d74a14656c",
                             CreationTime = new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "超级管理员",
                             IsDefault = false,
@@ -583,7 +562,7 @@ namespace LegoAbp.Migrations
                         {
                             Id = 1L,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "155742e4-8e2a-4689-ab02-34abe8ae3a15",
+                            ConcurrencyStamp = "c9fcff75-7010-4a86-a11a-9cdb26d16c5e",
                             CreationTime = new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             IsDeleted = false,
@@ -593,9 +572,9 @@ namespace LegoAbp.Migrations
                             IsTwoFactorEnabled = false,
                             Name = "admin",
                             NormalizedUserName = "ADMIN",
-                            Password = "AQAAAAEAACcQAAAAEEku2vf/O+Kb2DfpxD2b1GIvNDisgheFYVPBxJA9nx+cF4SnWu5W7+cFsDzzsJC4aA==",
+                            Password = "AQAAAAEAACcQAAAAEI8txvZu32yDKJ40SCPqevQeHxNHg0F+0r1f2a7tUoParDCLi4rM5RqIow+OoMKJKw==",
                             PhoneNumber = "13333333333",
-                            SecurityStamp = "ed784ee0-e567-c38c-0bd5-39ecc61ff9e2",
+                            SecurityStamp = "961b9427-b630-330d-7856-39ecc6157a64",
                             Sex = 0,
                             UserName = "admin"
                         });

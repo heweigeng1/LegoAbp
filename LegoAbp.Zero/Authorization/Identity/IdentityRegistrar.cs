@@ -14,7 +14,6 @@ namespace LegoAbp.Zero.Authorization.Identity
     {
         public static IdentityBuilder Register(IServiceCollection services)
         {
-
             services.AddLogging();
             return services.AddAbpIdentity<Tenant, User, Role>()
                 .AddAbpTenantManager<LegoAbpTenantManager>()

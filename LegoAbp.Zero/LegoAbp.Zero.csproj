@@ -52,10 +52,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Abp" Version="3.8.2" />
-    <PackageReference Include="Abp.AutoMapper" Version="3.8.2" />
-    <PackageReference Include="Abp.ZeroCore" Version="3.8.2" />
-    <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="3.8.2" />
+    <PackageReference Include="Abp" Version="4.4.0" />
+    <PackageReference Include="Abp.AutoMapper" Version="4.4.0" />
+    <PackageReference Include="Abp.ZeroCore" Version="4.4.0" />
+    <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup>

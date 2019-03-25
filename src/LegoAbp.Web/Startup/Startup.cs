@@ -17,6 +17,7 @@ using System.Linq;
 using Abp.Extensions;
 using LegoAbp.Core.Web.Configuration;
 using LegoAbp.Zero.Authorization.Identity;
+using System.Reflection;
 
 namespace LegoAbp.Web.Startup
 {
@@ -62,7 +63,7 @@ namespace LegoAbp.Web.Startup
                 c.SwaggerDoc("v1", new Info { Title = "Lego API", Version = "v1" });
                 c.DocInclusionPredicate((docName, description) => true);
 
-                //// Define the BearerAuth scheme that's in use
+                // Define the BearerAuth scheme that's in use
                 //c.AddSecurityDefinition("bearerAuth", new ApiKeyScheme()
                 //{
                 //    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
@@ -97,13 +98,7 @@ namespace LegoAbp.Web.Startup
             {
                 app.UseExceptionHandler("/Error");
             }
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.InjectOnCompleteJavaScript("/swagger/ui/abp.js");
-                c.InjectOnCompleteJavaScript("/swagger/ui/on-complete.js");
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Lego API V1");
-            });
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
@@ -115,6 +110,16 @@ namespace LegoAbp.Web.Startup
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                //c.InjectOnCompleteJavaScript("/swagger/ui/abp.js");
+                //c.InjectOnCompleteJavaScript("/swagger/ui/on-complete.js");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Lego API V1");
+                //c.SwaggerEndpoint(_appConfiguration["App:ServerRootAddress"] + "/swagger/v1/swagger.json", "Lego API V1");
+                c.IndexStream = () => Assembly.GetExecutingAssembly()
+                    .GetManifestResourceStream("LegoAbp.Web.wwwroot.swagger.ui.index.html");
             });
         }
     }
