@@ -1,12 +1,7 @@
 ﻿using Abp.Dependency;
 using Abp.Modules;
-using Abp.Reflection;
 using Abp.Reflection.Extensions;
-using Castle.MicroKernel.Registration;
 using LegoAbp.Localization;
-using LegoAbp.Reflection;
-using System;
-using System.Reflection;
 
 namespace LegoAbp
 {

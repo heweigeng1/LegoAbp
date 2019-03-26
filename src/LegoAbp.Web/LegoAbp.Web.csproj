@@ -27,9 +27,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\swagger\ui\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\swagger\ui\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="app.config" />
     <None Include="wwwroot\swagger\ui\abp.js" />
-    <None Include="wwwroot\swagger\ui\on-complete.js" />
+    <None Include="wwwroot\swagger\ui\index.html" />
     <None Update="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -74,6 +84,13 @@
 
   <ItemGroup>
     <Folder Include="App_Data\Logs\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="wwwroot\swagger\ui\abp.js">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

@@ -1,8 +1,5 @@
-﻿
-using Abp.Application.Services;
-using Abp.Domain.Repositories;
+﻿using Abp.Domain.Repositories;
 using Abp.Localization;
-using Abp.UI;
 using LegoAbp.Zero.Authorization.Accounts.Dto;
 using LegoAbp.Zero.Authorization.Users.Domain;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Authorization.Accounts
 {
-    public class AccountAppService : ApplicationService, IAccountAppService
+    public class AccountAppService : LegoAbpAppServiceBase, IAccountAppService
     {
         private readonly IRepository<User, long> _userRepository;
         private readonly LegoAbpUserManager _userManager;
@@ -47,7 +44,21 @@ namespace LegoAbp.Zero.Authorization.Accounts
             var user = _userRepository.FirstOrDefault(c => c.PhoneNumber == input.PhoneNumber);
             return await _signInManager.PasswordSignInAsync(user, input.Password, true, true);
         }
-       
+        public async Task<IsTenantAvailableOutput> IsTenantAvailable(IsTenantAvailableInput input)
+        {
+            var tenant = await TenantManager.FindByTenancyNameAsync(input.TenancyName);
+            if (tenant == null)
+            {
+                return new IsTenantAvailableOutput(TenantAvailabilityState.NotFound);
+            }
+
+            if (!tenant.IsActive)
+            {
+                return new IsTenantAvailableOutput(TenantAvailabilityState.InActive);
+            }
+
+            return new IsTenantAvailableOutput(TenantAvailabilityState.Available, tenant.Id);
+        }
         public string Logout()
         {
             return LocalizationManager.GetSource(LegoAbpZeroConsts.LocalizationSourceName).GetString(PermissionNames.User_Create);

@@ -1,4 +1,6 @@
-﻿using Abp.Modules;
+﻿using Abp.AspNetCore.Configuration;
+using Abp.Modules;
+using Abp.Reflection.Extensions;
 using LegoAbp.Zero;
 using System.Reflection;
 
@@ -11,7 +13,10 @@ namespace LegoAbp.Core.Web
 
         public override void PreInitialize()
         {
-
+            Configuration.Modules.AbpAspNetCore()
+                 .CreateControllersForAppServices(
+                     typeof(LegoAbpCoreWebModule).GetAssembly()
+                 );
         }
 
         /// <summary>
@@ -19,7 +24,7 @@ namespace LegoAbp.Core.Web
         /// </summary>
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
+            IocManager.RegisterAssemblyByConvention(typeof(LegoAbpCoreWebModule).GetAssembly());
         }
 
         /// <summary>
