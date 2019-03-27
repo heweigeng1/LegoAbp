@@ -28,8 +28,6 @@ namespace LegoAbp.Core.Web.Controllers
         private readonly AbpLoginResultTypeHelper _abpLoginResultTypeHelper;
         private readonly LegoAbpUserManager _userManager;
 
-
-
         public TokenAuthController()
         {
 

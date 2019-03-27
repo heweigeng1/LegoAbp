@@ -1,4 +1,5 @@
-﻿using Abp.AspNetCore.Configuration;
+﻿using Abp.AspNetCore;
+using Abp.AspNetCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using LegoAbp.Zero;
@@ -7,6 +8,7 @@ using System.Reflection;
 namespace LegoAbp.Core.Web
 {
     [DependsOn(typeof(LegoAbpCoreModule),
+        typeof(AbpAspNetCoreModule),
         typeof(LegoAbpZeroModule))]
     public class LegoAbpCoreWebModule : AbpModule
     {
