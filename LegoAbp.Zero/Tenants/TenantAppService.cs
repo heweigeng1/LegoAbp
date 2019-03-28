@@ -13,7 +13,7 @@ namespace LegoAbp.Zero.Tenants
         }
         public async Task Test()
         {
-            return await _tenantManager.FindByTenancyNameAsync("default");
+             await _tenantManager.FindByTenancyNameAsync("default");
         }
     }
 }
