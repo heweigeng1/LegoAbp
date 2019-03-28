@@ -9,6 +9,54 @@ namespace LegoAbp.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "AbpAuditLogs",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    TenantId = table.Column<int>(nullable: true),
+                    UserId = table.Column<long>(nullable: true),
+                    ServiceName = table.Column<string>(nullable: true),
+                    MethodName = table.Column<string>(nullable: true),
+                    Parameters = table.Column<string>(nullable: true),
+                    ReturnValue = table.Column<string>(nullable: true),
+                    ExecutionTime = table.Column<DateTime>(nullable: false),
+                    ExecutionDuration = table.Column<int>(nullable: false),
+                    ClientIpAddress = table.Column<string>(nullable: true),
+                    ClientName = table.Column<string>(nullable: true),
+                    BrowserInfo = table.Column<string>(nullable: true),
+                    Exception = table.Column<string>(nullable: true),
+                    ImpersonatorUserId = table.Column<long>(nullable: true),
+                    ImpersonatorTenantId = table.Column<int>(nullable: true),
+                    CustomData = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpAuditLogs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AbpBackgroundJobs",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    CreatorUserId = table.Column<long>(nullable: true),
+                    JobType = table.Column<string>(maxLength: 512, nullable: false),
+                    JobArgs = table.Column<string>(maxLength: 1048576, nullable: false),
+                    TryCount = table.Column<short>(nullable: false),
+                    NextTryTime = table.Column<DateTime>(nullable: false),
+                    LastTryTime = table.Column<DateTime>(nullable: true),
+                    IsAbandoned = table.Column<bool>(nullable: false),
+                    Priority = table.Column<byte>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpBackgroundJobs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AbpEditions",
                 columns: table => new
                 {
@@ -30,6 +78,109 @@ namespace LegoAbp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AbpFeatures",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    CreatorUserId = table.Column<long>(nullable: true),
+                    TenantId = table.Column<int>(nullable: true),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    Value = table.Column<string>(maxLength: 2000, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpFeatures", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AbpOrganizationUnitRoles",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    CreatorUserId = table.Column<long>(nullable: true),
+                    TenantId = table.Column<int>(nullable: true),
+                    RoleId = table.Column<int>(nullable: false),
+                    OrganizationUnitId = table.Column<long>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpOrganizationUnitRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AbpOrganizationUnits",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    CreatorUserId = table.Column<long>(nullable: true),
+                    LastModificationTime = table.Column<DateTime>(nullable: true),
+                    LastModifierUserId = table.Column<long>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeleterUserId = table.Column<long>(nullable: true),
+                    DeletionTime = table.Column<DateTime>(nullable: true),
+                    TenantId = table.Column<int>(nullable: true),
+                    ParentId = table.Column<long>(nullable: true),
+                    Code = table.Column<string>(maxLength: 95, nullable: false),
+                    DisplayName = table.Column<string>(maxLength: 128, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpOrganizationUnits", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AbpOrganizationUnits_AbpOrganizationUnits_ParentId",
+                        column: x => x.ParentId,
+                        principalTable: "AbpOrganizationUnits",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AbpUserLoginAttempts",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    TenantId = table.Column<int>(nullable: true),
+                    TenancyName = table.Column<string>(maxLength: 64, nullable: true),
+                    UserId = table.Column<long>(nullable: true),
+                    UserNameOrEmailAddress = table.Column<string>(maxLength: 255, nullable: true),
+                    ClientIpAddress = table.Column<string>(maxLength: 64, nullable: true),
+                    ClientName = table.Column<string>(maxLength: 128, nullable: true),
+                    BrowserInfo = table.Column<string>(maxLength: 512, nullable: true),
+                    Result = table.Column<byte>(nullable: false),
+                    CreationTime = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpUserLoginAttempts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AbpUserOrganizationUnits",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    CreatorUserId = table.Column<long>(nullable: true),
+                    TenantId = table.Column<int>(nullable: true),
+                    UserId = table.Column<long>(nullable: false),
+                    OrganizationUnitId = table.Column<long>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpUserOrganizationUnits", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AbpUsers",
                 columns: table => new
                 {
@@ -39,26 +190,25 @@ namespace LegoAbp.Migrations
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
                     LastModifierUserId = table.Column<long>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
                     DeleterUserId = table.Column<long>(nullable: true),
                     DeletionTime = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    IsActive = table.Column<bool>(nullable: false),
-                    IsEmailConfirmed = table.Column<bool>(nullable: false),
-                    IsLockoutEnabled = table.Column<bool>(nullable: false),
-                    IsPhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    IsTwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LastLoginTime = table.Column<DateTime>(nullable: true),
-                    LockoutEndDateUtc = table.Column<DateTime>(nullable: true),
-                    TenantId = table.Column<int>(nullable: true),
                     AuthenticationSource = table.Column<string>(maxLength: 64, nullable: true),
                     UserName = table.Column<string>(maxLength: 256, nullable: false),
-                    Name = table.Column<string>(maxLength: 32, nullable: false),
+                    TenantId = table.Column<int>(nullable: true),
+                    Name = table.Column<string>(maxLength: 64, nullable: false),
                     Password = table.Column<string>(maxLength: 128, nullable: false),
                     EmailConfirmationCode = table.Column<string>(maxLength: 328, nullable: true),
                     PasswordResetCode = table.Column<string>(maxLength: 328, nullable: true),
+                    LockoutEndDateUtc = table.Column<DateTime>(nullable: true),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    IsLockoutEnabled = table.Column<bool>(nullable: false),
                     PhoneNumber = table.Column<string>(maxLength: 32, nullable: true),
+                    IsPhoneNumberConfirmed = table.Column<bool>(nullable: false),
                     SecurityStamp = table.Column<string>(maxLength: 128, nullable: true),
+                    IsTwoFactorEnabled = table.Column<bool>(nullable: false),
+                    IsEmailConfirmed = table.Column<bool>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: false),
                     ConcurrencyStamp = table.Column<string>(maxLength: 128, nullable: true),
                     Sex = table.Column<int>(nullable: false),
@@ -69,6 +219,24 @@ namespace LegoAbp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AbpUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AbpUsers_AbpUsers_CreatorUserId",
+                        column: x => x.CreatorUserId,
+                        principalTable: "AbpUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AbpUsers_AbpUsers_DeleterUserId",
+                        column: x => x.DeleterUserId,
+                        principalTable: "AbpUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AbpUsers_AbpUsers_LastModifierUserId",
+                        column: x => x.LastModifierUserId,
+                        principalTable: "AbpUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -320,9 +488,9 @@ namespace LegoAbp.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
-                    IsGranted = table.Column<bool>(nullable: false),
                     TenantId = table.Column<int>(nullable: true),
                     Name = table.Column<string>(maxLength: 128, nullable: false),
+                    IsGranted = table.Column<bool>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
                     RoleId = table.Column<int>(nullable: true),
                     UserId = table.Column<long>(nullable: true)
@@ -371,22 +539,27 @@ namespace LegoAbp.Migrations
             migrationBuilder.InsertData(
                 table: "AbpRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "CreationTime", "CreatorUserId", "DeleterUserId", "DeletionTime", "DisplayName", "IsDefault", "IsDeleted", "IsStatic", "LastModificationTime", "LastModifierUserId", "Name", "NormalizedName", "TenantId" },
-                values: new object[] { 1, "2c907296-b4c0-4d1b-85b6-d4311def205a", new DateTime(2019, 3, 20, 14, 25, 34, 327, DateTimeKind.Local), null, null, null, "超级管理员", false, false, false, null, null, "admin", "ADMIN", null });
+                values: new object[] { 1, "b5c1de50-2917-408b-bac0-cd7933acb094", new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, null, "超级管理员", false, false, false, null, null, "admin", "ADMIN", null });
 
             migrationBuilder.InsertData(
                 table: "AbpTenants",
                 columns: new[] { "Id", "Address", "CompanyProfile", "ConnectionString", "CreationTime", "CreatorUserId", "CreatorUserId1", "DeleterUserId", "DeleterUserId1", "DeletionTime", "EditionId", "EndTime", "IsActive", "IsDeleted", "LastModificationTime", "LastModifierUserId", "LastModifierUserId1", "LogoPath", "Name", "PhoneNumber", "QQNumber", "StartTime", "TenancyName", "TenantCode" },
-                values: new object[] { 1, null, null, null, new DateTime(2019, 3, 20, 14, 25, 34, 114, DateTimeKind.Local), null, null, null, null, null, null, null, true, false, null, null, null, null, "default", null, null, null, "default", "default" });
+                values: new object[] { 1, null, null, null, new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, null, null, null, null, null, true, false, null, null, null, null, "default", null, null, null, "default", "default" });
 
             migrationBuilder.InsertData(
                 table: "AbpUsers",
-                columns: new[] { "Id", "AccessFailedCount", "AuthenticationSource", "ConcurrencyStamp", "CreationTime", "CreatorUserId", "DeleterUserId", "DeletionTime", "EmailAddress", "EmailConfirmationCode", "IsActive", "IsDeleted", "IsEmailConfirmed", "IsLockoutEnabled", "IsPhoneNumberConfirmed", "IsTwoFactorEnabled", "LastLoginTime", "LastModificationTime", "LastModifierUserId", "LockoutEndDateUtc", "Name", "NormalizedEmailAddress", "NormalizedUserName", "Password", "PasswordResetCode", "PhoneNumber", "SecurityStamp", "Sex", "Surname", "TenantId", "UserName" },
-                values: new object[] { 1L, 0, null, "236fe31e-5295-42f4-88d0-4ea7305cce5b", new DateTime(2019, 3, 20, 14, 25, 34, 127, DateTimeKind.Local), null, null, null, null, null, true, false, false, true, false, false, null, null, null, null, "admin", null, "ADMIN", "AQAAAAEAACcQAAAAECoy2paeqzGYhjiamj229GCxo83A4ZRYk4i6HNRw/uNPamRDmxfnXkLNVnQcPSCCmw==", null, null, "ce8f76c4-bf38-f532-fbcf-39ecabf39baf", 0, null, null, "admin" });
+                columns: new[] { "Id", "AccessFailedCount", "AuthenticationSource", "ConcurrencyStamp", "CreationTime", "CreatorUserId", "DeleterUserId", "DeletionTime", "EmailAddress", "EmailConfirmationCode", "IsActive", "IsDeleted", "IsEmailConfirmed", "IsLockoutEnabled", "IsPhoneNumberConfirmed", "IsTwoFactorEnabled", "LastModificationTime", "LastModifierUserId", "LockoutEndDateUtc", "Name", "NormalizedEmailAddress", "NormalizedUserName", "Password", "PasswordResetCode", "PhoneNumber", "SecurityStamp", "Sex", "Surname", "TenantId", "UserName" },
+                values: new object[] { 1L, 0, null, "87b0dc63-f4d8-4c5d-b03d-4fa1812104dc", new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, null, null, null, true, false, false, false, false, false, null, null, null, "admin", null, "ADMIN", "AQAAAAEAACcQAAAAEJJFwnespaTy40G8QclgrPV7m94OS9ebpWJuvMSEWNFBiISyTFI+PR5QpoGE98x81A==", null, "13333333333", "6fdfa1c1-ba20-6d6e-a675-39ecd52a3c7f", 0, null, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "TenantUser",
                 columns: new[] { "Id", "CreationTime", "IsDeleted", "LastModificationTime", "NickName", "PhoneNumber", "TenantId", "UserId" },
-                values: new object[] { 1L, new DateTime(2019, 3, 20, 14, 25, 34, 122, DateTimeKind.Local), false, null, "admin", "13333333333", 1, 1L });
+                values: new object[] { 1L, new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "admin", "13333333333", 1, 1L });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpOrganizationUnits_ParentId",
+                table: "AbpOrganizationUnits",
+                column: "ParentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpPermissions_RoleId",
@@ -459,6 +632,21 @@ namespace LegoAbp.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AbpUsers_CreatorUserId",
+                table: "AbpUsers",
+                column: "CreatorUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpUsers_DeleterUserId",
+                table: "AbpUsers",
+                column: "DeleterUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpUsers_LastModifierUserId",
+                table: "AbpUsers",
+                column: "LastModifierUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AbpUserTokens_UserId",
                 table: "AbpUserTokens",
                 column: "UserId");
@@ -466,6 +654,21 @@ namespace LegoAbp.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AbpAuditLogs");
+
+            migrationBuilder.DropTable(
+                name: "AbpBackgroundJobs");
+
+            migrationBuilder.DropTable(
+                name: "AbpFeatures");
+
+            migrationBuilder.DropTable(
+                name: "AbpOrganizationUnitRoles");
+
+            migrationBuilder.DropTable(
+                name: "AbpOrganizationUnits");
+
             migrationBuilder.DropTable(
                 name: "AbpPermissions");
 
@@ -482,7 +685,13 @@ namespace LegoAbp.Migrations
                 name: "AbpUserClaims");
 
             migrationBuilder.DropTable(
+                name: "AbpUserLoginAttempts");
+
+            migrationBuilder.DropTable(
                 name: "AbpUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AbpUserOrganizationUnits");
 
             migrationBuilder.DropTable(
                 name: "AbpUserRoles");

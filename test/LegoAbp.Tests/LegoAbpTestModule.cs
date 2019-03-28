@@ -11,7 +11,6 @@ using Microsoft.Extensions.DependencyInjection;
 namespace LegoAbp.Tests
 {
     [DependsOn(
-        typeof(LegoAbpApplicationModule),
         typeof(LegoAbpEntityFrameworkCoreModule),
         typeof(AbpTestBaseModule)
         )]

@@ -1,23 +1,19 @@
-﻿
-using Abp.Application.Editions;
-using Abp.Application.Features;
+﻿using Abp.Application.Features;
 using Abp.Authorization.Users;
+using Abp.Dependency;
 using Abp.Domain.Repositories;
-using Abp.Domain.Services;
 using Abp.Localization;
 using Abp.MultiTenancy;
 using Abp.UI;
-using LegoAbp.Zero.Authorization.Roles.Domain;
 using LegoAbp.Zero.Authorization.Users.Domain;
 using LegoAbp.Zero.Editions.Domain;
-using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Tenants.Domain
 {
-    public class LegoAbpTenantManager : AbpTenantManager<Tenant, User>, IDomainService
+    public class LegoAbpTenantManager : AbpTenantManager<Tenant, User>, ITransientDependency
     {
         public ILocalizationManager _localizationManager;
 

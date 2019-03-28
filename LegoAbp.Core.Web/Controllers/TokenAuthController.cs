@@ -28,9 +28,13 @@ namespace LegoAbp.Core.Web.Controllers
         private readonly AbpLoginResultTypeHelper _abpLoginResultTypeHelper;
         private readonly LegoAbpUserManager _userManager;
 
-        public TokenAuthController()
+        public TokenAuthController(TokenAuthConfiguration configuration, ITenantCache tenantCache, LogInManager logInManager, AbpLoginResultTypeHelper abpLoginResultTypeHelper, LegoAbpUserManager userManager)
         {
-
+            _configuration = configuration;
+            _tenantCache = tenantCache;
+            _logInManager = logInManager;
+            _abpLoginResultTypeHelper = abpLoginResultTypeHelper;
+            _userManager = userManager;
         }
         [HttpPost]
         public async Task<AuthenticateResultModel> Authenticate([FromBody] AuthenticateModel model)
@@ -51,7 +55,6 @@ namespace LegoAbp.Core.Web.Controllers
                 Roles = _userManager.GetUserRoles(loginResult.User.Id, null).ToArray()
             };
         }
-
 
         private string GetTenancyNameOrNull()
         {

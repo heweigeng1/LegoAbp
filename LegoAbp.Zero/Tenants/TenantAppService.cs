@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services;
 using LegoAbp.Zero.Tenants.Domain;
+using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Tenants
 {
@@ -10,6 +11,9 @@ namespace LegoAbp.Zero.Tenants
         {
             _tenantManager = tenantManager;
         }
-        
+        public async Task Test()
+        {
+            return await _tenantManager.FindByTenancyNameAsync("default");
+        }
     }
 }

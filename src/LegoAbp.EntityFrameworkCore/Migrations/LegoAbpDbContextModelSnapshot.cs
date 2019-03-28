@@ -198,6 +198,40 @@ namespace LegoAbp.Migrations
                     b.ToTable("AbpUserLogins");
                 });
 
+            modelBuilder.Entity("Abp.Authorization.Users.UserLoginAttempt", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BrowserInfo")
+                        .HasMaxLength(512);
+
+                    b.Property<string>("ClientIpAddress")
+                        .HasMaxLength(64);
+
+                    b.Property<string>("ClientName")
+                        .HasMaxLength(128);
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<byte>("Result");
+
+                    b.Property<string>("TenancyName")
+                        .HasMaxLength(64);
+
+                    b.Property<int?>("TenantId");
+
+                    b.Property<long?>("UserId");
+
+                    b.Property<string>("UserNameOrEmailAddress")
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AbpUserLoginAttempts");
+                });
+
             modelBuilder.Entity("Abp.Authorization.Users.UserOrganizationUnit", b =>
                 {
                     b.Property<long>("Id")
@@ -479,7 +513,7 @@ namespace LegoAbp.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "7c815c55-dd60-455e-a1b5-1cdc5b4d0dc0",
+                            ConcurrencyStamp = "b5c1de50-2917-408b-bac0-cd7933acb094",
                             CreationTime = new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "超级管理员",
                             IsDefault = false,
@@ -583,7 +617,7 @@ namespace LegoAbp.Migrations
                         {
                             Id = 1L,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "155742e4-8e2a-4689-ab02-34abe8ae3a15",
+                            ConcurrencyStamp = "87b0dc63-f4d8-4c5d-b03d-4fa1812104dc",
                             CreationTime = new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             IsDeleted = false,
@@ -593,9 +627,9 @@ namespace LegoAbp.Migrations
                             IsTwoFactorEnabled = false,
                             Name = "admin",
                             NormalizedUserName = "ADMIN",
-                            Password = "AQAAAAEAACcQAAAAEEku2vf/O+Kb2DfpxD2b1GIvNDisgheFYVPBxJA9nx+cF4SnWu5W7+cFsDzzsJC4aA==",
+                            Password = "AQAAAAEAACcQAAAAEJJFwnespaTy40G8QclgrPV7m94OS9ebpWJuvMSEWNFBiISyTFI+PR5QpoGE98x81A==",
                             PhoneNumber = "13333333333",
-                            SecurityStamp = "ed784ee0-e567-c38c-0bd5-39ecc61ff9e2",
+                            SecurityStamp = "6fdfa1c1-ba20-6d6e-a675-39ecd52a3c7f",
                             Sex = 0,
                             UserName = "admin"
                         });

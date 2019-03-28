@@ -17,7 +17,7 @@ using System.Linq;
 
 namespace LegoAbp.Zero.Authorization.Users.Domain
 {
-    public class LegoAbpUserManager : AbpUserManager<Role,User>, IDomainService, ITransientDependency
+    public class LegoAbpUserManager : AbpUserManager<Role, User>, ITransientDependency
     {
         private readonly IRepository<UserRole, long> _userRoleRepository;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
@@ -30,13 +30,13 @@ namespace LegoAbp.Zero.Authorization.Users.Domain
             IOptions<IdentityOptions> optionsAccessor,
             IPasswordHasher<User> passwordHasher,
             IEnumerable<IUserValidator<User>> userValidators,
-            IEnumerable<IPasswordValidator<User>> passwordValidators, 
+            IEnumerable<IPasswordValidator<User>> passwordValidators,
             ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors,
             IServiceProvider services, ILogger<LegoAbpUserManager> logger,
-            IPermissionManager permissionManager, IUnitOfWorkManager unitOfWorkManager, 
-            ICacheManager cacheManager, IRepository<OrganizationUnit, long> organizationUnitRepository, 
+            IPermissionManager permissionManager, IUnitOfWorkManager unitOfWorkManager,
+            ICacheManager cacheManager, IRepository<OrganizationUnit, long> organizationUnitRepository,
             IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository,
-            IOrganizationUnitSettings organizationUnitSettings, 
+            IOrganizationUnitSettings organizationUnitSettings,
             ISettingManager settingManager) : base(roleManager, userStore, optionsAccessor, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger, permissionManager, unitOfWorkManager, cacheManager, organizationUnitRepository, userOrganizationUnitRepository, organizationUnitSettings, settingManager)
         {
             _unitOfWorkManager = unitOfWorkManager;

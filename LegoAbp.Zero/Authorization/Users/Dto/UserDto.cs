@@ -9,7 +9,6 @@ namespace LegoAbp.Zero.Authorization.Users.Dto
     public class UserDto : FullAuditedEntityDto<long>
     {
         public string UserName { get; set; }
-        public string Password { get; set; }
         public string PhoneNum { get; set; }
         public int? TenantId { get; set; }
         public bool IsActive { get; set; }

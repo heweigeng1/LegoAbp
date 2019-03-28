@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Abp.AspNetCore.TestBase;
 using LegoAbp.EntityFrameworkCore;
 using LegoAbp.Tests.TestDatas;
-using AngleSharp.Dom.Html;
-using AngleSharp.Parser.Html;
 using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Shouldly;
+using AngleSharp.Html.Dom;
+using AngleSharp.Html.Parser;
 
 namespace LegoAbp.Web.Tests
 {
@@ -116,7 +116,7 @@ namespace LegoAbp.Web.Tests
 
         protected IHtmlDocument ParseHtml(string htmlString)
         {
-            return new HtmlParser().Parse(htmlString);
+            return new HtmlParser().ParseDocument(htmlString);
         }
 
         #endregion

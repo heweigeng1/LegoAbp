@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 
 namespace LegoAbp.Zero.Authorization.Accounts
 {
-    public class LogInManager : AbpLogInManager<Tenant, Role, User>
+    public class LogInManager : AbpLogInManager<Tenant, Role, User>, ITransientDependency
     {
         private readonly LegoAbpUserManager _userManager;
         private readonly LegoAbpUserClaimsPrincipalFactory _claimsPrincipalFactory;
@@ -38,7 +38,7 @@ namespace LegoAbp.Zero.Authorization.Accounts
             LegoAbpRoleManager roleManager,
             LegoAbpUserClaimsPrincipalFactory claimsPrincipalFactory) : base(userManager, multiTenancyConfig, tenantRepository, unitOfWorkManager, settingManager, userLoginAttemptRepository, userManagementConfig, iocResolver, passwordHasher, roleManager, claimsPrincipalFactory)
         {
-
+            _claimsPrincipalFactory = claimsPrincipalFactory;
         }
 
         public override Task<AbpLoginResult<Tenant, User>> LoginAsync(string userNameOrEmailAddress, string plainPassword, string tenancyName = null, bool shouldLockout = true)

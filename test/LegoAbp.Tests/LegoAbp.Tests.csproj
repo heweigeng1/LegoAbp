@@ -15,7 +15,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\LegoAbp.Application\LegoAbp.Application.csproj" />
     <ProjectReference Include="..\..\src\LegoAbp.EntityFrameworkCore\LegoAbp.EntityFrameworkCore.csproj" />
   </ItemGroup>
 

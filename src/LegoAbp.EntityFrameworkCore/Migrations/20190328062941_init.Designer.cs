@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LegoAbp.Migrations
 {
     [DbContext(typeof(LegoAbpDbContext))]
-    [Migration("20190321040600_init3")]
-    partial class init3
+    [Migration("20190328062941_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -52,6 +52,47 @@ namespace LegoAbp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AbpEditions");
+                });
+
+            modelBuilder.Entity("Abp.Auditing.AuditLog", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BrowserInfo");
+
+                    b.Property<string>("ClientIpAddress");
+
+                    b.Property<string>("ClientName");
+
+                    b.Property<string>("CustomData");
+
+                    b.Property<string>("Exception");
+
+                    b.Property<int>("ExecutionDuration");
+
+                    b.Property<DateTime>("ExecutionTime");
+
+                    b.Property<int?>("ImpersonatorTenantId");
+
+                    b.Property<long?>("ImpersonatorUserId");
+
+                    b.Property<string>("MethodName");
+
+                    b.Property<string>("Parameters");
+
+                    b.Property<string>("ReturnValue");
+
+                    b.Property<string>("ServiceName");
+
+                    b.Property<int?>("TenantId");
+
+                    b.Property<long?>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AbpAuditLogs");
                 });
 
             modelBuilder.Entity("Abp.Authorization.PermissionSetting", b =>
@@ -157,6 +198,40 @@ namespace LegoAbp.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AbpUserLogins");
+                });
+
+            modelBuilder.Entity("Abp.Authorization.Users.UserLoginAttempt", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BrowserInfo")
+                        .HasMaxLength(512);
+
+                    b.Property<string>("ClientIpAddress")
+                        .HasMaxLength(64);
+
+                    b.Property<string>("ClientName")
+                        .HasMaxLength(128);
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<byte>("Result");
+
+                    b.Property<string>("TenancyName")
+                        .HasMaxLength(64);
+
+                    b.Property<int?>("TenantId");
+
+                    b.Property<long?>("UserId");
+
+                    b.Property<string>("UserNameOrEmailAddress")
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AbpUserLoginAttempts");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserOrganizationUnit", b =>
@@ -298,6 +373,31 @@ namespace LegoAbp.Migrations
                     b.ToTable("AbpSettings");
                 });
 
+            modelBuilder.Entity("Abp.MultiTenancy.TenantFeatureSetting", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(128);
+
+                    b.Property<int?>("TenantId");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(2000);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AbpFeatures");
+                });
+
             modelBuilder.Entity("Abp.Organizations.OrganizationUnit", b =>
                 {
                     b.Property<long>("Id")
@@ -335,6 +435,29 @@ namespace LegoAbp.Migrations
                     b.HasIndex("ParentId");
 
                     b.ToTable("AbpOrganizationUnits");
+                });
+
+            modelBuilder.Entity("Abp.Organizations.OrganizationUnitRole", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<long>("OrganizationUnitId");
+
+                    b.Property<int>("RoleId");
+
+                    b.Property<int?>("TenantId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AbpOrganizationUnitRoles");
                 });
 
             modelBuilder.Entity("LegoAbp.Zero.Authorization.Roles.Domain.Role", b =>
@@ -389,8 +512,18 @@ namespace LegoAbp.Migrations
                     b.ToTable("AbpRoles");
 
                     b.HasData(
-                        new { Id = 1, ConcurrencyStamp = "226a8cde-7c93-40fd-87a6-34bfe17080bd", CreationTime = new DateTime(2019, 3, 21, 12, 5, 59, 222, DateTimeKind.Local), DisplayName = "超级管理员", IsDefault = false, IsDeleted = false, IsStatic = false, Name = "admin", NormalizedName = "ADMIN" }
-                    );
+                        new
+                        {
+                            Id = 1,
+                            ConcurrencyStamp = "b5c1de50-2917-408b-bac0-cd7933acb094",
+                            CreationTime = new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DisplayName = "超级管理员",
+                            IsDefault = false,
+                            IsDeleted = false,
+                            IsStatic = false,
+                            Name = "admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("LegoAbp.Zero.Authorization.Users.Domain.User", b =>
@@ -432,8 +565,6 @@ namespace LegoAbp.Migrations
 
                     b.Property<bool>("IsTwoFactorEnabled");
 
-                    b.Property<DateTime?>("LastLoginTime");
-
                     b.Property<DateTime?>("LastModificationTime");
 
                     b.Property<long?>("LastModifierUserId");
@@ -442,7 +573,7 @@ namespace LegoAbp.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(32);
+                        .HasMaxLength(64);
 
                     b.Property<string>("NormalizedEmailAddress");
 
@@ -475,11 +606,35 @@ namespace LegoAbp.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatorUserId");
+
+                    b.HasIndex("DeleterUserId");
+
+                    b.HasIndex("LastModifierUserId");
+
                     b.ToTable("AbpUsers");
 
                     b.HasData(
-                        new { Id = 1L, AccessFailedCount = 0, ConcurrencyStamp = "97e5feea-2f42-4442-8a55-19d09e34c898", CreationTime = new DateTime(2019, 3, 21, 12, 5, 59, 100, DateTimeKind.Local), IsActive = true, IsDeleted = false, IsEmailConfirmed = false, IsLockoutEnabled = true, IsPhoneNumberConfirmed = false, IsTwoFactorEnabled = false, Name = "admin", NormalizedUserName = "ADMIN", Password = "AQAAAAEAACcQAAAAEGCkXUNdheKPkNgYGXtAfULw2Dlq5jpMkSw1KzMlsNr5/n07TusO+OZ+SJ1s27/bmQ==", PhoneNumber = "13333333333", SecurityStamp = "bec4f0a1-3886-a6db-a4cf-39ecb09a2cbc", Sex = 0, UserName = "admin" }
-                    );
+                        new
+                        {
+                            Id = 1L,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "87b0dc63-f4d8-4c5d-b03d-4fa1812104dc",
+                            CreationTime = new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            IsDeleted = false,
+                            IsEmailConfirmed = false,
+                            IsLockoutEnabled = false,
+                            IsPhoneNumberConfirmed = false,
+                            IsTwoFactorEnabled = false,
+                            Name = "admin",
+                            NormalizedUserName = "ADMIN",
+                            Password = "AQAAAAEAACcQAAAAEJJFwnespaTy40G8QclgrPV7m94OS9ebpWJuvMSEWNFBiISyTFI+PR5QpoGE98x81A==",
+                            PhoneNumber = "13333333333",
+                            SecurityStamp = "6fdfa1c1-ba20-6d6e-a675-39ecd52a3c7f",
+                            Sex = 0,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("LegoAbp.Zero.Tenants.Domain.Tenant", b =>
@@ -558,8 +713,16 @@ namespace LegoAbp.Migrations
                     b.ToTable("AbpTenants");
 
                     b.HasData(
-                        new { Id = 1, CreationTime = new DateTime(2019, 3, 21, 12, 5, 59, 53, DateTimeKind.Local), IsActive = true, IsDeleted = false, Name = "default", TenancyName = "default", TenantCode = "default" }
-                    );
+                        new
+                        {
+                            Id = 1,
+                            CreationTime = new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "default",
+                            TenancyName = "default",
+                            TenantCode = "default"
+                        });
                 });
 
             modelBuilder.Entity("LegoAbp.Zero.Tenants.Domain.TenantUser", b =>
@@ -589,8 +752,16 @@ namespace LegoAbp.Migrations
                     b.ToTable("TenantUser");
 
                     b.HasData(
-                        new { Id = 1L, CreationTime = new DateTime(2019, 3, 21, 12, 5, 59, 57, DateTimeKind.Local), IsDeleted = false, NickName = "admin", PhoneNumber = "13333333333", TenantId = 1, UserId = 1L }
-                    );
+                        new
+                        {
+                            Id = 1L,
+                            CreationTime = new DateTime(2019, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            NickName = "admin",
+                            PhoneNumber = "13333333333",
+                            TenantId = 1,
+                            UserId = 1L
+                        });
                 });
 
             modelBuilder.Entity("Abp.Authorization.Roles.RolePermissionSetting", b =>
@@ -674,6 +845,21 @@ namespace LegoAbp.Migrations
                 });
 
             modelBuilder.Entity("LegoAbp.Zero.Authorization.Roles.Domain.Role", b =>
+                {
+                    b.HasOne("LegoAbp.Zero.Authorization.Users.Domain.User", "CreatorUser")
+                        .WithMany()
+                        .HasForeignKey("CreatorUserId");
+
+                    b.HasOne("LegoAbp.Zero.Authorization.Users.Domain.User", "DeleterUser")
+                        .WithMany()
+                        .HasForeignKey("DeleterUserId");
+
+                    b.HasOne("LegoAbp.Zero.Authorization.Users.Domain.User", "LastModifierUser")
+                        .WithMany()
+                        .HasForeignKey("LastModifierUserId");
+                });
+
+            modelBuilder.Entity("LegoAbp.Zero.Authorization.Users.Domain.User", b =>
                 {
                     b.HasOne("LegoAbp.Zero.Authorization.Users.Domain.User", "CreatorUser")
                         .WithMany()
