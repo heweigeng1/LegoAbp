@@ -1,4 +1,5 @@
-﻿using Abp.AspNetCore.Configuration;
+﻿using Abp.Application.Features;
+using Abp.AspNetCore.Configuration;
 using Abp.AutoMapper;
 using Abp.Modules;
 using Abp.Zero;
@@ -32,6 +33,7 @@ namespace LegoAbp.Zero
             Configuration.Auditing.IsEnabled = true;
             Configuration.Auditing.IsEnabledForAnonymousUsers = true;
 
+            IocManager.Register<IAbpZeroFeatureValueStore, AbpFeatureValueStore<Tenant,User>>(Abp.Dependency.DependencyLifeStyle.Transient);
             //配置Identity本地化文件
             LegoAbpZeroIdentityLocalization.Configure(Configuration.Localization);
             //添加租户的本地化文本

@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\LegoAbp.Zero\LegoAbp.Zero.csproj" />
     <ProjectReference Include="..\LegoAbp.Core\LegoAbp.Core.csproj" />
   </ItemGroup>
 

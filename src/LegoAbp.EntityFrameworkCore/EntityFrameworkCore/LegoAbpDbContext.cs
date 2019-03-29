@@ -3,6 +3,7 @@ using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
 using Abp.Reflection;
 using LegoAbp.Reflection;
+using LegoAbp.Zero.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.DependencyModel;
@@ -13,7 +14,7 @@ using System.Reflection;
 
 namespace LegoAbp.EntityFrameworkCore
 {
-    public class LegoAbpDbContext : AbpDbContext
+    public class LegoAbpDbContext : LegoAbpZeroDbContext<LegoAbpDbContext>
     {
 
         //Add DbSet properties for your entities...
@@ -30,7 +31,7 @@ namespace LegoAbp.EntityFrameworkCore
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //获取各个module的entity注册到上下文中.
-            var entityType = new EntityConfigurationTypeFinder(new EntityConfigurationAssemblyFinder(new AppDomainAllAssemblyFinder()) );
+            var entityType = new EntityConfigurationTypeFinder(new EntityConfigurationAssemblyFinder(new AppDomainAllAssemblyFinder()));
 
             IEntityRegister[] registers = entityType.GetEntityRegisters(typeof(LegoAbpDbContext));
             foreach (var item in registers)

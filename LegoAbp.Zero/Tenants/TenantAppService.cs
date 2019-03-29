@@ -6,7 +6,7 @@ namespace LegoAbp.Zero.Tenants
 {
     public class TenantAppService : ApplicationService, ITenantAppService
     {
-        protected LegoAbpTenantManager _tenantManager { get; set; }
+        private readonly LegoAbpTenantManager _tenantManager;
         public TenantAppService(LegoAbpTenantManager tenantManager)
         {
             _tenantManager = tenantManager;
